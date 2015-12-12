@@ -6,6 +6,8 @@
 
 from rest_framework import generics, permissions
 from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework.decorators import detail_route
 from app.CatalogoBienes.models import Grupo, Clase, TipoCatalogoBien, CatalogoBien
 from serializers import GrupoSerializer, ClaseSerializer, TipoSerializer, CatalogoBienSerializer
 
@@ -19,6 +21,16 @@ class ClaseViewSet(viewsets.ModelViewSet):
     queryset = Clase.objects.all()
     serializer_class = ClaseSerializer
 
+    @detail_route(methods=['get'])
+    def bien(self, request, **kwargs):
+        clase = self.get_object()
+        los_bienes = CatalogoBien.objects.filter(clase=clase.id)
+        self.queryset = los_bienes
+        self.serializer_class = CatalogoBienSerializer
+
+        serializer = CatalogoBienSerializer(instance=self.queryset, many=True)
+        return Response(serializer.data)
+
 
 class TipoViewSet(viewsets.ModelViewSet):
     queryset = TipoCatalogoBien.objects.all()
@@ -27,9 +39,4 @@ class TipoViewSet(viewsets.ModelViewSet):
 
 class CatalogoBienViewSet(viewsets.ModelViewSet):
     queryset = CatalogoBien.objects.all()
-    serializer_class = CatalogoBienSerializer
-
-
-class BienesPorClase(viewsets.ModelViewSet,id):
-    queryset = CatalogoBien.objects.filter(clase=id)
     serializer_class = CatalogoBienSerializer
