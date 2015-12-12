@@ -28,3 +28,8 @@ class TipoViewSet(viewsets.ModelViewSet):
 class CatalogoBienViewSet(viewsets.ModelViewSet):
     queryset = CatalogoBien.objects.all()
     serializer_class = CatalogoBienSerializer
+
+
+class BienesPorClase(viewsets.ModelViewSet,id):
+    queryset = CatalogoBien.objects.filter(clase=id)
+    serializer_class = CatalogoBienSerializer
