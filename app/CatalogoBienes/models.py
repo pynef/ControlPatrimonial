@@ -67,6 +67,7 @@ class TipoCatalogoBien(models.Model):
 
 
 class CatalogoBien(models.Model):
+    institucion = models.ForeignKey(Institucion)
     nombre = models.CharField(max_length=128)
     descripcion = models.TextField(blank=True, null=True)
     clase = models.ForeignKey(Clase)

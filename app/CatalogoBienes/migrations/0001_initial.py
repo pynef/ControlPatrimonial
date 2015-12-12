@@ -62,25 +62,6 @@ class Migration(migrations.Migration):
                 'managed': True,
             },
         ),
-        migrations.CreateModel(
-            name='TipoCatalogoBien',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('nombre', models.CharField(max_length=128)),
-                ('descripcion', models.TextField(null=True, blank=True)),
-                ('is_active', models.BooleanField(default=True)),
-                ('create_at', models.DateTimeField(auto_now=True)),
-                ('update_at', models.DateTimeField(auto_now=True)),
-                ('workstation_name', models.CharField(max_length=64, null=True, blank=True)),
-                ('workstation_ip', models.CharField(max_length=64, null=True, blank=True)),
-                ('institucion', models.ForeignKey(to='Institucion.Institucion')),
-                ('user', models.ForeignKey(blank=True, to=settings.AUTH_USER_MODEL, null=True)),
-            ],
-            options={
-                'db_table': 'TipoCatalogoBien',
-                'managed': True,
-            },
-        ),
         migrations.AddField(
             model_name='clase',
             name='grupo',
@@ -105,10 +86,5 @@ class Migration(migrations.Migration):
             model_name='catalogobien',
             name='cuenta_contable',
             field=models.ForeignKey(to='Contabilidad.CuentaContable'),
-        ),
-        migrations.AddField(
-            model_name='catalogobien',
-            name='tipo_catalogo_bien',
-            field=models.ForeignKey(to='CatalogoBienes.TipoCatalogoBien'),
         ),
     ]

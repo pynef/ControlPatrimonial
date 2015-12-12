@@ -5,13 +5,26 @@
 # from rest_framework.views import APIView
 
 from rest_framework import generics, permissions
-from SistemaDeControlPatrimonial.app.CatalogoBienes.models import Grupo, Clase, TipoCatalogoBien, CatalogoBien
-from serializers import GrupoSerializer
+from rest_framework import viewsets
+from app.CatalogoBienes.models import Grupo, Clase, TipoCatalogoBien, CatalogoBien
+from serializers import GrupoSerializer, ClaseSerializer, TipoSerializer, CatalogoBienSerializer
 
 
-class GrupoList(generics.ListAPIView):
-    model = Grupo
+class GrupoViewSet(viewsets.ModelViewSet):
+    queryset = Grupo.objects.all()
     serializer_class = GrupoSerializer
-    permission_classes = [
-        permissions.AllowAny
-    ]
+
+
+class ClaseViewSet(viewsets.ModelViewSet):
+    queryset = Clase.objects.all()
+    serializer_class = ClaseSerializer
+
+
+class TipoViewSet(viewsets.ModelViewSet):
+    queryset = TipoCatalogoBien.objects.all()
+    serializer_class = TipoSerializer
+
+
+class CatalogoBienViewSet(viewsets.ModelViewSet):
+    queryset = CatalogoBien.objects.all()
+    serializer_class = CatalogoBienSerializer
