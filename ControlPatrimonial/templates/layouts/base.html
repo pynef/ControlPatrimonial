@@ -1,0 +1,46 @@
+{% load staticfiles %}
+<!doctype html>
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="es-pe"> <!--<![endif]-->
+{% include 'includes/head.html' %}
+<body data-ng-app="app" id="app" data-custom-background="" data-off-canvas-nav="" data-ng-controller="AdminAppCtrl">
+
+<div class="page-wrapper nav-style--alternative">
+  <div data-ng-hide="checkIfOwnPage()" data-ng-cloak="" class="no-print">
+    <aside data-ng-include=" '{% static 'app/tpl/views/navigation.html' %}' " id="nav-container"></aside>
+  </div>
+
+  <div class="view-container">
+
+    <div data-ng-hide="checkIfOwnPage()" data-ng-cloak="" class="no-print">
+      <section data-ng-include=" '{% static 'app/tpl/views/header.html' %}' " id="header" class="top-header"></section>
+    </div>
+    <section data-ng-view="" id="content" class="animate-fade-up">
+      {% block content %}
+      {% endblock content %}
+    </section>
+  </div>
+
+  <md-sidenav class="md-sidenav-right md-whiteframe-z2 md-theme" md-component-id="rightmessages">
+    <div data-ng-include=" '{% static 'app/tpl/views/right-navbar.html' %}' ">
+
+    </div>
+  </md-sidenav>
+
+</div>
+
+<div class="page-loading-overlay">
+  <div class="loader-2"></div>
+</div>
+
+<div class="load_circle_wrapper">
+
+  <div class="loading_spinner">
+    <div id="wrap_spinner">
+      <md-progress-circular class="md-primary" md-mode="indeterminate"></md-progress-circular>
+    </div>
+  </div>
+</div>
+{% include 'includes/foot.html' %}
+</body>
+</html>
