@@ -22,9 +22,22 @@ class LoginRequiredMixin(View):
 
 #class HomeView(LoginRequiredMixin):
 class HomeView(View):
-    login_required = True
+    '''
+        Class base View para la pagina principal
+    '''
+    #login_required = True
     template_name = 'index.html'
 
     def get(self, req):
         ctx = {'user': req.user}
         return render(req, 'index.html', ctx)
+
+class TestView(View):
+    '''
+        Class base View para la pagina de test de jasmine
+    '''
+    template_name = 'index.html'
+
+    def get(self, req):
+        ctx = {'user': req.user}
+        return render(req, 'test.html', ctx)
