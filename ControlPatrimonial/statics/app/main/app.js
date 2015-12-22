@@ -11,7 +11,8 @@ angular.module('app',
   'ngMaterial',
   'app.config',
   'ui.bootstrap',
-  'uiModule'
+  'uiModule',
+  'ngMdIcons'
 ])
 .run(['$rootScope', '$location',
   function ($rootScope, $location) {
