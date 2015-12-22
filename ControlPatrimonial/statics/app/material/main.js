@@ -1,92 +1,10 @@
-/*
- Application controllers
- Main controllers for the app
- */
-
-angular.module("app")
-.controller("AdminAppCtrl", ["$scope", "$location",
-  function ($scope, $location) {
-    $scope.checkIfOwnPage = function () {
-      return _.contains(["/404", "/pages/500", "/pages/login", "/pages/signin", "/pages/signin1", "/pages/signin2", "/pages/signup", "/pages/signup1", "/pages/signup2", "/pages/forgot", "/pages/lock-screen"], $location.path());
-    };
-    $scope.info = {
-      theme_name: "Kimono",
-      user_name: "John Doe"
-    };
-  }
-])
-.controller("NavCtrl", ["$scope",
-  function ($scope) {
-    $scope.navInfo = {
-      tasks_number: 5,
-      widgets_number: 13
-    };
-    $scope.toggleAlternativeMenu = function(){
-      $('body .page-wrapper').toggleClass('nav-style--alternative');
-    };
-  }
-])
-.controller("DashboardCtrl", ["$scope",
-    function ($scope) {
-    }
-])
-.controller("signinCtrl", ["$scope",
-  function ($scope) {
-    var original;
-    return $scope.user = {
-      email: "",
-      password: ""
-    }, $scope.showInfoOnSubmit = !1, original = angular.copy($scope.user), $scope.revert = function () {
-      return $scope.user = angular.copy(original), $scope.form_signin.$setPristine();
-    }, $scope.canRevert = function () {
-      return !angular.equals($scope.user, original) || !$scope.form_signin.$pristine;
-    }, $scope.canSubmit = function () {
-      return $scope.form_signin.$valid && !angular.equals($scope.user, original);
-    }, $scope.submitForm = function () {
-      return $scope.showInfoOnSubmit = !0, $scope.revert();
-    };
-  }
-])
-.controller("signupCtrl", ["$scope",
-  function ($scope) {
-    var original;
-    return $scope.user = {
-      name: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      age: ""
-    }, $scope.showInfoOnSubmit = !1, original = angular.copy($scope.user), $scope.revert = function () {
-      return $scope.user = angular.copy(original), $scope.form_signup.$setPristine(), $scope.form_signup.confirmPassword.$setPristine();
-    }, $scope.canRevert = function () {
-      return !angular.equals($scope.user, original) || !$scope.form_signup.$pristine;
-    }, $scope.canSubmit = function () {
-      return $scope.form_signup.$valid && !angular.equals($scope.user, original);
-    }, $scope.submitForm = function () {
-      return $scope.showInfoOnSubmit = !0, $scope.revert();
-    };
-  }
-])
-.directive("validateEquals", [
-  function () {
-    return {
-      require: "ngModel",
-      link: function (scope, ele, attrs, ngModelCtrl) {
-        var validateEqual;
-        return validateEqual = function (value) {
-          var valid;
-          return valid = value === scope.$eval(attrs.validateEquals), ngModelCtrl.$setValidity("equal", valid), "function" == typeof valid ? valid({
-            value: void 0
-          }) : void 0;
-        }, ngModelCtrl.$parsers.push(validateEqual), ngModelCtrl.$formatters.push(validateEqual), scope.$watch(attrs.validateEquals, function (newValue, oldValue) {
-          return newValue !== oldValue ? ngModelCtrl.$setViewValue(ngModelCtrl.$ViewValue) : void 0;
-        });
-      }
-    };
-  }
-]);
-
-angular.module('app.material', ['ngMaterial'])
+/* jshint -W097 */
+'use strict';
+/* global angular, console, alert, $ */
+angular.module('uiModule', ['ngMaterial'])
+.run(['$rootScope', function($rootScope){
+  console.log('run material');
+}])
 .controller('SwitchCtrl', function ($scope) {
   $scope.data = {
       cb1: true,
@@ -514,22 +432,21 @@ angular.module('app.material', ['ngMaterial'])
     }
 })
 .controller('TooltipCtrl', function($scope) {
-    $scope.demo = {};
+  $scope.demo = {};
 })
 .controller('RightNavbarCtrl', function ($scope, $timeout, $mdSidenav, $log) {
-    $scope.close = function () {
-        $mdSidenav('rightmessages').close()
-            .then(function () {
-                $log.debug("close RIGHT is done");
-            });
-    };
-
-    $scope.toggleRightNavbar = function() {
-        $mdSidenav('rightmessages').toggle()
-            .then(function(){
-                $log.debug("toggle RIGHT is done");
-            });
-    };
+  $scope.close = function () {
+    $mdSidenav('rightmessages').close()
+      .then(function () {
+        $log.debug("close RIGHT is done");
+      });
+  };
+  $scope.toggleRightNavbar = function() {
+    $mdSidenav('rightmessages').toggle()
+      .then(function(){
+        $log.debug("toggle RIGHT is done");
+      });
+  };
 })
 .controller('BottomSheetExample', function($scope, $timeout, $mdBottomSheet) {
     $scope.alert = '';
@@ -557,118 +474,99 @@ angular.module('app.material', ['ngMaterial'])
     };
 })
 .controller('ListBottomSheetCtrl', function($scope, $mdBottomSheet) {
-        $scope.items = [
-            { name: 'Share', icon: 'dist/img/icons/ic_share_48px.svg' },
-            { name: 'Upload', icon: 'dist/img/icons/ic_cloud_upload_48px.svg' },
-            { name: 'Copy', icon: 'dist/img/icons/ic_content_copy_48px.svg' },
-            { name: 'Print this page', icon: 'dist/img/icons/ic_local_print_shop_48px.svg' },
-        ];
-        $scope.listItemClick = function($index) {
-            var clickedItem = $scope.items[$index];
-            $mdBottomSheet.hide(clickedItem);
-        };
-    })
-    .controller('GridBottomSheetCtrl', function($scope, $mdBottomSheet) {
-        $scope.items = [
-            { name: 'Share', icon: 'dist/img/icons/ic_share_48px.svg' },
-            { name: 'Upload', icon: 'dist/img/icons/ic_cloud_upload_48px.svg' },
-            { name: 'Copy', icon: 'dist/img/icons/ic_content_copy_48px.svg' },
-            { name: 'Print', icon: 'dist/img/icons/ic_local_print_shop_48px.svg' },
-            { name: 'Location', icon: 'dist/img/icons/ic_my_location_48px.svg' },
-            { name: 'Messages', icon: 'dist/img/icons/ic_message_48px.svg' },
-        ];
-        $scope.listItemClick = function($index) {
-            var clickedItem = $scope.items[$index];
-            $mdBottomSheet.hide(clickedItem);
-        };
-    })
-    .controller('UserBottomMenu', function($scope, $timeout, $mdBottomSheet,$route) {
-        $scope.alert = '';
-        $scope.showGridBottomSheet = function($event) {
-            $scope.alert = '';
-            $mdBottomSheet.show({
-                templateUrl: 'app/views/templates/user-bottom-grid.tmpl.html',
-                controller: 'UserBottomSheetCtrl',
-                targetEvent: $event,
-                parent:'#content'
-            }).then(function(clickedItem) {
-                //$scope.alert = clickedItem.name + ' clicked!';
-            });
-        };
-    })
-  .controller('UserSwitchColorsCtrl', function($scope, $timeout, $mdBottomSheet,$route,config) {
+    $scope.items = [
+        { name: 'Share', icon: 'dist/img/icons/ic_share_48px.svg' },
+        { name: 'Upload', icon: 'dist/img/icons/ic_cloud_upload_48px.svg' },
+        { name: 'Copy', icon: 'dist/img/icons/ic_content_copy_48px.svg' },
+        { name: 'Print this page', icon: 'dist/img/icons/ic_local_print_shop_48px.svg' },
+    ];
+    $scope.listItemClick = function($index) {
+        var clickedItem = $scope.items[$index];
+        $mdBottomSheet.hide(clickedItem);
+    };
+})
+.controller('GridBottomSheetCtrl', function($scope, $mdBottomSheet) {
+    $scope.items = [
+        { name: 'Share', icon: 'dist/img/icons/ic_share_48px.svg' },
+        { name: 'Upload', icon: 'dist/img/icons/ic_cloud_upload_48px.svg' },
+        { name: 'Copy', icon: 'dist/img/icons/ic_content_copy_48px.svg' },
+        { name: 'Print', icon: 'dist/img/icons/ic_local_print_shop_48px.svg' },
+        { name: 'Location', icon: 'dist/img/icons/ic_my_location_48px.svg' },
+        { name: 'Messages', icon: 'dist/img/icons/ic_message_48px.svg' },
+    ];
+    $scope.listItemClick = function($index) {
+        var clickedItem = $scope.items[$index];
+        $mdBottomSheet.hide(clickedItem);
+    };
+})
+.controller('UserBottomMenu', function($scope, $timeout, $mdBottomSheet,$route) {
     $scope.alert = '';
     $scope.showGridBottomSheet = function($event) {
-      $scope.alert = '';
-      $mdBottomSheet.show({
-        templateUrl: 'app/views/templates/user-bottom-grid.tmpl.html',
-        controller: 'UserBottomSheetCtrl',
-        targetEvent: $event,
-        parent:'#content'
-      }).then(function(clickedItem) {
-
-        switch (clickedItem.machine_name) {
-          case "teal":
-
-            config.primary_color = '#009688';
-            config.secondary_color = '#FF5252';
-
-            $("#app_main_css").attr("href","dist/css/main.css");
-
-            break;
-          case "orange":
-
-            config.primary_color = '#F57C00';
-            config.secondary_color = '#7C4DFF';
-
-            $("#app_main_css").attr("href","dist/colors/orange/css/main.css");
-
-            break;
-          case "indigo":
-
-            config.primary_color = '#3F51B5';
-            config.secondary_color = '#D81B60';
-
-            $("#app_main_css").attr("href","dist/colors/indigo/css/main.css");
-
-            break;
-          case "red":
-
-            config.primary_color = '#D32F2F';
-            config.secondary_color = '#607D8B';
-
-            $("#app_main_css").attr("href","dist/colors/red/css/main.css");
-            break;
-          case "blue":
-
-            config.primary_color = '#1976D2';
-            config.secondary_color = '#FFC107';
-
-            $("#app_main_css").attr("href","dist/colors/blue/css/main.css");
-            break;
-          case "green":
-
-            config.primary_color = '#4CAF50';
-            config.secondary_color = '#607D8B';
-
-            $("#app_main_css").attr("href","dist/colors/green/css/main.css");
-            break;
-          case "brown":
-
-            config.primary_color = '#795548';
-            config.secondary_color = '#009688';
-
-            $("#app_main_css").attr("href","dist/colors/brown/css/main.css");
-            break;
-        }
-
-        //console.log(config);
-
-        $route.reload();
-
-      });
+        $scope.alert = '';
+        $mdBottomSheet.show({
+            templateUrl: 'app/views/templates/user-bottom-grid.tmpl.html',
+            controller: 'UserBottomSheetCtrl',
+            targetEvent: $event,
+            parent:'#content'
+        }).then(function(clickedItem) {
+            //$scope.alert = clickedItem.name + ' clicked!';
+        });
     };
-  })
+})
+.controller('UserSwitchColorsCtrl', function($scope, $timeout, $mdBottomSheet,$route,config) {
+  console.log('user sw cl tl');
+  $scope.alert = '';
+  $scope.showGridBottomSheet = function($event) {
+    $scope.alert = '';
+    $mdBottomSheet.show({
+      templateUrl: 'app/views/templates/user-bottom-grid.tmpl.html',
+      controller: 'UserBottomSheetCtrl',
+      targetEvent: $event,
+      parent:'#content'
+    })
+    .then(function(clickedItem) {
+      switch (clickedItem.machine_name) {
+        case "teal":
+          config.primary_color = '#009688';
+          config.secondary_color = '#FF5252';
+          $("#app_main_css").attr("href","dist/css/main.css");
+          break;
+        case "orange":
+          config.primary_color = '#F57C00';
+          config.secondary_color = '#7C4DFF';
+          $("#app_main_css").attr("href","dist/colors/orange/css/main.css");
+          break;
+        case "indigo":
+          config.primary_color = '#3F51B5';
+          config.secondary_color = '#D81B60';
+          $("#app_main_css").attr("href","dist/colors/indigo/css/main.css");
+          break;
+        case "red":
+          config.primary_color = '#D32F2F';
+          config.secondary_color = '#607D8B';
+          $("#app_main_css").attr("href","dist/colors/red/css/main.css");
+          break;
+        case "blue":
+          config.primary_color = '#1976D2';
+          config.secondary_color = '#FFC107';
+          $("#app_main_css").attr("href","dist/colors/blue/css/main.css");
+          break;
+        case "green":
+          config.primary_color = '#4CAF50';
+          config.secondary_color = '#607D8B';
+          $("#app_main_css").attr("href","dist/colors/green/css/main.css");
+          break;
+        case "brown":
+          config.primary_color = '#795548';
+          config.secondary_color = '#009688';
+          $("#app_main_css").attr("href","dist/colors/brown/css/main.css");
+          break;
+      }
+      //console.log(config);
+      $route.reload();
+    });
+  };
+})
 .controller('UserBottomSheetCtrl', function($scope, $mdBottomSheet) {
     $scope.items = [
         { name: 'Teal',machine_name:'teal',color:'#009688', icon: 'dist/img/icons/ic_gps_fixed_48px.svg' },
@@ -792,8 +690,10 @@ angular.module('app.material', ['ngMaterial'])
   };
 })
 .config( function($mdThemingProvider){
-    // Configure a dark theme with primary foreground yellow
-    $mdThemingProvider.theme('docs-dark', 'default')
-        .primaryPalette('yellow')
-        .dark();
+  console.log('material config');
+  //Configure a dark theme with primary foreground yellow
+  $mdThemingProvider.theme('docs-dark', 'default')
+  .primaryPalette('yellow')
+  .dark();
+  console.log('end config');
 });

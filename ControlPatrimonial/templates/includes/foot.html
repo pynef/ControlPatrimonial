@@ -4,6 +4,7 @@
 <!-- Theme main app compiled with grunt (replace with below scripts if not using grunt) -->
 <script id="app_js" type="text/javascript" src="{% static 'dist/js/app.js' %}"></script>
 {% else %}
+<script src="{% static 'lib/jquery/dist/jquery.min.js' %}"></script>
 <!-- Replace main.js with all of these if not using grunt to compile -->
 <script src="{% static 'lib/bootstrap/dist/js/bootstrap.min.js' %}"></script>
 <!-- <script src="{% static 'scripts/gmap.js' %}"></script> -->
@@ -16,25 +17,7 @@
 <script src="{% static 'lib/angular-aria/angular-aria.min.js' %}"></script>
 <script src="{% static 'lib/angular-material/angular-material.min.js' %}"></script>
 <script src="{% static 'lib/underscore/underscore-min.js' %}"></script>
-<script src="{% static 'lib/raphael/raphael-min.js' %}"></script>
-<script src="{% static 'lib/morrisjs/morris.min.js' %}"></script>
-<script src="{% static 'lib/flot/jquery.flot.js' %}"></script>
-<script src="{% static 'lib/flot/jquery.flot.canvas.js' %}"></script>
-<script src="{% static 'lib/flot/jquery.flot.categories.js' %}"></script>
-<script src="{% static 'lib/flot/jquery.flot.crosshair.js' %}"></script>
-<script src="{% static 'lib/flot/jquery.flot.image.js' %}"></script>
-<script src="{% static 'lib/flot/jquery.flot.navigate.js' %}"></script>
-<script src="{% static 'lib/flot/jquery.flot.time.js' %}"></script>
-<script src="{% static 'lib/flot/jquery.flot.pie.js' %}"></script>
-<script src="{% static 'lib/flot/jquery.flot.resize.js' %}"></script>
-<script src="{% static 'lib/flot/jquery.flot.selection.js' %}"></script>
-<script src="{% static 'lib/flot/jquery.flot.stack.js' %}"></script>
-<script src="{% static 'lib/flot.curvedlines/curvedLines.js' %}"></script>
-<script src="{% static 'lib/flot.tooltip/js/jquery.flot.tooltip.min.js' %}"></script>
-<script src="{% static 'lib/jquery.sparkline.build/dist/jquery.sparkline.min.js' %}"></script>
-<script src="{% static 'lib/easypie/dist/angular.easypiechart.min.js' %}"></script>
-<script src="{% static 'lib/angular-wizard/dist/angular-wizard.js' %}"></script>
-<script src="{% static 'lib/angular-ui-tree/dist/angular-ui-tree.js' %}"></script>
+
 <!-- <script src="{% static 'lib/jqvmap/jqvmap/jquery.vmap.min.js' %}"></script> -->
 <script src="{% static 'lib/angular-bootstrap/ui-bootstrap-tpls.min.js' %}"></script>
 
@@ -43,7 +26,9 @@
 <script src="{% static 'scripts/audio.min.js' %}"></script>
 -->
 <!-- APP Scripts -->
+<script src="{% static 'app/material/main.js' %}"></script>
 <script src="{% static 'app/main/app.js' %}"></script>
+
 <script src="{% static 'app/main/config.js' %}"></script>
 <script src="{% static 'app/main/controllers.js' %}"></script>
 <script src="{% static 'app/main/directives.js' %}"></script>
