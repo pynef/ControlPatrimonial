@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'app.Institucion',
     'app.Proveedor',
     'app.RecursosHumanos',
-    'app.ApiRest',
+    'ApiRest',
 ]
 
 MIDDLEWARE_CLASSES = [
