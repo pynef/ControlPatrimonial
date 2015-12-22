@@ -4,7 +4,7 @@ from FrontEnd.views import HomeView
 from FrontEnd.views import TestView
 
 urlpatterns = patterns('panel.views',
-    url(r'^', HomeView.as_view()),
+    url(r'', HomeView.as_view()),
     # only for dev enviroment
     url(r'^spects$', TestView.as_view()),
 )

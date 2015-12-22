@@ -5,5 +5,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     url(r'^rest/', include('ApiRest.urls')),
-    url(r'/^', include('FrontEnd.urls')),
+    url(r'^home/', include('FrontEnd.urls')),
 ]
