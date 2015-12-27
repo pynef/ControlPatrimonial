@@ -4,8 +4,8 @@
  Charting directives
  Provides custom directives for charting elements
  */
-
-angular.module("app.chart.directives", []).directive("gaugeChart", [
+angular.module("app.chart.directives", [])
+.directive("gaugeChart", [
         function() {
             return {
                 scope: {
@@ -306,14 +306,13 @@ angular.module("app.chart.directives", []).directive("gaugeChart", [
             };
         }
     ]);
-
-
 /*
  App custom Directives
  Custom directives for the app like custom background, minNavigation etc
  */
 
-angular.module("app.directives", []).directive("imgHolder", [
+angular.module("app.directives", [])
+.directive("imgHolder", [
         function() {
             return {
                 link: function(scope, ele) {
@@ -483,14 +482,10 @@ angular.module("app.directives", []).directive("imgHolder", [
             };
         }
     ]);
-
-
-
 /*
  App Form Ui Directives
  Custom directives for Form Ui elements
  */
-
 angular.module("app.ui.form.directives", []).directive("uiRangeSlider", [
         function() {
             return {

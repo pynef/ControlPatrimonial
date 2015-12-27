@@ -1,0 +1,55 @@
+<div class="page">
+  <section class="md-content-section">
+    <md-toolbar class="md-accent">
+      <div class="md-toolbar-tools">
+        Catalogo de Bienes.
+      </div>
+    </md-toolbar>
+    <md-content>
+      <form class="form-horizontal" role="form" layout="row">
+        <div flex="50">
+          <md-input-container>
+            <label>Nombre</label>
+            <input type="text" class="form-control">
+          </md-input-container>
+          <md-input-container class="md-block">
+            <label>Biography</label>
+            <textarea ng-model="user.biography" columns="1" md-maxlength="150" rows="5"></textarea>
+          </md-input-container>
+        </div>
+        <div flex="50">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Grupo</label>
+            <md-select ng-model="user.state">
+              <md-option ng-repeat="state in states" value="1">
+                asdsd
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Clase</label>
+            <md-select ng-model="user.state">
+              <md-option ng-repeat="state in states" value="1">
+                asdasd
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Tipo</label>
+            <md-select ng-model="user.state">
+              <md-option ng-repeat="state in states" value="1">
+                asdsad
+              </md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+
+        <div flex="100" class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <md-button class="btn-width-medium md-raised md-primary">Submit</md-button>
+          </div>
+        </div>
+      </form>
+    </md-content>
+  </section>
+</div>

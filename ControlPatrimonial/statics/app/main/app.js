@@ -1,22 +1,26 @@
-
+'use strict';
+/* jshint -W097 */
+/* global angular, $, document, setTimeout */
 /**************************
  Initialize the Angular App
  **************************/
 
 angular.module('app',
-['ngRoute',
+[
+  'ngRoute',
+  'ui.router',
   'ngAnimate',
   'ngAria',
   'ngMessages',
   'ngMaterial',
+  'ngMdIcons',
   'app.config',
   'ui.bootstrap',
-  'uiModule',
-  'ngMdIcons'
+  'uiModule'
 ])
 .run(['$rootScope', '$location',
   function ($rootScope, $location) {
-    console.log('app.run');
+    //console.log('app.run');
     $(document).ready(function(config){
       setTimeout(function(){
           $('.page-loading-overlay').addClass('loaded');
@@ -25,20 +29,8 @@ angular.module('app',
     });
   }
 ])
-.config(['$routeProvider',
-  function($routeProvider) {
-    console.log('app.ROUTES');
-    return $routeProvider.when('/', {
-      redirectTo: '/dashboard'
-    }).when('/dashboard', {
-      templateUrl: '/static/app/main/views/home.html'
-    }).otherwise({
-      redirectTo: '/dashboard'
-    });
-  }
-])
 .config(function($mdThemingProvider,$mdGestureProvider) {
-  console.log('app .config');
+  //console.log('app .config');
   $mdGestureProvider.skipClickHijack();
   $mdThemingProvider.theme('default')
     /*.primaryPalette('cyan',{

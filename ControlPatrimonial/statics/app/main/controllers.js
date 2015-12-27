@@ -1,3 +1,5 @@
+'use strict';
+/* global angular, _, $ */
 /*
  Application controllers
  Main controllers for the app
