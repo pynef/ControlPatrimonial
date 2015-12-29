@@ -8,7 +8,7 @@
 angular.module('app',
 [
   'ngRoute',
-  'ui.router',
+  //'ui.router',
   'ngAnimate',
   'ngAria',
   'ngMessages',
@@ -16,16 +16,18 @@ angular.module('app',
   'ngMdIcons',
   'app.config',
   'ui.bootstrap',
-  'uiModule'
+  'uiModule',
+  'RESTServices',
+  'patrimonioModule'
 ])
 .run(['$rootScope', '$location',
   function ($rootScope, $location) {
     //console.log('app.run');
     $(document).ready(function(config){
-      setTimeout(function(){
+      //setTimeout(function(){
           $('.page-loading-overlay').addClass('loaded');
           $('.load_circle_wrapper').addClass('loaded');
-      },1000);
+      //},1000);
     });
   }
 ])
