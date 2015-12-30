@@ -9,7 +9,17 @@ from serializers import GrupoSerializer, ClaseSerializer, TipoSerializer, Catalo
 class GrupoViewSet(viewsets.ModelViewSet):
     queryset = Grupo.objects.all()
     serializer_class = GrupoSerializer
+    # clases
+    @detail_route(methods=['get'])
+    def clases(self, request, **kwargs):
+        #no necesario
+        grupo = self.get_object()
+        clases = Clase.objects.filter(grupo=grupo.id)
+        self.queryset = clases
+        self.serializer_class = ClaseSerializer
 
+        serializer = ClaseSerializer(instance=self.queryset, many=True)
+        return Response(serializer.data)
 
 class ClaseViewSet(viewsets.ModelViewSet):
     queryset = Clase.objects.all()
@@ -17,6 +27,7 @@ class ClaseViewSet(viewsets.ModelViewSet):
 
     @detail_route(methods=['get'])
     def bien(self, request, **kwargs):
+        #no necesario
         clase = self.get_object()
         los_bienes = CatalogoBien.objects.filter(clase=clase.id)
         self.queryset = los_bienes
@@ -27,6 +38,7 @@ class ClaseViewSet(viewsets.ModelViewSet):
 
     @detail_route(methods=['get'])
     def grupo(self, request, **kwargs):
+        # no util
         clase = self.get_object()
         los_grupos = Grupo.objects.filter(clase=clase.id)
         self.queryset = los_grupos

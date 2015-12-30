@@ -103,7 +103,6 @@ class AsignacionBien(models.Model):
         db_table = 'AsignacionBien'
 
 
-
 class TrasladoBien(models.Model):
     nombre = models.CharField(max_length=128)
     descripcion = models.TextField()

@@ -24,7 +24,7 @@
 <script src="{% static 'lib/angular-ui-tree/dist/angular-ui-tree.js' %}"></script>
 <!-- <script src="{% static 'lib/jqvmap/jqvmap/jquery.vmap.min.js' %}"></script> -->
 <script src="{% static 'lib/angular-bootstrap/ui-bootstrap-tpls.min.js' %}"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.6.0/angular-material-icons.min.js"></script>
+<script src="{% static 'lib/angular-material-icons/angular-material-icons.min.js' %}"></script>
 
 <!-- APP Scripts -->
 <script src="{% static 'app/material/main.js' %}"></script>
@@ -37,9 +37,16 @@
 <script src="{% static 'app/main/routes.js' %}"></script>
 <!-- REST Services -->
 <script src="{% static 'app/rest/rest.js' %}"></script>
+<script src="{% static 'app/rest/bienes.js' %}"></script>
+<script src="{% static 'app/rest/catalogo.js' %}"></script>
+<script src="{% static 'app/rest/contabilidad.js' %}"></script>
+<script src="{% static 'app/rest/institucion.js' %}"></script>
+<script src="{% static 'app/rest/proveedor.js' %}"></script>
+<script src="{% static 'app/rest/rrhh.js' %}"></script>
 <!-- Panel app -->
 <script src="{% static 'app/patrimonio/patrimonio.js' %}"></script>
 <script src="{% static 'app/patrimonio/controllers/home.js' %}"></script>
-
+<script src="{% static 'app/patrimonio/controllers/bien.js' %}"></script>
+<script src="{% static 'app/patrimonio/controllers/catalogo.js' %}"></script>
 
 {% endif %}

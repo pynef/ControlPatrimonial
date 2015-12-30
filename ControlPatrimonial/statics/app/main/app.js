@@ -23,6 +23,7 @@ angular.module('app',
 .run(['$rootScope', '$location',
   function ($rootScope, $location) {
     //console.log('app.run');
+    $rootScope.api_url = '/rest/';
     $(document).ready(function(config){
       //setTimeout(function(){
           $('.page-loading-overlay').addClass('loaded');
@@ -31,6 +32,10 @@ angular.module('app',
     });
   }
 ])
+.config(['$httpProvider', function($httpProvider) {
+    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+}])
 .config(function($mdThemingProvider,$mdGestureProvider) {
   //console.log('app .config');
   $mdGestureProvider.skipClickHijack();
