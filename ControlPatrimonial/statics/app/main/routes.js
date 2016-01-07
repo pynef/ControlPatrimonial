@@ -16,6 +16,10 @@ angular.module('app')
   .when('/catalogo-de-bienes', {
     templateUrl: '/static/app/patrimonio/views/catalogo.html',
     controller: 'catalogoCtrl',
+  })
+  .when('/institucion', {
+    templateUrl: '/static/app/patrimonio/views/institucion.html',
+    controller: 'institucionCtrl',
   });
   // configure html5 to get links working on jsfiddle
   //$locationProvider.html5Mode(true);

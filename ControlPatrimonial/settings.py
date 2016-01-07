@@ -132,3 +132,4 @@ API_URL = '/rest/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'ControlPatrimonial/statics'),
 )
+STATIC_ROOT = ''
