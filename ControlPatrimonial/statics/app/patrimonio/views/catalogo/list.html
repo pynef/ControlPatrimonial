@@ -1,0 +1,29 @@
+<div class="page" ng-init="init()">
+  <section class="md-content-section">
+    <md-toolbar class="md-accent">
+      <div class="md-toolbar-tools">
+        Catalogo de Bienes.
+      </div>
+    </md-toolbar>
+    <md-content>
+      <md-list>
+        <md-subheader class="md-no-sticky"> Lista de Catalogos de Bienes</md-subheader>
+        <md-list-item class="md-3-line" ng-repeat="catalogo in catalogos">
+          <div class="md-list-item-text" layout="column">
+            <div class="pull-right">
+              <md-button class="md-fab md-mini md-primary" aria-label="Use Android">
+              <md-icon md-svg-src="img/icons/android.svg" style="color: greenyellow;"></md-icon>
+            </md-button>
+            </div>
+            <h3>
+              {{catalogo.nombre}}
+              <md-button> Editar</md-button>
+            </h3>
+            <h4> {{catalogo.descripcion}} </h4>
+          </div>
+        </md-list-item>
+
+      <md-list>
+    </md-content>
+  </section>
+</div>

@@ -14,7 +14,11 @@ angular.module('app')
     controller: 'homeCtrl',
   })
   .when('/catalogo-de-bienes', {
-    templateUrl: '/static/app/patrimonio/views/catalogo.html',
+    templateUrl: '/static/app/patrimonio/views/catalogo/list.html',
+    controller: 'catalogoCtrl',
+  })
+  .when('/catalogo-de-bienes/crear', {
+    templateUrl: '/static/app/patrimonio/views/catalogo/form.html',
     controller: 'catalogoCtrl',
   })
   .when('/institucion', {
