@@ -23,6 +23,7 @@ angular.module('app',
 .run(['$rootScope', '$location',
   function ($rootScope, $location) {
     //console.log('app.run');
+    $rootScope.static_url = window.static_url;
     $rootScope.api_url = '/rest/';
     $(document).ready(function(config){
       //setTimeout(function(){

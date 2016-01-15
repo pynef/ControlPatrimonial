@@ -11,7 +11,7 @@ class InstitucionViewSet(viewsets.ModelViewSet):
     serializer_class = InstitucionSerializer
 
     @detail_route(methods=['get'])
-    def sede(self, request, **kwargs):
+    def sedes(self, request, **kwargs):
         institucion = self.get_object()
         empresa = Sede.objects.filter(institucion=institucion.id)
         self.queryset = empresa

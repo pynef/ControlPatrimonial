@@ -8,7 +8,7 @@
           </span>
           <span class="col-md-3" ng-hide="nueva_institucion">
               <md-button class="md-info md-fab md-fab-right md-button md-mini" aria-label="Use Android" ng-click="nueva_institucion=1">
-                  <md-icon md-svg-src="{{static_url}}dist/img/icons/ic_add_24px.svg"></md-icon>
+                  <md-icon md-svg-src="http://127.0.0.1:8000/static/dist/img/icons/ic_add_24px.svg"></md-icon>
               </md-button>
           </span>
         </div>
@@ -38,7 +38,7 @@
                 <a href="#" class="media">
                     <span class="pull-left media-icon">
                         <span class="circle-icon sm bg-success">
-                          <md-icon class="color-white ng-isolate-scope md-default-theme" md-svg-src="{{static_url}}dist/img/icons/ic_edit_24px.svg"></path></svg></md-icon>
+                          <md-icon class="color-white ng-isolate-scope md-default-theme" md-svg-src="http://127.0.0.1:8000/static/dist/img/icons/ic_edit_24px.svg"></path></svg></md-icon>
                         </span>
                     </span>
                 </a>
@@ -47,7 +47,7 @@
                 <a href="#" class="media">
                     <span class="pull-left media-icon">
                         <span class="circle-icon sm bg-info">
-                          <md-icon class="color-white ng-isolate-scope md-default-theme" md-svg-src="{{static_url}}dist/img/icons/ic_details_24px.svg"></path></svg></md-icon>
+                          <md-icon class="color-white ng-isolate-scope md-default-theme" md-svg-src="http://127.0.0.1:8000/static/dist/img/icons/ic_details_24px.svg"></path></svg></md-icon>
                         </span>
                     </span>
                 </a>
@@ -56,7 +56,7 @@
                 <a href="#/institucion" class="media" ng-click="borrarInstitucion(insti)">
                     <span class="pull-left media-icon">
                         <span class="circle-icon sm bg-danger">
-                          <md-icon class="color-white ng-isolate-scope md-default-theme" md-svg-src="{{static_url}}dist/img/icons/ic_clear_24px.svg"></path></svg></md-icon>
+                          <md-icon class="color-white ng-isolate-scope md-default-theme" md-svg-src="http://127.0.0.1:8000/static/dist/img/icons/ic_clear_24px.svg"></path></svg></md-icon>
                         </span>
                     </span>
                 </a>
@@ -153,8 +153,6 @@
 
         </div>
       </md-content>
-    </section>
-    <section class="col-md-4" ui-view="viewSedes">
 
     </section>
 </aside>
