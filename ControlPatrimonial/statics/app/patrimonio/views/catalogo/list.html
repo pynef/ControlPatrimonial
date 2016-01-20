@@ -1,25 +1,33 @@
-<div class="page" ng-init="init()">
+<div class="page" ng-init="list()">
   <section class="md-content-section">
     <md-toolbar class="md-accent">
       <div class="md-toolbar-tools">
         Catalogo de Bienes.
+        <div class="pull-right">
+          <md-button class="md-fab md-mini bg-success" aria-label="Editar">
+            <md-icon md-svg-src="{{static_url}}dist/img/icons/ic_add_24px.svg"></md-icon>
+          </md-button>
+        </div>
       </div>
     </md-toolbar>
-    <md-content>
+    <md-content layout-padding>
       <md-list>
-        <md-subheader class="md-no-sticky"> Lista de Catalogos de Bienes</md-subheader>
+        <!-- <md-subheader class="md-no-sticky"> Lista de Catalogos de Bienes</md-subheader> -->
         <md-list-item class="md-3-line" ng-repeat="catalogo in catalogos">
           <div class="md-list-item-text" layout="column">
-            <div class="pull-right">
-              <md-button class="md-fab md-mini md-primary" aria-label="Use Android">
-              <md-icon md-svg-src="img/icons/android.svg" style="color: greenyellow;"></md-icon>
-            </md-button>
-            </div>
-            <h3>
-              {{catalogo.nombre}}
-              <md-button> Editar</md-button>
-            </h3>
+            <h3> {{catalogo.nombre}} </h3>
             <h4> {{catalogo.descripcion}} </h4>
+          </div>
+          <div class="pull-right">
+            <md-button class="md-fab md-mini bg-success" aria-label="Editar">
+              <md-icon md-svg-src="{{static_url}}dist/img/icons/ic_edit_24px.svg"></md-icon>
+            </md-button>
+            <md-button class="md-fab md-mini md-info" aria-label="Información">
+              <md-icon md-svg-src="{{static_url}}dist/img/icons/ic_details_24px.svg"></md-icon>
+            </md-button>
+            <md-button class="md-fab md-mini md-danger" aria-label="Eliminar">
+              <md-icon md-svg-src="{{static_url}}dist/img/icons/ic_clear_24px.svg"></md-icon>
+            </md-button>
           </div>
         </md-list-item>
 

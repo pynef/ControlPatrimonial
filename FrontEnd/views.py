@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import View
+from ControlPatrimonial import settings
 import simplejson as json
-
 
 class LoginRequiredMixin(View):
     '''
@@ -29,7 +29,10 @@ class HomeView(View):
     template_name = 'index.html'
 
     def get(self, req):
-        ctx = {'user': req.user}
+        ctx = {
+            'user': req.user,
+            'static_url': settings.STATIC_URL
+        }
         return render(req, 'index.html', ctx)
 
 class TestView(View):

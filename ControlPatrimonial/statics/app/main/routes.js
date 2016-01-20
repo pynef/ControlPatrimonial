@@ -17,6 +17,10 @@ angular.module('app')
     templateUrl: '/static/app/patrimonio/views/catalogo/list.html',
     controller: 'catalogoCtrl',
   })
+  .when('/catalogo-de-bienes/edit/:id', {
+    templateUrl: '/static/app/patrimonio/views/catalogo/list.html',
+    controller: 'catalogoCtrl',
+  })
   .when('/catalogo-de-bienes/crear', {
     templateUrl: '/static/app/patrimonio/views/catalogo/form.html',
     controller: 'catalogoCtrl',
