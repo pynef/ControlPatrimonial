@@ -10,6 +10,16 @@ class ProveedorViewSet(viewsets.ModelViewSet):
     queryset = Proveedor.objects.all()
     serializer_class = ProveedorSerializer
 
+    #telefonos
+    @detail_route(methods=['get'])
+    def telefonos(self, request, **kwargs):
+        proveedors = self.get_object()
+        los_telefonos = ProveedorTelefonos.objects.filter(proveedor=proveedors.id)
+        self.queryset = los_telefonos
+        self.serializer_class = ProveedorTelefonosSerializer
+
+        serializer = ProveedorTelefonosSerializer(instance=self.queryset, many=True)
+        return Response(serializer.data)
 
 class ProveedorTelefonosViewSet(viewsets.ModelViewSet):
     queryset = ProveedorTelefonos.objects.all()

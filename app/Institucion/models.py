@@ -4,6 +4,10 @@ from django.contrib.auth.models import User
 
 
 class TipoAmbiente(models.Model):
+    '''
+    Los tipo de ambientes son las variedades que usa la institucion asi como
+    salones, oficinas, etc.
+    '''
     nombre = models.CharField(max_length=15)
     descripcion = models.TextField(blank=True, null=True)
 
@@ -17,6 +21,10 @@ class TipoAmbiente(models.Model):
 
 """Empresa"""
 class Institucion(models.Model):
+    '''
+    La institucion es el nombre de la empresa, la cual se dara los privilegios
+    a la hora de logearse.
+    '''
     nombre = models.CharField(max_length=64)
     razon_social = models.CharField(max_length=128)
     direccion_fiscal = models.CharField(max_length=64)
@@ -38,10 +46,13 @@ class Institucion(models.Model):
 
 
 class Sede(models.Model):
+    '''
+    La institucion tiene un lugar que es la sede.
+    '''
     institucion = models.ForeignKey(Institucion)
     nombre = models.CharField(max_length=64)
     descripcion = models.TextField(blank=True, null=True)
-    ubicacion = models.CharField(max_length=6)
+    ubicacion = models.CharField(max_length=6,blank=True, null=True)
     is_active = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now=True)
@@ -58,6 +69,9 @@ class Sede(models.Model):
 
 
 class Local(models.Model):
+    '''
+    Las sedes puede tener n locacales.
+    '''
     institucion = models.ForeignKey(Institucion)
     sede = models.ForeignKey(Sede)
     nombre = models.CharField(max_length=64)
@@ -80,6 +94,10 @@ class Local(models.Model):
 
 
 class Ambiente(models.Model):
+    '''
+    Los ambientes son los lugares donde se le asignara los bienes de la empresa
+    teniendo en cuenta los locales.
+    '''
     institucion = models.ForeignKey(Institucion)
     sede = models.ForeignKey(Sede)
     local = models.ForeignKey(Local)

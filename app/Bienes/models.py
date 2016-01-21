@@ -11,6 +11,7 @@ from app.Proveedor.models import Proveedor
 
 class TipoMedida(models.Model):
     '''
+    El tipo de medida es para ver como se medira el bien ejemplo. kilogramos, litros, docenas
     '''
     nombre = models.CharField(max_length=15)
     descripcion = models.TextField(blank=True, null=True)
@@ -24,6 +25,9 @@ class TipoMedida(models.Model):
 
 
 class TipoAlmacen(models.Model):
+    '''
+    El tipo de almacen es si es .... o .....
+    '''
     nombre = models.CharField(max_length=15)
     descripcion = models.TextField(blank=True, null=True)
 
@@ -36,6 +40,10 @@ class TipoAlmacen(models.Model):
 
 
 class Almacen(models.Model):
+    '''
+    Es cuando haces tu nota de ingreso de cuales son los nuevos bienes ingresados
+    como una boleta
+    '''
     catalogo_de_bien = models.ForeignKey(CatalogoBien)
     proveedor = models.ForeignKey(Proveedor)
     tipo_medida = models.ForeignKey(TipoMedida)
@@ -51,6 +59,9 @@ class Almacen(models.Model):
 
 
 class Inventario(models.Model):
+    '''
+    no me acuerdo pq lo puse o.O
+    '''
     catalogo_de_bien = models.ForeignKey(CatalogoBien)
     descripcion = models.TextField()
 
@@ -63,6 +74,10 @@ class Inventario(models.Model):
 
 
 class AltaBien(models.Model):
+    '''
+    Cuando el bien se da de baja. por ejemplo cuando ya esta depreciado, cuando
+    se dona, se regala, etc
+    '''
     nombre = models.CharField(max_length=128)
     descripcion = models.TextField()
     inventario = models.ForeignKey(Inventario)
@@ -76,6 +91,9 @@ class AltaBien(models.Model):
 
 
 class DisposicionBien(models.Model):
+    '''
+    uhmmmmmm
+    '''
     nombre = models.CharField(max_length=128)
     descripcion = models.TextField()
     inventario = models.ForeignKey(Inventario)
@@ -90,6 +108,10 @@ class DisposicionBien(models.Model):
 
 
 class AsignacionBien(models.Model):
+    '''
+    Cuando el bien esta en el almacen de patrimonio y se le asignara por
+    primera vez a un ambiente, de la cual comienza la depreciacion
+    '''
     nombre = models.CharField(max_length=128)
     descripcion = models.TextField()
     inventario = models.ForeignKey(Inventario)
@@ -104,6 +126,10 @@ class AsignacionBien(models.Model):
 
 
 class TrasladoBien(models.Model):
+    '''
+    Cuando el bien cambia de un lugar a otro.
+    origen -> destino
+    '''
     nombre = models.CharField(max_length=128)
     descripcion = models.TextField()
     inventario = models.ForeignKey(Inventario)

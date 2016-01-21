@@ -18,11 +18,11 @@ angular.module('app')
     controller: 'catalogoCtrl',
   })
   .when('/institucion', {
-    templateUrl: '/static/app/patrimonio/views/institucion.html',
+    templateUrl: '/static/app/patrimonio/views/institucion/institucion.html',
     controller: 'institucionCtrl',
   })
   .when('/institucion/:idInstitucion/sedes', {
-    templateUrl: '/static/app/patrimonio/views/sede.html',
+    templateUrl: '/static/app/patrimonio/views/institucion/sede.html',
     controller: 'sedeCtrl',
   });
   // configure html5 to get links working on jsfiddle
