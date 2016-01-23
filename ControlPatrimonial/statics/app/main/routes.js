@@ -26,7 +26,6 @@ angular.module('app')
     controller: 'catalogoCtrl',
   })
   .when('/institucion', {
-<<<<<<< HEAD
     templateUrl: '/static/app/patrimonio/views/institucion/list.html',
     controller: 'institucionCtrl',
   })
@@ -37,15 +36,7 @@ angular.module('app')
   .when('/institucion/crear', {
     templateUrl: '/static/app/patrimonio/views/institucion.html',
     controller: 'institucionCtrl',
-=======
-    templateUrl: '/static/app/patrimonio/views/institucion/institucion.html',
-    controller: 'institucionCtrl',
-  })
-  .when('/institucion/:idInstitucion/sedes', {
-    templateUrl: '/static/app/patrimonio/views/institucion/sede.html',
-    controller: 'sedeCtrl',
->>>>>>> a754be821a984b91a4d5bd08580db125f2466b0f
   });
-  // configure html5 to get links working on jsfiddle
+  // configure html5 to get links working on  jsfiddle
   //$locationProvider.html5Mode(true);
 });

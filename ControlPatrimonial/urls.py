@@ -6,6 +6,6 @@ admin.autodiscover()
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^rest/', include('ApiRest.urls')),
-    # url(r'^home/', include('FrontEnd.urls')),
+    url(r'^home/', include('FrontEnd.urls')),
     # url(r'^static/(?P<path>.*)$', 'django.views.static.serve',{'document_root': settings.STATIC_ROOT}),
 ]
