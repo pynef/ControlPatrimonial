@@ -9,6 +9,9 @@ from app.Contabilidad.models import CuentaContable
 
 """Patrimonio"""
 class Grupo(models.Model):
+    '''
+    Los catalogos de bienes se cataloga por grupos.
+    '''
     institucion = models.ForeignKey(Institucion)
     nombre = models.CharField(max_length=128)
     descripcion = models.TextField(blank=True, null=True)
@@ -28,6 +31,9 @@ class Grupo(models.Model):
 
 
 class Clase(models.Model):
+    '''
+    Los grupos tienen clases definidas.
+    '''
     institucion = models.ForeignKey(Institucion)
     grupo = models.ForeignKey(Grupo)
     nombre = models.CharField(max_length=128)
@@ -48,6 +54,9 @@ class Clase(models.Model):
 
 
 class TipoCatalogoBien(models.Model):
+    '''
+    Son los tipo de los catalogo de bienes que son 2
+    '''
     institucion = models.ForeignKey(Institucion)
     nombre = models.CharField(max_length=128)
     descripcion = models.TextField(blank=True, null=True)
@@ -67,6 +76,10 @@ class TipoCatalogoBien(models.Model):
 
 
 class CatalogoBien(models.Model):
+    '''
+    Los catalogos de bienes son las clasificaciones que hace la institucion
+    segun la necesidades que requiere.
+    '''
     institucion = models.ForeignKey(Institucion)
     nombre = models.CharField(max_length=128)
     descripcion = models.TextField(blank=True, null=True)

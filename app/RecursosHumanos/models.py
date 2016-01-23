@@ -8,6 +8,9 @@ from app.Institucion.models import Ambiente
 
 """Persona"""
 class Persona(models.Model):
+    '''
+    Es un campo general, donde se registra a toda persona.
+    '''
     institucion = models.ForeignKey(Institucion)
     sede = models.ForeignKey(Sede)
     local = models.ForeignKey(Local)
@@ -44,6 +47,9 @@ class Persona(models.Model):
 
 
 class PersonaTelefono(models.Model):
+    '''
+    Toda persona cuenta con n numero telefonicos para hacer el contacto directo.
+    '''
     institucion = models.ForeignKey(Institucion)
     sede = models.ForeignKey(Sede)
     local = models.ForeignKey(Local)
@@ -63,6 +69,9 @@ class PersonaTelefono(models.Model):
 
 """Recursos Humanos"""
 class Trabajador(models.Model):
+    '''
+    Son las personas que laboran en la institucion.
+    '''
     institucion = models.ForeignKey(Institucion)
     sede = models.ForeignKey(Sede)
     local = models.ForeignKey(Local)
@@ -99,6 +108,10 @@ class Trabajador(models.Model):
 
 
 class Area(models.Model):
+    '''
+    Son las diferentes areas que pueda tener la institucion como: area de TI,
+    area de contabilidad, area de RRHH, etc.
+    '''
     institucion = models.ForeignKey(Institucion)
     sede = models.ForeignKey(Sede)
     local = models.ForeignKey(Local,blank=True, null=True)
@@ -121,6 +134,10 @@ class Area(models.Model):
 
 
 class Puesto(models.Model):
+    '''
+    Son los cargos que hay en el area como: gerente, sub-gerente, jefe de area,
+    asistente, etc.
+    '''
     institucion = models.ForeignKey(Institucion)
     sede = models.ForeignKey(Sede)
     local = models.ForeignKey(Local)
@@ -144,6 +161,9 @@ class Puesto(models.Model):
 
 
 class TrabajadorPuesto(models.Model):
+    '''
+    Es la asigacion del trabajador a un puesto.
+    '''
     institucion = models.ForeignKey(Institucion)
     sede = models.ForeignKey(Sede)
     local = models.ForeignKey(Local)

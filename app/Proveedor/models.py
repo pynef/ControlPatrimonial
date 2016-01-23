@@ -9,6 +9,10 @@ from app.RecursosHumanos.models import Persona
 
 """Proveedores"""
 class Proveedor(models.Model):
+    '''
+    La institucion contiene una lista de proveedores que les facilita la
+    compra de los bienes, la cual esta registrado para tener un mejor control.
+    '''
     institucion = models.ForeignKey(Institucion)
     nombre = models.CharField(max_length=64)
     razon_social = models.CharField(max_length=128)
@@ -32,6 +36,9 @@ class Proveedor(models.Model):
 
 
 class ProveedorTelefonos(models.Model):
+    '''
+    Los proveedores tienen n numero para contactarlos.
+    '''
     institucion = models.ForeignKey(Institucion)
     proveedor = models.ForeignKey(Proveedor)
     numero = models.CharField(max_length=16)

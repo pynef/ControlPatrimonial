@@ -9,9 +9,11 @@ class ProveedorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Proveedor
         fields = ('id', 'institucion', 'nombre', 'razon_social', 'direccion_fiscal', 'email', 'ruc', 'duenio')
+        read_only_fields = ('created_at', 'updated_at',)
 
 
 class ProveedorTelefonosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Proveedor
         fields = ('id', 'institucion', 'proveedor', 'numero', 'operador')
+        read_only_fields = ('created_at', 'updated_at',)
