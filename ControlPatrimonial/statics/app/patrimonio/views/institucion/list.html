@@ -1,0 +1,25 @@
+<div class="page">
+  <md-content>
+    <section class="col-md-4">
+      <md-toolbar md-scroll-shrink class="md-primary">
+        <div class="md-toolbar-tools" class="col-md-12">
+          <span class="col-md-9">
+          INSTITUCIÓN
+          </span>
+          <span class="col-md-3" ng-hide="nueva_institucion">
+              <md-button class="md-info md-fab md-fab-right md-button md-mini" aria-label="Use Android" ng-click="nueva_institucion=1">
+                  <md-icon md-svg-src="{{static_url}}dist/img/icons/ic_add_24px.svg"></md-icon>
+              </md-button>
+          </span>
+        </div>
+      </md-toolbar>
+    </section>
+    <section class="col-md-4" ng-include="'{{static_url}}app/patrimonio/views/sede/list.html'">
+
+    </section>
+    <section class="col-md-4" ng-bind="'{{static_url}}app/patrimonio/views/ambiente/list.html'">
+
+    </section>
+
+  </md-content>
+</div>

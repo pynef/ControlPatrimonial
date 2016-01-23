@@ -26,6 +26,14 @@ angular.module('app')
     controller: 'catalogoCtrl',
   })
   .when('/institucion', {
+    templateUrl: '/static/app/patrimonio/views/institucion/list.html',
+    controller: 'institucionCtrl',
+  })
+  .when('/institucion/edit/:id', {
+    templateUrl: '/static/app/patrimonio/views/institucion.html',
+    controller: 'institucionCtrl',
+  })
+  .when('/institucion/crear', {
     templateUrl: '/static/app/patrimonio/views/institucion.html',
     controller: 'institucionCtrl',
   });
