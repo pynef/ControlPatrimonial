@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+# from slughifi import slughifi
 
 
 class TipoAmbiente(models.Model):
@@ -26,6 +26,7 @@ class Institucion(models.Model):
     a la hora de logearse.
     '''
     nombre = models.CharField(max_length=64)
+    slug = models.SlugField(max_length=16, unique=True)
     razon_social = models.CharField(max_length=128)
     direccion_fiscal = models.CharField(max_length=64)
     email = models.CharField(max_length=64)
@@ -40,9 +41,16 @@ class Institucion(models.Model):
     def __str__(self):
         return '{0} - {1}'.format(self.nombre,self.ruc)
 
+    '''
+    def save(self):
+        if not self.id:
+            self.slug = slughifi(self.nombre)
+        super(Institucion, self).save(*args, **kwargs)
+
     class Meta:
         managed = True
         db_table = 'Institucion'
+    '''
 
 
 class Sede(models.Model):
@@ -121,3 +129,20 @@ class Ambiente(models.Model):
     class Meta:
         managed = True
         db_table = 'Ambiente'
+
+
+class Puesto(models.Model):
+    '''
+        Usuarios y roles por institucion
+    '''
+    institucion = models.ForeignKey(Institucion, related_name='Institucion')
+    colaborador = models.ForeignKey(User, related_name='Colaborador')
+    rol = models.CharField(max_length=64)
+    create_at = models.DateTimeField(auto_now=True)
+    update_at = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User,blank=True, null=True, related_name='Use')
+    workstation_name = models.CharField(max_length=64,blank=True, null=True)
+    workstation_ip = models.CharField(max_length=64,blank=True, null=True)
+
+    def __str__(self):
+        return 'rol'

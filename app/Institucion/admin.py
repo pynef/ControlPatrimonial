@@ -5,7 +5,7 @@ from app.Institucion.models import Institucion
 from app.Institucion.models import Sede
 from app.Institucion.models import Local
 from app.Institucion.models import Ambiente
-
+from app.Institucion.models import Puesto
 
 
 admin.site.register(TipoAmbiente)
@@ -13,6 +13,7 @@ admin.site.register(Institucion)
 admin.site.register(Sede)
 admin.site.register(Local)
 admin.site.register(Ambiente)
+admin.site.register(Puesto)
 
 # class InstitucionAdmin(admin.ModelAdmin):
 # 	list_display = ('nombre',
