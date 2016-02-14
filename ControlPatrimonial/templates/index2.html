@@ -1,0 +1,15 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+  demo
+{% endblock content %}
+
+{% block scripts %}
+  <script type="text/javascript">
+    window.user = {
+      nombres: '{{user.username}}',
+      id: '{{user.id}}'
+    };
+    window.static_url = '{{static_url}}';
+  </script>
+{% endblock scripts %}
