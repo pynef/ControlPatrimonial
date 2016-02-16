@@ -71,9 +71,11 @@ class HomeView(LoginRequiredMixin, View):
     redirect_field_name = '/home'
     template_name = 'index.html'
 
-    def get(self, slug, req):
-        req.session.get('instituciones')
-        req.session.get('institucion')
+    def get(self, req, slug):
+        print '________'
+        print slug
+        print req.session.get('instituciones')
+        print req.session.get('institucion')
         # cargar
         ctx = {
             'user': req.user,
