@@ -3,7 +3,8 @@
 /* global angular */
 
 angular.module('patrimonioModule').
-controller('catalogoCtrl',['$scope','grupoService','tipoService', 'catalogoService',
+controller('catalogoCtrl',
+  ['$scope','grupoService','tipoService', 'catalogoService',
   function($scope, grupoService, tipoService, catalogoService){
     $scope.init = function(){
       //load grupo clase tipo y cuenta
@@ -15,8 +16,8 @@ controller('catalogoCtrl',['$scope','grupoService','tipoService', 'catalogoServi
       // body...
     };
     $scope.save_catalogo = function(catalogo){
-      console.log(catalogo);
+      // console.log(catalogo);
       catalogoService.save(catalogo);
     };
- }
+  }
 ]);

@@ -43,8 +43,11 @@ class InstitucionView(LoginRequiredMixin, View):
     template_name = 'institucion.html'
 
     def get(self, req):
+        print 'InstitucionView'
         user = req.user
-        puestos = Puesto.objects.filter(colaborador=user)
+        puestos = Puesto.objects.filter(colaborador=user,
+                                        institucion__is_active = True)
+        print 'puestos - {0}'.format(puestos.count())
         if puestos.count() <= 0:
             return redirect(self.login_url)
         elif puestos.count() == 1:

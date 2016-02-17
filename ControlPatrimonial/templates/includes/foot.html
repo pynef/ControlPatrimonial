@@ -4,6 +4,23 @@
 <!-- Theme main app compiled with grunt (replace with below scripts if not using grunt) -->
 <script id="app_js" type="text/javascript" src="{% static 'dist/js/app.js' %}"></script>
 {% else %}
+
+<!-- Bottom Scripts -->
+<script src="{% static 'dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'dist/js/TweenMax.min.js' %}"></script>
+<script src="{% static 'dist/js/resizeable.js' %}"></script>
+<script src="{% static 'dist/js/joinable.js' %}"></script>
+<script src="{% static 'dist/js/xenon-api.js' %}"></script>
+<script src="{% static 'dist/js/xenon-toggles.js' %}"></script>
+
+<!-- Imported scripts on this page -->
+<script src="{% static 'dist/js/jvectormap/jquery-jvectormap-1.2.2.min.js' %}"></script>
+<script src="{% static 'dist/js/jvectormap/regions/jquery-jvectormap-world-mill-en.js' %}"></script>
+<script src="{% static 'dist/js/xenon-widgets.js' %}"></script>
+
+<!-- JavaScripts initializations and stuff -->
+<script src="{% static 'dist/js/xenon-custom.js' %}"></script>
+
 <script src="{% static 'lib/jquery/dist/jquery.min.js' %}"></script>
 <!-- Replace main.js with all of these if not using grunt to compile -->
 <script src="{% static 'lib/bootstrap/dist/js/bootstrap.min.js' %}"></script>

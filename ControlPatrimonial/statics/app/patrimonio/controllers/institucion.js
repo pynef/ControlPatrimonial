@@ -1,7 +1,6 @@
 'use strict';
 /* jshint -W097 */
 /* global angular */
-
 angular.module('patrimonioModule')
 .controller('institucionCtrl',['$scope','institucionService',
   function($scope, institucionService){
@@ -38,7 +37,7 @@ angular.module('patrimonioModule')
         });
     };
     $scope.validate_parent = function(){
-      console.log()$scope.$parent.sede_id);
-    }
+      console.log($scope.$parent.sede_id);
+    };
  }
 ]);
