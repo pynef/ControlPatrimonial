@@ -2,9 +2,9 @@
 /* jshint -W097 */
 /* global angular */
 
-angular.module('patrimonioModule')
-.controller('catalogoCtrl',['$scope','grupoService','tipoService', 'CatalogoService',
-  function($scope, grupoService, tipoService, CatalogoService){
+angular.module('patrimonioModule').
+controller('catalogoCtrl',['$scope','grupoService','tipoService', 'catalogoService',
+  function($scope, grupoService, tipoService, catalogoService){
     $scope.init = function(){
       //load grupo clase tipo y cuenta
       $scope.grupos = grupoService.query();
@@ -14,33 +14,9 @@ angular.module('patrimonioModule')
       $scope.clases = grupoService.clases({id: grupo_id});
       // body...
     };
-    $scope.list = function(){
-      $scope.catalogos = CatalogoService.query();
-    };
-    $scope.new = function(data){
-      var catalogo = new CatalogoService(data);
-      catalogo.institucion = 1;
-      catalogo.cuenta_contable = 1;
-      catalogo.$save(
-        function(data){ console.log('success', data); },
-        function(err){ console.log('error', err); }
-      );
-    };
-    $scope.edit = function(data){
-      var catalogo = new CatalogoService(data);
-      catalogo.institucion = 1;
-      catalogo.cuenta_contable = 1;
-      catalogo.$save(
-        function(data){ console.log('success', data); },
-        function(err){ console.log('error', err); }
-      );
-    };
-    $scope.info = function(){
-    };
-
-    $scope.save_catalogo = function(data){
-      console.log(data);
-
+    $scope.save_catalogo = function(catalogo){
+      console.log(catalogo);
+      catalogoService.save(catalogo);
     };
  }
 ]);

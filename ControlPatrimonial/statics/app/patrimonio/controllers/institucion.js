@@ -1,6 +1,6 @@
 'use strict';
 /* jshint -W097 */
-/* global angular, _ */
+/* global angular */
 
 angular.module('patrimonioModule')
 .controller('institucionCtrl',['$scope','institucionService',
