@@ -86,6 +86,12 @@ class CatalogoBien(models.Model):
     clase = models.ForeignKey(Clase)
     tipo_catalogo_bien = models.ForeignKey(TipoCatalogoBien)
     cuenta_contable = models.ForeignKey(CuentaContable)
+    is_active = models.BooleanField(default=True)
+    create_at = models.DateTimeField(auto_now=True)
+    update_at = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User,blank=True, null=True)
+    workstation_name = models.CharField(max_length=64,blank=True, null=True)
+    workstation_ip = models.CharField(max_length=64,blank=True, null=True)
 
     def __str__(self):
         return '{0}'.format(self.nombre)
