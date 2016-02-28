@@ -7,13 +7,13 @@ from serializers import InstitucionSerializer, SedeSerializer, LocalSerializer, 
 
 
 class InstitucionViewSet(viewsets.ModelViewSet):
-    queryset = Institucion.objects.all()
+    queryset = Institucion.objects.all().filter(is_active=True)
     serializer_class = InstitucionSerializer
 
     @detail_route(methods=['get'])
     def sedes(self, request, **kwargs):
         institucion = self.get_object()
-        empresa = Sede.objects.filter(institucion=institucion.id)
+        empresa = Sede.objects.filter(institucion=institucion.id).filter(is_active=True)
         self.queryset = empresa
         self.serializer_class = SedeSerializer
 
@@ -22,13 +22,13 @@ class InstitucionViewSet(viewsets.ModelViewSet):
 
 
 class SedeViewSet(viewsets.ModelViewSet):
-    queryset = Sede.objects.all()
+    queryset = Sede.objects.all().filter(is_active=True)
     serializer_class = SedeSerializer
 
     @detail_route(methods=['get'])
     def local(self, request, **kwargs):
         sede = self.get_object()
-        local = Local.objects.filter(sede=sede.id)
+        local = Local.objects.filter(sede=sede.id).filter(is_active=True)
         self.queryset = local
         self.serializer_class = LocalSerializer
 
@@ -37,13 +37,13 @@ class SedeViewSet(viewsets.ModelViewSet):
 
 
 class LocalViewSet(viewsets.ModelViewSet):
-    queryset = Local.objects.all()
+    queryset = Local.objects.all().filter(is_active=True)
     serializer_class = LocalSerializer
 
     @detail_route(methods=['get'])
     def ambiente(self, request, **kwargs):
         local = self.get_object()
-        ambiente = Ambiente.objects.filter(local=local.id)
+        ambiente = Ambiente.objects.filter(local=local.id).filter(is_active=True)
         self.queryset = ambiente
         self.serializer_class = AmbienteSerializer
 
@@ -52,7 +52,7 @@ class LocalViewSet(viewsets.ModelViewSet):
 
 
 class AmbienteViewSet(viewsets.ModelViewSet):
-    queryset = Ambiente.objects.all()
+    queryset = Ambiente.objects.all().filter(is_active=True)
     serializer_class = AmbienteSerializer
 
 

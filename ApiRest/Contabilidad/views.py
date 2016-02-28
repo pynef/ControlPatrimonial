@@ -7,5 +7,5 @@ from serializers import CuentaContableSerializer
 
 
 class CuentaContableViewSet(viewsets.ModelViewSet):
-    queryset = CuentaContable.objects.all()
+    queryset = CuentaContable.objects.all().filter(is_active=True)
     serializer_class = CuentaContableSerializer

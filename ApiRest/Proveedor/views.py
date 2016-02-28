@@ -7,7 +7,7 @@ from serializers import ProveedorSerializer,ProveedorTelefonosSerializer
 
 
 class ProveedorViewSet(viewsets.ModelViewSet):
-    queryset = Proveedor.objects.all()
+    queryset = Proveedor.objects.all().filter(is_active=True)
     serializer_class = ProveedorSerializer
 
     #telefonos

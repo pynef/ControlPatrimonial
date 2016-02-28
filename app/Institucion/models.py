@@ -137,6 +137,7 @@ class Puesto(models.Model):
     institucion = models.ForeignKey(Institucion, related_name='Institucion')
     colaborador = models.ForeignKey(User, related_name='Colaborador')
     rol = models.CharField(max_length=64)
+    is_active = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User,blank=True, null=True, related_name='Use')

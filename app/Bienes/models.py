@@ -41,6 +41,12 @@ class Almacen(models.Model):
     tipo_medida = models.ForeignKey(TipoMedida)
     tipo_almacen = models.ForeignKey(TipoAlmacen)
     descripcion = models.TextField()
+    is_active = models.BooleanField(default=True)
+    create_at = models.DateTimeField(auto_now=True)
+    update_at = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User,blank=True, null=True)
+    workstation_name = models.CharField(max_length=64,blank=True, null=True)
+    workstation_ip = models.CharField(max_length=64,blank=True, null=True)
 
     def __str__(self):
         return '{0}'.format(self.catalogo_de_bien)
@@ -53,6 +59,12 @@ class Almacen(models.Model):
 class Inventario(models.Model):
     catalogo_de_bien = models.ForeignKey(CatalogoBien)
     descripcion = models.TextField()
+    is_active = models.BooleanField(default=True)
+    create_at = models.DateTimeField(auto_now=True)
+    update_at = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User,blank=True, null=True)
+    workstation_name = models.CharField(max_length=64,blank=True, null=True)
+    workstation_ip = models.CharField(max_length=64,blank=True, null=True)
 
     def __str__(self):
         return '{0}'.format(self.catalogo_de_bien)
@@ -66,6 +78,12 @@ class AltaBien(models.Model):
     nombre = models.CharField(max_length=128)
     descripcion = models.TextField()
     inventario = models.ForeignKey(Inventario)
+    is_active = models.BooleanField(default=True)
+    create_at = models.DateTimeField(auto_now=True)
+    update_at = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User,blank=True, null=True)
+    workstation_name = models.CharField(max_length=64,blank=True, null=True)
+    workstation_ip = models.CharField(max_length=64,blank=True, null=True)
 
     def __str__(self):
         return '{0}'.format(self.nombre)
@@ -80,6 +98,12 @@ class DisposicionBien(models.Model):
     descripcion = models.TextField()
     inventario = models.ForeignKey(Inventario)
     disposicion = models.TextField(max_length=128)
+    is_active = models.BooleanField(default=True)
+    create_at = models.DateTimeField(auto_now=True)
+    update_at = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User,blank=True, null=True)
+    workstation_name = models.CharField(max_length=64,blank=True, null=True)
+    workstation_ip = models.CharField(max_length=64,blank=True, null=True)
 
     def __str__(self):
         return '{0}'.format(self.nombre)
@@ -94,6 +118,12 @@ class AsignacionBien(models.Model):
     descripcion = models.TextField()
     inventario = models.ForeignKey(Inventario)
     ambiente = models.ForeignKey(Ambiente)
+    is_active = models.BooleanField(default=True)
+    create_at = models.DateTimeField(auto_now=True)
+    update_at = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User,blank=True, null=True)
+    workstation_name = models.CharField(max_length=64,blank=True, null=True)
+    workstation_ip = models.CharField(max_length=64,blank=True, null=True)
 
     def __str__(self):
         return '{0}'.format(self.nombre)
@@ -109,6 +139,12 @@ class TrasladoBien(models.Model):
     inventario = models.ForeignKey(Inventario)
     origen = models.ForeignKey(Ambiente)
     destino = models.TextField(max_length=250)
+    is_active = models.BooleanField(default=True)
+    create_at = models.DateTimeField(auto_now=True)
+    update_at = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User,blank=True, null=True)
+    workstation_name = models.CharField(max_length=64,blank=True, null=True)
+    workstation_ip = models.CharField(max_length=64,blank=True, null=True)
 
     def __str__(self):
         return '{0}'.format(self.nombre)
