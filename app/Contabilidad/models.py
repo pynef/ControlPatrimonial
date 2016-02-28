@@ -14,7 +14,7 @@ class CuentaContable(models.Model):
     cuenta_depreciacion = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
-        return '{0}'.format(self.nombre)
+        return '{0} - {1}'.format(self. numero_cuenta, self.nombre)
 
     class Meta:
         managed = True

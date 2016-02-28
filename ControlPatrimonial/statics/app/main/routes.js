@@ -32,6 +32,21 @@ angular.module('app')
         url: '/catalogo',
         templateUrl: window.static_url + 'app/patrimonio/views/catalogo/home.html',
         controller: 'catalogoCtrl'
+      })
+      .state('catalogo.show', {
+        url: '/:id/ver-mas',
+        templateUrl: window.static_url + 'app/patrimonio/views/catalogo/home.html',
+        controller: 'catalogoCtrl'
+      })
+      .state('catalogo.edit', {
+        url: '/:id/editar',
+        templateUrl: window.static_url + 'app/patrimonio/views/catalogo/home.html',
+        controller: 'catalogoCtrl'
+      })
+      .state('catalogo.create', {
+        url: '/nuevo',
+        templateUrl: window.static_url + 'app/patrimonio/views/catalogo/home.html',
+        controller: 'catalogoCtrl'
       });
   }
 ]);

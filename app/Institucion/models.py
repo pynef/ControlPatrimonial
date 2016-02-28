@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-# from slughifi import slughifi
+from django.utils.text import slugify
 
 
 class TipoAmbiente(models.Model):
@@ -41,17 +41,16 @@ class Institucion(models.Model):
     def __str__(self):
         return '{0} - {1}'.format(self.nombre,self.ruc)
 
-    '''
-    def save(self):
+    def save(self, *args, **kwargs):
         if not self.id:
-            self.slug = slughifi(self.nombre)
+            self.slug = slugify(self.nombre).upper();
         super(Institucion, self).save(*args, **kwargs)
 
+    '''
     class Meta:
         managed = True
-        db_table = 'Institucion'
+        # db_table = 'Institucion'
     '''
-
 
 class Sede(models.Model):
     '''

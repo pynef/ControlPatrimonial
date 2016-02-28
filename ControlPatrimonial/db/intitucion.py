@@ -9,7 +9,7 @@ tipo_ambiente2 = TipoAmbiente.objects.create(
     nombre = 'Oficina'
 )
 
-
+'''
 institucion1 = Institucion.objects.create(
     nombre = 'ICPNA',
     razon_social = 'Instituto Cultura Peruana Norte Americana',
@@ -19,7 +19,8 @@ institucion1 = Institucion.objects.create(
     is_active = True,
     create_at = '01-01-2016'
 )
-
+'''
+institucion1 = Institucion.objects.get(id=1)
 
 sede1_institucion1 = Sede.objects.create(
     institucion = institucion1,

@@ -1,58 +1,70 @@
-<div class="page" ng-init="init()">
-  <section class="md-content-section">
-    <md-toolbar class="md-accent">
-      <div class="md-toolbar-tools">
-        Catalogo de Bienes.
+<div class="page-title">
+  <div class="title-env">
+    <h1 class="title">Catalogo de Bienes</h1>
+    <p class="description">Donde se clasifica los tipos de productos</p>
+  </div>
+  <div class="breadcrumb-env">
+    <ol class="breadcrumb bc-1">
+      <li>
+        <a href="#/"><i class="fa-home"></i>Home</a>
+      </li>
+      <li class="active">
+          <strong>Catalogo de Bienes</strong>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="row" ui-view>
+  <div class="col-sm-12"  ng-init="init()">
+    <section class="panel panel-default">
+      <header class="panel-heading">
+        <span class="pull-right">
+          <a ui-sref=".create" class="btn btn-secondary btn-icon">
+            <i class="fa-plus"></i>
+            <span>Nuevo</span>
+          </a>
+        </span>
+        <h3 class="panel-title"> Lista   </h3>
+      </header>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-model-2 table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Clase</th>
+                <th>Tipo de Catalogo</th>
+                <th>Cuenta Contable</th>
+                <th>Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="catalogo in catalogos">
+                <td>{{catalogo.id}}</td>
+                <td>{{catalogo.nombre}}</td>
+                <td>{{catalogo.clase}}</td>
+                <td>{{catalogo.tipo_catalogo_bien}}</td>
+                <td>{{catalogo.cuenta_contable}}</td>
+                <td>
+                  <a ui-sref=".show({id:catalogo.id})" class="btn btn-icon btn-info" alt="mas información">
+                    <i class="fa-search"></i>
+                  </a>
+                  <a ui-sref=".edit({id:catalogo.id})" class="btn btn-icon btn-blue" alt="Editar">
+                    <i class="fa-pencil"></i>
+                  </a>
+                  <button class="btn btn-icon btn-red" ng-click="remove(catalogo)" alt="eliminar">
+                    <i class="fa-remove"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
       </div>
-    </md-toolbar>
-    <md-content>
-      <form class="form-horizontal" role="form">
-        <div layout="row">
-           <div flex="66">
-            <div layout-padding>
-              <md-input-container>
-                <label>Nombre</label>
-                <input type="text" ng-model="catalogo.nombre" class="form-control">
-              </md-input-container>
-              <md-input-container class="md-block">
-                <label>Descripcion</label>
-                <textarea ng-model="catalogo.descripcion" columns="1" md-maxlength="150" rows="5"></textarea>
-              </md-input-container>
-            </div>
-          </div>
-          <div flex="33">
-            <div layout-padding>
-              <md-input-container class="md-block" flex-gt-sm>
-                <label>Grupo</label>
-                <md-select ng-model="catalogo.grupo" ng-change="ch_grupo(catalogo.grupo)">
-                  <md-option ng-repeat="grupo in grupos" value="{{grupo.id}}">
-                    {{grupo.nombre}}
-                  </md-option>
-                </md-select>
-              </md-input-container>
-              <md-input-container class="md-block" flex-gt-sm>
-                <label>Clase</label>
-                <md-select ng-disabled="!clases" ng-model="catalogo.clase">
-                  <md-option  ng-repeat="clase in clases" value="{{clase.id}}">
-                    {{clase.nombre}}
-                  </md-option>
-                </md-select>
-              </md-input-container>
-              <md-input-container class="md-block" flex-gt-sm>
-                <label>Tipo</label>
-                <md-select ng-model="catalogo.tipo">
-                  <md-option ng-repeat="tipo in tipos" value="{{tipo.id}}">
-                    {{tipo.nombre}}
-                  </md-option>
-                </md-select>
-              </md-input-container>
-            </div>
-          </div>
-        </div>
-        <div layout="column">
-              <md-button ng-click="save_catalogo(catalogo)" class="btn-width-medium md-raised md-primary">Submit</md-button>
-        </div>
-      </form>
-    </md-content>
-  </section>
+      <footer class="panel-footing"></footer>
+    </section>
+  </div>
 </div>

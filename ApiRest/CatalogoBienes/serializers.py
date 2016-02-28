@@ -26,6 +26,9 @@ class TipoSerializer(serializers.ModelSerializer):
 
 
 class CatalogoBienSerializer(serializers.ModelSerializer):
+    clase = serializers.StringRelatedField(many=False)
+    tipo_catalogo_bien = serializers.StringRelatedField(many=False)
+    cuenta_contable = serializers.StringRelatedField(many=False)
     class Meta:
         model = CatalogoBien
         fields = ('id', 'institucion', 'nombre', 'descripcion', 'clase', 'tipo_catalogo_bien', 'cuenta_contable')
