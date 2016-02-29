@@ -5,17 +5,17 @@
 angular.module('RESTServices')
   .factory('institucionService',
   ['$rootScope', 'djResource', function ($rootScope, djResource) {
-    return djResource($rootScope.api_url + 'instituciones/:id',{id:'@id'});
+    return djResource($rootScope.api_url + 'instituciones/:id/',{id:'@id'});
   }
   ])
   .factory('institucionSedesService',
   ['$rootScope', 'djResource', function ($rootScope, djResource) {
-    return djResource($rootScope.api_url + 'instituciones/:id/sedes',{id:'@id'});
+    return djResource($rootScope.api_url + 'instituciones/:id/sedes/',{id:'@id'});
   }
   ])
   .factory('sedeService',
     ['$rootScope', 'djResource', function ($rootScope, djResource) {
-      return djResource($rootScope.api_url + 'sedes/:id',{id:'@id'});
+      return djResource($rootScope.api_url + 'sedes/:id/',{id:'@id'});
     }
   ])
 

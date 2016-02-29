@@ -18,15 +18,18 @@ angular.module('patrimonioModule')
     };
   }
 ])
-.controller('institucionNewCtrl',['$scope', '$state', 'institucionService',
-  function($scope, $state,   institucionService){
+.controller('institucionNewCtrl',['$scope', '$state', '$stateParams', 'institucionService',
+  function($scope, $state, $stateParams,  institucionService){
     $scope.init = function(){
+      if($stateParams.id){
+        $scope.instituciones = institucionService.query();
+        $scope.institucion = institucionService.get({id:$stateParams.id});
+      }
     };
     $scope.nuevaInstitucion = function(institucion){
-      console.log(institucion);
+      $scope.instituciones = institucionService.query();
       institucionService.save(institucion);
-      $scope.instituciones.push(institucion);
-      $state.go('institucion');
+      $state.go('^');
     };
   }
 ])
@@ -35,14 +38,13 @@ angular.module('patrimonioModule')
     $scope.init = function(){
     };
     $scope.nuevaInstitucion = function(institucion){
-      console.log(institucion);
+      $scope.instituciones = institucionService.query();
       institucionService.save(institucion);
       $scope.instituciones.push(institucion);
       $state.go('institucion');
     };
   }
 ])
-
 .controller('institucionSedesCtrl',['$scope', '$stateParams', 'institucionSedesService',
   function($scope, $stateParams, institucionSedesService){
     $scope.init = function(){
@@ -57,4 +59,20 @@ angular.module('patrimonioModule')
       console.log($scope.$parent.sede_id);
     };
  }
+])
+
+.controller('institucionSedeNewCtrl',['$scope', '$state', '$stateParams', 'sedeService',
+  function($scope, $state, $stateParams,  sedeService){
+    $scope.init = function(){
+      if($stateParams.id){
+        $scope.sedes = sedeService.query();
+        $scope.sede = sedeService.get({id:$stateParams.id});
+      }
+    };
+    $scope.nuevaSede = function(sede){
+      $scope.sedes = sedeService.query();
+      sedeService.save(institucion);
+      $state.go('^');
+    };
+  }
 ]);
