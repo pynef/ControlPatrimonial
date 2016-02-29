@@ -15,13 +15,35 @@ angular.module('app')
       })
       .state('institucion', {
         url: '/institucion',
-        templateUrl: window.static_url + 'app/patrimonio/views/institucion/home.html',
+        templateUrl: window.static_url + 'app/patrimonio/views/institucion/instituciones.html',
         controller: 'institucionCtrl'
       })
-      .state('institucion.sede', {
+      .state('institucion.new', {
+        url: '/new',
+        views: {
+          "viewInstitucionNew": {
+            templateUrl: window.static_url + 'app/patrimonio/views/institucion/institucionNew.html',
+            controller: 'institucionNewCtrl'
+          }
+        }
+      })
+      .state('institucion.edit', {
+        url: '/:id/edit',
+        views: {
+          "viewInstitucionEdit": {
+            templateUrl: window.static_url + 'app/patrimonio/views/institucion/institucionEdit.html',
+            controller: 'institucionEditCtrl'
+          }
+        }
+      })
+      .state('institucion.sedes', {
         url: '/:id/sedes',
-        templateUrl: window.static_url + '',
-        controller: 'sedeCtrl'
+        views: {
+          "ViewInstitucionSedes": {
+            templateUrl: window.static_url + 'app/patrimonio/views/institucion/sedes.html',
+            controller: 'institucionSedesCtrl'
+          }
+        }
       })
       .state('institucion.sedes.local', {
         url: '/:id/locales',

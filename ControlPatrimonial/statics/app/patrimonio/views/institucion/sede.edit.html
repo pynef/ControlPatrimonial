@@ -1,0 +1,42 @@
+
+  <div class="col-sm-12"  ng-init="init()">
+    <section class="panel panel-default">
+      <header class="panel-heading">
+        <span class="pull-right">
+          <a ui-sref=".create" class="btn btn-secondary btn-icon0">
+            <i class="fa-plus"></i>
+            <span>Nuevo</span>
+          </a>
+        </span>
+        <h3 class="panel-title same-margin"> Lista </h3>
+      </header>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-model-2 table-hover">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="insti in instituciones">
+                <td>{{insti.nombre}}</td>
+                <td>
+                  <a ui-sref=".show({id:insti.id})" class="btn btn-icon btn-info" alt="mas información">
+                    <i class="fa-search"></i>
+                  </a>
+                  <a ui-sref="institucion.sedes({ id: insti.id })" class="btn btn-icon btn-blue" alt="Editar">
+                    <i class="fa-pencil"></i>
+                  </a>
+                  <button class="btn btn-icon btn-red"  ng-click="borrarInstitucion(insti)" alt="eliminar">
+                    <i class="fa-remove"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <footer class="panel-footing"></footer>
+    </section>
+  </div>

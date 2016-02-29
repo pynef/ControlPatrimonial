@@ -6,7 +6,7 @@ from FrontEnd.views import TestView
 
 urlpatterns = [
     url(r'i/(?P<slug>[-\w]+)/$', HomeView.as_view(), name='institucion'),
-    url(r'home', InstitucionView.as_view(), name='chose'),
+    url(r'home', InstitucionView.as_view(), name='home'),
     # only for dev enviroment
     url(r'^spects$', TestView.as_view(), name='spects'),
 ]

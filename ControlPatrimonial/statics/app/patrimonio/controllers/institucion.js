@@ -11,29 +11,46 @@ angular.module('patrimonioModule')
       $scope.sede_tpl = '';
       $scope.ambiente_tpl = '';
     };
-    $scope.nuevaInstitucion = function(institucion){
-      console.log(institucion);
-      institucionService.save(institucion);
-      $scope.instituciones.push(institucion);
-    };
     $scope.borrarInstitucion = function(institucion){
       console.log(institucion);
       institucionService.delete(institucion);
       $scope.instituciones = _.without( $scope.instituciones, _.findWhere($scope.instituciones,{id:institucion.id}));
     };
-    $scope.show_sedes = function(institucion_id){
-      //console.log(institucion_id)
-      $scope.sede_tpl = $scope.static_url + '/app/patrimonio/views/sede/list.html';
-
+  }
+])
+.controller('institucionNewCtrl',['$scope', '$state', 'institucionService',
+  function($scope, $state,   institucionService){
+    $scope.init = function(){
+    };
+    $scope.nuevaInstitucion = function(institucion){
+      console.log(institucion);
+      institucionService.save(institucion);
+      $scope.instituciones.push(institucion);
+      $state.go('institucion');
     };
   }
 ])
-.controller('sedeCtrl',['$scope','sedeService',
-  function($scope, sedeService){
+.controller('institucionEditCtrl',['$scope', '$state', 'institucionService',
+  function($scope, $state,   institucionService){
     $scope.init = function(){
-      sedeService.get({id: $scope.user.id},
-        function(sede){
-          $scope.sedes = sede;
+    };
+    $scope.nuevaInstitucion = function(institucion){
+      console.log(institucion);
+      institucionService.save(institucion);
+      $scope.instituciones.push(institucion);
+      $state.go('institucion');
+    };
+  }
+])
+
+.controller('institucionSedesCtrl',['$scope', '$stateParams', 'institucionSedesService',
+  function($scope, $stateParams, institucionSedesService){
+    $scope.init = function(){
+      console.log(666);
+      institucionSedesService.query({id: $stateParams.id},
+        function(sedes){
+          $scope.sedes = sedes;
+          console.log(sedes);
         });
     };
     $scope.validate_parent = function(){

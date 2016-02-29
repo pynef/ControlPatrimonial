@@ -20,7 +20,6 @@ institucion1 = Institucion.objects.create(
     create_at = '01-01-2016'
 )
 
-
 sede1_institucion1 = Sede.objects.create(
     institucion = institucion1,
     nombre ='Junin'

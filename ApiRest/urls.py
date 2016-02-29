@@ -19,14 +19,14 @@ router.register(r'tipos', TipoViewSet)
 router.register(r'catalogobienes', CatalogoBienViewSet)
 
 #rutas de contabilidad
-router.register(r'cuenta_contable', CuentaContableViewSet)
+router.register(r'cuenta_contables', CuentaContableViewSet)
 
 #rutas de institucion
-router.register(r'tipo_ambiente', TipoAmbienteViewSet)
+router.register(r'tipo_ambientes', TipoAmbienteViewSet)
 router.register(r'instituciones', InstitucionViewSet)
-router.register(r'sede', SedeViewSet)
-router.register(r'local', LocalViewSet)
-router.register(r'ambiente', AmbienteViewSet)
+router.register(r'sedes', SedeViewSet)
+router.register(r'locales', LocalViewSet)
+router.register(r'ambientes', AmbienteViewSet)
 
 
 #rutas de proveedor
