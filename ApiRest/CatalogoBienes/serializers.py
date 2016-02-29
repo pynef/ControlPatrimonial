@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.forms import widgets
 from rest_framework import serializers
 from django.contrib.auth.models import User
@@ -47,4 +48,4 @@ class CatalogoBienSerializer(serializers.ModelSerializer):
             institucion = Institucion.objects.get(id=id)
             validated_data['institucion'] = institucion
             return  CatalogoBien.objects.create(**validated_data)
-        raise serializers.ValidationError("Blog post is not about Django")
+        raise serializers.ValidationError("Usted no pertenece a ninguna institución.")

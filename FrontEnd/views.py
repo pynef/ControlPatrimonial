@@ -66,7 +66,13 @@ class InstitucionView(LoginRequiredMixin, View):
         return render(req, self.template_name, ctx)
 
     def post(self, req):
-        user =  req.user
+        institucion_id = req.POST.get('institucion_id')
+        institucion = Institucion.objects.get(id=institucion_id)
+        if institucion:
+            req.session['institucion'] = institucion_id
+            url = reverse('institucion', kwargs={'slug': institucion.slug})
+            return redirect(url)
+        return redirect(self.redirect_to)
 
 class HomeView(LoginRequiredMixin, View):
     '''
@@ -77,12 +83,15 @@ class HomeView(LoginRequiredMixin, View):
     template_name = 'index.html'
 
     def get(self, req, slug):
-        print '________'
-        print slug
-        # remove this in verified sessions
-        if req.session.get('institucion', False):
-            req.session['institucion'] = Institucion.objects.get(slug=slug).id
-        print req.session.get('institucion')
+        #start validation
+        user =  req.user
+        if not req.session.get('institucion', False):
+            return redirect(self.login_url)
+        institucion_id = req.session['institucion']
+        institucion = Institucion.objects.get(id=institucion_id)
+        if not institucion.slug == slug:
+            return redirect(self.login_url)
+        # end validation
         # cargar
         ctx = {
             'user': req.user,

@@ -1,18 +1,30 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>institucion</title>
-  </head>
-  <body>
-    <h1>Eleción de Instituciones</h1>
-    <p>
-      {{puestos}}
-    </p>
-    <ul>
-      {% for puesto in puestos %}
-      <li> <a href="{% url 'institucion' puesto.institucion.slug %}"> {{puesto.institucion.nombre}}</a> </li>
-      {% endfor %}
-    </ul>
-  </body>
-</html>
+{% extends "layouts/login_base.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="login-container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Eleción de Instituciones</h1>
+    </div>
+  </div>
+    <div class="row">
+        <div class="col-sm-5">
+          <h3> Profavor, elige una Institucion para proseguir con la aplicacion.</h3>
+        </div>
+        <div class="col-sm-7">
+          <ul>
+            {% for puesto in puestos %}
+            <li>
+              <form action="#" method="post">
+                {% csrf_token %}
+                <label for="institucion_id"><h3>{{puesto.institucion.nombre}}</h3></label>
+                <input type="hidden" name="institucion_id" value="{{puesto.institucion.id}}">
+                <button class="btn btn-gray" type="submit" name="button"> <i class="fa-arrow-right"></i></button>
+              </form>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

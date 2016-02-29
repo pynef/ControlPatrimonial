@@ -41,8 +41,8 @@ controller('catalogoEditCtrl',
   }
 ]).
 controller('catalogoSaveCtrl',
-['$scope', '$stateParams', 'grupoService', 'tipoService', 'CtaContableService', 'CatalogoService',
-function($scope, $stateParams, grupoService, tipoService, CtaContableService, CatalogoService){
+['$scope', '$state', '$stateParams', 'grupoService', 'tipoService', 'CtaContableService', 'CatalogoService',
+function($scope, $state, $stateParams, grupoService, tipoService, CtaContableService, CatalogoService){
     $scope.init = function(){
       if($stateParams.id)
         $scope.catalogo = CatalogoService.get({id:$stateParams.id});
@@ -64,6 +64,7 @@ function($scope, $stateParams, grupoService, tipoService, CtaContableService, Ca
         $scope.catalogo = data;
         $scope.message = ({success:true, error: false});
         btn.removeAttr('disabled');
+        //$state.go('^');
       }, function(err){
         $scope.message = ({success:false, error:true});
         btn.removeAttr('disabled');
