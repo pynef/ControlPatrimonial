@@ -30,9 +30,9 @@ angular.module('app')
       .state('institucion.edit', {
         url: '/:id/edit',
         views: {
-          "viewInstitucionEdit": {
-            templateUrl: window.static_url + 'app/patrimonio/views/institucion/institucionEdit.html',
-            controller: 'institucionEditCtrl'
+          "viewInstitucionNew": {
+            templateUrl: window.static_url + 'app/patrimonio/views/institucion/institucionNew.html',
+            controller: 'institucionNewCtrl'
           }
         }
       })
@@ -45,10 +45,14 @@ angular.module('app')
           }
         }
       })
-      .state('institucion.sedes.local', {
-        url: '/:id/locales',
-        templateUrl: window.static_url + '',
-        controller: 'sedeCtrl'
+      .state('institucion.sedes.new', {
+        url: '/sede/new',
+        views: {
+          "viewSedeNew": {
+            templateUrl: window.static_url + 'app/patrimonio/views/institucion/sedeNew.html',
+            controller: 'institucionSedeNewCtrl'
+          }
+        }
       })
       .state('catalogo', {
         url: '/catalogo',
