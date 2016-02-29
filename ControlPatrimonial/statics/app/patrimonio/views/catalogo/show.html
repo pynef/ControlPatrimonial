@@ -1,0 +1,23 @@
+<div class="col-sm-12"  ng-init="init()">
+  <section ng-if="catalogo.$resolved" class="panel panel-default">
+    <header class="panel-heading">
+      <span class="pull-right">
+        <a ui-sref="^" class="btn btn-red btn-icon">
+          <i class="fa-chevron-left"></i>
+          <span>regresar</span>
+        </a>
+        <a ui-sref="catalogo.edit({id: catalogo.id})" class="btn btn-blue btn-icon">
+          <i class="fa-pencil"></i>
+          <span>Editar</span>
+        </a>
+      </span>
+      <h3 class="panel-title"> {{catalogo.nombre}}   </h3>
+    </header>
+    <div class="panel-body">
+      {{catalogo.descripcion}}
+    </div>
+  </section>
+  <section ng-if="!catalogo.$resolved">
+    Cargando
+  </section>
+</div>

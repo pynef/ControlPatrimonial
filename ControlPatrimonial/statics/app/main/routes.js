@@ -35,18 +35,18 @@ angular.module('app')
       })
       .state('catalogo.show', {
         url: '/:id/ver-mas',
-        templateUrl: window.static_url + 'app/patrimonio/views/catalogo/home.html',
-        controller: 'catalogoCtrl'
+        templateUrl: window.static_url + 'app/patrimonio/views/catalogo/show.html',
+        controller: 'catalogoShowCtrl'
       })
       .state('catalogo.edit', {
         url: '/:id/editar',
-        templateUrl: window.static_url + 'app/patrimonio/views/catalogo/home.html',
-        controller: 'catalogoCtrl'
+        templateUrl: window.static_url + 'app/patrimonio/views/catalogo/form.html',
+        controller: 'catalogoSaveCtrl'
       })
       .state('catalogo.create', {
         url: '/nuevo',
-        templateUrl: window.static_url + 'app/patrimonio/views/catalogo/home.html',
-        controller: 'catalogoCtrl'
+        templateUrl: window.static_url + 'app/patrimonio/views/catalogo/form.html',
+        controller: 'catalogoSaveCtrl'
       });
   }
 ]);

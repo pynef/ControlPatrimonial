@@ -1,0 +1,72 @@
+<div class="col-sm-12"  ng-init="init()">
+  <section ng-if="catalogo.$resolved" class="panel panel-default">
+    <header class="panel-heading">
+      <span class="pull-right">
+        <a ui-sref="^" class="btn btn-red btn-icon">
+          <i class="fa-chevron-left"></i>
+          <span>regresar</span>
+        </a>
+      </span>
+      <h3 class="panel-title"> {{catalogo.nombre}} </h3>
+    </header>
+    <div class="panel-body">
+      <form class="" name="catalogoForm" role="form">
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="form-group" ng-class="{'validate-has-error':catalogoForm.nombre.$invalid}">
+              <label class="control-label" for="nombre">Nombre</label>
+              <input class="form-control" name="nombre" placeholder="Nombre" type="text" ng-model="catalogo.nombre" required>
+              <span ng-show="catalogoForm.nombre.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="descripcion">Descripción</label>
+              <textarea class="form-control" name="descripcion" placeholder="Descripción"></textarea>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group" ng-class="{'validate-has-error':catalogoForm.grupo.$invalid}">
+              <label class="control-label" for="grupo">Grupo </label>
+              <select class="form-control" name="grupo" ng-model="grupo" ng-change="changeGrupo(grupo)" required>
+                <option ng-repeat="grupo in grupos" value="{{grupo.id}}"> {{grupo.nombre}} </option>
+              </select>
+              <span ng-show="catalogoForm.grupo.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
+            </div>
+            <div class="form-group" ng-class="{'validate-has-error':catalogoForm.clase.$invalid}">
+              <label class="control-label" for="clase">Clase</label>
+              <select ng-disabled="!clases || clases.length <= 0" class="form-control" name="clase" ng-model="catalogo.clase" required>
+                <option ng-repeat="clase in clases" value="{{clase.id}}"> {{clase.nombre}} </option>
+              </select>
+              <span ng-show="catalogoForm.clase.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
+            </div>
+            <div class="form-group" ng-class="{'validate-has-error':catalogoForm.tipo.$invalid}">
+              <label class="control-label" for="tipo">Tipo</label>
+              <select class="form-control" name="tipo" ng-model="catalogo.tipo_catalogo_bien" required>
+                <option ng-repeat="tipo in tipos" value="{{tipo.id}}"> {{tipo.nombre}} </option>
+              </select>
+              <span ng-show="catalogoForm.tipo.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
+            </div>
+            <div class="form-group" ng-class="{'validate-has-error':catalogoForm.cuenta.$invalid}">
+              <label class="control-label" for="cuenta">Cuenta Contable</label>
+              <select class="form-control" name="cuenta" ng-model="catalogo.cuenta_contable" required>
+                <option ng-repeat="cuenta in cuentas" value="{{cuenta.id}}"> {{cuenta.nombre}} </option>
+              </select>
+              <span ng-show="catalogoForm.cuenta.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <span class="pull-right">
+            <button ng-disabled="catalogoForm.$invalid" class="btn btn-blue btn-lg" ng-click="saveCatalogo($event, catalogo)"><i class="fa-save"></i> Guardar </button>
+          </span>
+          <div ng-messages="message" style="color:maroon" role="alert">
+            <div class="alert alert-danger" ng-message="error">Los sentimos. ah ocurrido un error.</div>
+            <div class="alert alert-success" ng-message="success">Se guardo exitosamente</div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+  <section ng-if="!catalogo.$resolved">
+    Cargando
+  </section>
+</div>

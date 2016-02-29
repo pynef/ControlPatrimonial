@@ -24,10 +24,10 @@ angular.module('RESTServices')
       return djResource( $rootScope.api_url + 'tipos/:id',{id:'@id'});
     }
   ])
-  .factory('catalogoService',
+  .factory('CatalogoService',
     ['$rootScope', 'djResource',
     function ($rootScope, djResource) {
-      return djResource( $rootScope.api_url + 'catalogobienes/:id',{id:'@id'});
+      return djResource( $rootScope.api_url + 'catalogobienes/:id/',{id:'@id'});
     }
   ]);
 ///nexus/users/1/movements/

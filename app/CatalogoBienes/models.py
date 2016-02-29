@@ -93,9 +93,6 @@ class CatalogoBien(models.Model):
     workstation_name = models.CharField(max_length=64,blank=True, null=True)
     workstation_ip = models.CharField(max_length=64,blank=True, null=True)
 
-    def __str__(self):
-        return '{0}'.format(self.nombre)
-
     class Meta:
         managed = True
         db_table = 'CatalogoBien'

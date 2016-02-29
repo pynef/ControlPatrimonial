@@ -9,6 +9,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.views.generic import View
 from ControlPatrimonial import settings
+from app.Institucion.models import Institucion
 from app.Institucion.models import Puesto
 import simplejson as json
 
@@ -54,6 +55,7 @@ class InstitucionView(LoginRequiredMixin, View):
             slug = puestos[0].institucion.slug
             url = '{0}/i/{1}'.format(self.redirect_to, slug)
             url = reverse('institucion', kwargs={'slug': slug})
+            req.session['institucion'] = puestos[0].institucion.id
             print url
             return redirect(url)
         ctx = {
@@ -77,7 +79,9 @@ class HomeView(LoginRequiredMixin, View):
     def get(self, req, slug):
         print '________'
         print slug
-        print req.session.get('instituciones')
+        # remove this in verified sessions
+        if req.session.get('institucion', False):
+            req.session['institucion'] = Institucion.objects.get(slug=slug).id
         print req.session.get('institucion')
         # cargar
         ctx = {
