@@ -12,24 +12,25 @@ angular.module('patrimonioModule')
       $scope.ambiente_tpl = '';
     };
     $scope.borrarInstitucion = function(institucion){
-      console.log(institucion);
-      institucionService.delete(institucion);
-      $scope.instituciones = _.without( $scope.instituciones, _.findWhere($scope.instituciones,{id:institucion.id}));
+      if( confirm('Esta seguro que dese borrar la Institucion: ' + institucion.nombre)){
+        institucionService.delete(institucion);
+        $scope.instituciones = _.without( $scope.instituciones, _.findWhere($scope.instituciones,{id:institucion.id}));
+      };
     };
   }
 ])
 .controller('institucionNewCtrl',['$scope', '$state', '$stateParams', 'institucionService',
   function($scope, $state, $stateParams,  institucionService){
     $scope.init = function(){
-      if($stateParams.id){
+      if($stateParams.idInstitucion){
         $scope.instituciones = institucionService.query();
-        $scope.institucion = institucionService.get({id:$stateParams.id});
+        $scope.institucion = institucionService.get({id:$stateParams.idInstitucion});
       }
     };
     $scope.nuevaInstitucion = function(institucion){
       $scope.instituciones = institucionService.query();
       institucionService.save(institucion);
-      $state.go('^');
+      //$state.go('^');
     };
   }
 ])
@@ -49,7 +50,7 @@ angular.module('patrimonioModule')
   function($scope, $stateParams, institucionSedesService){
     $scope.init = function(){
       console.log(666);
-      institucionSedesService.query({id: $stateParams.id},
+      institucionSedesService.query({id: $stateParams.idSede},
         function(sedes){
           $scope.sedes = sedes;
           console.log(sedes);

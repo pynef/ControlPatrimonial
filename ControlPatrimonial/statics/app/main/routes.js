@@ -28,7 +28,7 @@ angular.module('app')
         }
       })
       .state('institucion.edit', {
-        url: '/:id/edit',
+        url: '/:idInstitucion/edit',
         views: {
           "viewInstitucionNew": {
             templateUrl: window.static_url + 'app/patrimonio/views/institucion/institucionNew.html',
@@ -37,7 +37,7 @@ angular.module('app')
         }
       })
       .state('institucion.sedes', {
-        url: '/:id/sedes',
+        url: '/:idSede/sedes',
         views: {
           "ViewInstitucionSedes": {
             templateUrl: window.static_url + 'app/patrimonio/views/institucion/sedes.html',

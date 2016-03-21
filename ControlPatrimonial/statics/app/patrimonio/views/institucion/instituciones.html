@@ -41,10 +41,10 @@
                   <tr ng-repeat="insti in instituciones">
                     <td>{{insti.nombre}}</td>
                     <td>
-                      <a ui-sref="institucion.sedes({ id: insti.id })" class="btn btn-icon btn-info" alt="mas información">
+                      <a ui-sref="institucion.sedes({ idSede: insti.id })" class="btn btn-icon btn-info" alt="mas información">
                         <i class="fa-search"></i>
                       </a>
-                      <a ui-sref="institucion.edit({id:insti.id})" class="btn btn-icon btn-blue" alt="Editar">
+                      <a ui-sref="institucion.edit({idInstitucion:insti.id})" class="btn btn-icon btn-blue" alt="Editar">
                         <i class="fa-pencil"></i>
                       </a>
                       <button class="btn btn-icon btn-red"  ng-click="borrarInstitucion(insti)" alt="eliminar">
