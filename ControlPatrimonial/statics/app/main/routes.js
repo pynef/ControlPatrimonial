@@ -73,6 +73,11 @@ angular.module('app')
         url: '/nuevo',
         templateUrl: window.static_url + 'app/patrimonio/views/catalogo/form.html',
         controller: 'catalogoSaveCtrl'
-      });
+      })
+      .state('contabilidad', {
+        url: '/contabilidad',
+        templateUrl: window.static_url + 'app/patrimonio/views/contabilidad/cuentas_contables.html',
+        controller: 'contabilidadCtrl'
+      })
   }
 ]);

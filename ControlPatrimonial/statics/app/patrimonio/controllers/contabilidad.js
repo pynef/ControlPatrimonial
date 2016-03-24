@@ -2,11 +2,10 @@
 /* jshint -W097 */
 /* global angular */
 angular.module('patrimonioModule')
-.controller('contabilidadCtrl',['$scope','contabilidadService',
-  function($scope, institucionService){
+.controller('contabilidadCtrl',['$scope', 'contabilidadService',
+  function($scope, contabilidadService){
     $scope.init = function(){
-      //load grupo clase tipo y cuenta
-
+      console.log(666);
     };
   }
 ])
