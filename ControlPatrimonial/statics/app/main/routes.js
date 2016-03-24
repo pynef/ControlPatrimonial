@@ -28,7 +28,7 @@ angular.module('app')
         }
       })
       .state('institucion.edit', {
-        url: '/:id/edit',
+        url: '/:idInstitucion/edit',
         views: {
           "viewInstitucionNew": {
             templateUrl: window.static_url + 'app/patrimonio/views/institucion/institucionNew.html',
@@ -37,7 +37,7 @@ angular.module('app')
         }
       })
       .state('institucion.sedes', {
-        url: '/:id/sedes',
+        url: '/:idSede/sedes',
         views: {
           "ViewInstitucionSedes": {
             templateUrl: window.static_url + 'app/patrimonio/views/institucion/sedes.html',
@@ -73,6 +73,11 @@ angular.module('app')
         url: '/nuevo',
         templateUrl: window.static_url + 'app/patrimonio/views/catalogo/form.html',
         controller: 'catalogoSaveCtrl'
-      });
+      })
+      .state('contabilidad', {
+        url: '/contabilidad',
+        templateUrl: window.static_url + 'app/patrimonio/views/contabilidad/cuentas_contables.html',
+        controller: 'contabilidadCtrl'
+      })
   }
 ]);
