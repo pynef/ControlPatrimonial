@@ -13,6 +13,41 @@ angular.module('app')
         templateUrl: window.static_url + 'app/patrimonio/views/home.html',
         controller: 'homeCtrl'
       })
+      .state('catalogo', {
+        url: '/catalogo',
+        templateUrl: window.static_url + 'app/patrimonio/views/catalogo/home.html',
+        controller: 'catalogoCtrl'
+      })
+      .state('catalogo.show', {
+        url: '/:id/ver-mas',
+        templateUrl: window.static_url + 'app/patrimonio/views/catalogo/show.html',
+        controller: 'catalogoShowCtrl'
+      })
+      .state('catalogo.edit', {
+        url: '/:id/editar',
+        templateUrl: window.static_url + 'app/patrimonio/views/catalogo/form.html',
+        controller: 'catalogoSaveCtrl'
+      })
+      .state('catalogo.create', {
+        url: '/nuevo',
+        templateUrl: window.static_url + 'app/patrimonio/views/catalogo/form.html',
+        controller: 'catalogoSaveCtrl'
+      })
+      .state('nota_entrada', {
+        url: '/nota-de-entrada',
+        templateUrl: window.static_url + 'app/patrimonio/views/catalogo/nota_entrada.html',
+        controller: 'notaEntradaCtrl'
+      })
+      .state('nota_entrada.create', {
+        url: '/nota-de-entrada/nueva',
+        templateUrl: window.static_url + 'app/patrimonio/views/catalogo/nota_entrada.nuevo.html',
+        controller: 'newNotaEntradaCtrl'
+      })
+      .state('nota_salida', {
+        url: '/nota-de-salida',
+        templateUrl: window.static_url + 'app/patrimonio/views/catalogo/nota-salida.html',
+        controller: 'notaSalidaCtrl'
+      })
       .state('institucion', {
         url: '/institucion',
         templateUrl: window.static_url + 'app/patrimonio/views/institucion/instituciones.html',
@@ -53,31 +88,6 @@ angular.module('app')
             controller: 'institucionSedeNewCtrl'
           }
         }
-      })
-      .state('catalogo', {
-        url: '/catalogo',
-        templateUrl: window.static_url + 'app/patrimonio/views/catalogo/home.html',
-        controller: 'catalogoCtrl'
-      })
-      .state('catalogo.show', {
-        url: '/:id/ver-mas',
-        templateUrl: window.static_url + 'app/patrimonio/views/catalogo/show.html',
-        controller: 'catalogoShowCtrl'
-      })
-      .state('catalogo.edit', {
-        url: '/:id/editar',
-        templateUrl: window.static_url + 'app/patrimonio/views/catalogo/form.html',
-        controller: 'catalogoSaveCtrl'
-      })
-      .state('catalogo.create', {
-        url: '/nuevo',
-        templateUrl: window.static_url + 'app/patrimonio/views/catalogo/form.html',
-        controller: 'catalogoSaveCtrl'
-      })
-      .state('contabilidad', {
-        url: '/contabilidad',
-        templateUrl: window.static_url + 'app/patrimonio/views/contabilidad/cuentas_contables.html',
-        controller: 'contabilidadCtrl'
-      })
+      });
   }
 ]);

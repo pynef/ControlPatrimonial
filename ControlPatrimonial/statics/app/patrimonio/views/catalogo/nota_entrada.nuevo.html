@@ -1,0 +1,124 @@
+<div class="col-sm-12"  ng-init="init()">
+  <section class="panel panel-default">
+    <header class="panel-headin">
+      <span class="pull-right">
+        <a ui-sref=".^" class="btn btn-danger btn-icon">
+          <i class="fa-times"></i>
+          <span>Cancelar</span>
+        </a>
+      </span>
+      <h3 class="panel-title"> Nueva Nota de Ingreso </h3>
+      <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          Dropdown
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="#">Separated link</a></li>
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+    </header>
+    <div class="panel-body" ng-init="init()">
+      <form name="notaEntradaFrm">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group" ng-class="{'validate-has-error':notaEntradaFrm.proveedor.$invalid}">
+              <label class="control-label" for="proveedor">Proveedor</label>
+              <select class="form-control" name="proovedor" ng-disabled="!proveedores.$resolved">
+                <option ng-repeat="prov in proveedores" value="{{prov.id}}"> {{prov.nombre}}</option>
+              </select>
+              <span ng-show="notaEntradaFrm.proveedor.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group" ng-class="{'validate-has-error':notaEntradaFrm.guia_remision.$invalid}">
+              <label class="control-label" for="guia_remision">guia_remision</label>
+              <input class="form-control" name="guia_remision" placeholder="Nombre" type="text" ng-model="nota.guia_remision" required>
+              <span ng-show="notaEntradaFrm.guia_remision.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group" ng-class="{'validate-has-error':notaEntradaFrm.orden_compra.$invalid}">
+              <label class="control-label" for="orden_compra">orden_compra</label>
+              <input class="form-control" name="orden_compra" placeholder="Nombre" type="text" ng-model="nota.orden_compra" required>
+              <span ng-show="notaEntradaFrm.orden_compra.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="form-group" ng-class="{'validate-has-error':notaEntradaFrm.condicion.$invalid}">
+              <label class="control-label" for="condicion">condicion</label>
+              <select class="form-control" name="condicion" ng-model="nota.condicion" required>
+                <option value="1">Compra</option>
+                <option value="1">Donacion</option>
+              </select>
+              <span ng-show="notaEntradaFrm.condicion.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
+            </div>
+          </div>
+        </div>
+        <div class="row"><!--  search section -->
+          <div class="col-sm-8">
+            <div class="input-group dropdown">
+              <input type="text" class="form-control" ng-model="filter_person" ng-change="searchCatalogo(filter_person)" placeholder="Buscar Catalogo de Bienes">
+              <span class="input-group-btn">
+                <button class="btn btn-info" type="button" id="dropdownMenu1" data-toggle="dropdown"> <i class="fa fa-search"></i> Buscar!</button>
+              </span>
+              <ul uib-dropdown-menu role="menu" aria-labelledby="split-button">
+                <li role="menuitem"><a href="#">Action</a></li>
+                <li role="menuitem"><a href="#">Another action</a></li>
+                <li role="menuitem"><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li role="menuitem"><a href="#">Separated link</a></li>
+              </ul>
+            </div><!-- /input-group -->
+          </div>
+          <div class="col-sm-4">
+            <div class="from-group text-right">
+              <button type="button" class="btn btn-primary" name="button">Agregar <i class="fa fa-plus"></i> </button>
+            </div>
+
+          </div>
+          <div class="col-sm-12">
+
+            <div class="" ng-repeat="res in results">
+
+              {{res}}
+            </div>
+          </div>
+        </div> <!-- end search section -->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <td> # </td>
+                    <td> Catalogo </td>
+                    <td colspan="2"> Medida </td>
+                    <td colspan="2"> Precio </td>
+                    <td> Subtotal </td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="detalle in nota.detalles">
+                    <td>{{detalle.id}}</td>
+                    <td>{{detalle.catalogo}}</td>
+                    <td>{{detalle.tipo_medida}}</td>
+                    <td>{{detalle.medida}}</td>
+                    <td>{{detalle.tipo_moneda}}</td>
+                    <td>{{detalle.precio_unitario}}</td>
+                    <td>{{detalle.precio_unitario * detalle.medida}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <footer class="panel-footer"></footer>
+  </section>
