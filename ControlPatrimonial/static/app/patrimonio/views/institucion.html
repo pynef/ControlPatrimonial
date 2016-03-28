@@ -1,0 +1,160 @@
+<aside class="md-content-section">
+</br>
+    <section class="col-md-4" ng-init="init();nueva_institucion=0">
+      <md-toolbar md-scroll-shrink class="md-primary">
+        <div class="md-toolbar-tools" class="col-md-12">
+          <span class="col-md-9">
+          INSTITUCIÓN
+          </span>
+          <span class="col-md-3" ng-hide="nueva_institucion">
+              <md-button class="md-info md-fab md-fab-right md-button md-mini" aria-label="Use Android" ng-click="nueva_institucion=1">
+                  <md-icon md-svg-src="{{static_url}}dist/img/icons/ic_add_24px.svg"></md-icon>
+              </md-button>
+          </span>
+        </div>
+      </md-toolbar>
+
+      <md-content id="instituion">
+        <div class="md-content__body" ng-hide="nueva_institucion">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>
+              </th>
+              <th>
+                <!-- <md-icon class="md-primary" md-svg-src="{% static 'static/dist/img/icons/ic_apps_24px.svg' %}"></md-icon> -->
+              </th>
+              <th>
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="insti in instituciones">
+              <td>
+                {{insti.nombre}}
+              </td>
+              <td>
+                <a href="#" class="media">
+                    <span class="pull-left media-icon">
+                        <span class="circle-icon sm bg-success">
+                          <md-icon class="color-white ng-isolate-scope md-default-theme" md-svg-src="{{static_url}}dist/img/icons/ic_edit_24px.svg"></path></svg></md-icon>
+                        </span>
+                    </span>
+                </a>
+              </td>
+              <td>
+                <a href="#" class="media">
+                    <span class="pull-left media-icon">
+                        <span class="circle-icon sm bg-info">
+                          <md-icon class="color-white ng-isolate-scope md-default-theme" md-svg-src="{{static_url}}dist/img/icons/ic_details_24px.svg"></path></svg></md-icon>
+                        </span>
+                    </span>
+                </a>
+              </td>
+              <td>
+                <a href="#/institucion" class="media" ng-click="borrarInstitucion(insti)">
+                    <span class="pull-left media-icon">
+                        <span class="circle-icon sm bg-danger">
+                          <md-icon class="color-white ng-isolate-scope md-default-theme" md-svg-src="{{static_url}}dist/img/icons/ic_clear_24px.svg"></path></svg></md-icon>
+                        </span>
+                    </span>
+                </a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="md-content__body" ng-show="nueva_institucion">
+
+          <form name="form_signup" class="form-horizontal form-validation" data-ng-submit="submitForm()">
+                <div class="form-group">
+                  <div class="col-sm-5">
+                    <label for="">Nombre</label>
+                  </div>
+                  <div class="col-sm-7">
+                    <input  type="text"
+                            class="form-control"
+                            placeholder=""
+                            data-ng-model="institucion.nombre"
+                            required
+                            data-ng-minlength="2"
+                            data-ng-maxlength="30">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-5">
+                    <label for="">Razon Social</label>
+                  </div>
+                  <div class="col-sm-7">
+                    <input  type="text"
+                            class="form-control"
+                            placeholder=""
+                            data-ng-model="institucion.razon_social"
+                            required
+                            data-ng-minlength="2"
+                            data-ng-maxlength="30">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-5">
+                    <label for="">Direccion Fiscal</label>
+                  </div>
+                  <div class="col-sm-7">
+                    <input  type="text"
+                            class="form-control"
+                            placeholder=""
+                            data-ng-model="institucion.direccion_fiscal"
+                            required
+                            data-ng-minlength="2"
+                            data-ng-maxlength="30">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-5">
+                    <label for="">Email</label>
+                  </div>
+                  <div class="col-sm-7">
+                    <input type="email"
+                           class="form-control"
+                           data-ng-model="institucion.email"
+                           required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-5">
+                    <label for="">RUC</label>
+                  </div>
+                  <div class="col-sm-7">
+                    <input type="number"
+                           class="form-control"
+                           placeholder=""
+                           data-ng-model="institucion.ruc"
+                           required>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  </br>
+                    <button ng-click="nueva_institucion=0"
+                    class="btn-width-xs btn-direction btn-left md-danger md-raised md-button md-default-theme col-md-5">
+                      <span class="ng-scope">Cancelar</span>
+                      <div class="md-ripple-container">
+                        <div class="md-ripple md-ripple-placed md-ripple-scaled md-ripple-visible" data-counter="0"></div>
+                      </div>
+                    </button>
+                    <button ng-click="nueva_institucion=0;nuevaInstitucion(institucion);"
+                    class="btn-width-xs btn-direction btn-right md-success md-raised md-button md-default-theme col-md-5">
+                      <span class="ng-scope">Guardar</span>
+                    </a>
+                  </br>
+                </div>
+            </form>
+
+
+        </div>
+      </md-content>
+    </section>
+    <section class="col-md-4" ui-view="viewSedes">
+
+    </section>
+</aside>

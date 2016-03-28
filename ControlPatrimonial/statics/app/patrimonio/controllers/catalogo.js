@@ -26,13 +26,13 @@ controller('catalogoShowCtrl',
   }
 ]).
 controller('catalogoEditCtrl',
-  ['$scope', '$stateParams', 'grupoService', 'tipoService', 'CtaContableService', 'CatalogoService',
-  function($scope, $stateParams, grupoService, tipoService, CtaContableService, CatalogoService){
+  ['$scope', '$stateParams', 'grupoService', 'tipoService', 'cuenta_contableService', 'CatalogoService',
+  function($scope, $stateParams, grupoService, tipoService, cuenta_contableService, CatalogoService){
     $scope.init = function(){
       $scope.catalogo = CatalogoService.get({id:$stateParams.id});
       $scope.grupos = grupoService.query();
       $scope.tipos = tipoService.query();
-      $scope.cuentas = CtaContableService.query();
+      $scope.cuentas = cuenta_contableService.query();
     };
     $scope.changeGrupo = function(grupo_id){
       //$scope.clases = null;
@@ -41,8 +41,8 @@ controller('catalogoEditCtrl',
   }
 ]).
 controller('catalogoSaveCtrl',
-['$scope', '$state', '$stateParams', 'grupoService', 'tipoService', 'CtaContableService', 'CatalogoService',
-function($scope, $state, $stateParams, grupoService, tipoService, CtaContableService, CatalogoService){
+['$scope', '$state', '$stateParams', 'grupoService', 'tipoService', 'cuenta_contableService', 'CatalogoService',
+function($scope, $state, $stateParams, grupoService, tipoService, cuenta_contableService, CatalogoService){
     $scope.init = function(){
       if($stateParams.id){
         $scope.catalogo = CatalogoService.get({id:$stateParams.id});
@@ -50,7 +50,7 @@ function($scope, $state, $stateParams, grupoService, tipoService, CtaContableSer
         $scope.catalogo = {'$resolved': true};
         $scope.grupos = grupoService.query();
         $scope.tipos = tipoService.query();
-        $scope.cuentas = CtaContableService.query();
+        $scope.cuentas = cuenta_contableService.query();
     }};
     $scope.changeGrupo = function(grupo_id){
       //$scope.clases = null;

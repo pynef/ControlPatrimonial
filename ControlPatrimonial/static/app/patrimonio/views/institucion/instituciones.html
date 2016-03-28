@@ -1,0 +1,67 @@
+<div class="page-title">
+  <div class="title-env">
+    <h1 class="title">Institucion</h1>
+    <p class="description">Es donde se mostrara las sedes.locales.ambientes</p>
+  </div>
+  <div class="breadcrumb-env">
+    <ol class="breadcrumb bc-1">
+      <li>
+        <a href="#/"><i class="fa-home"></i>Home</a>
+      </li>
+      <li class="active">
+          <strong>Institucion</strong>
+      </li>
+    </ol>
+  </div>
+</div>
+<aside class="md-content-section">
+  <section class="col-md-4">
+
+    <div class="row" ui-view="viewInstitucionNew">
+      <div class="col-sm-12"  ng-init="init()">
+        <section class="panel panel-default">
+          <header class="panel-heading">
+            <span class="pull-right">
+              <a ui-sref=".new" class="btn btn-secondary btn-icon0">
+                <i class="fa-plus"></i>
+                <span>Nuevo</span>
+              </a>
+            </span>
+            <h3 class="panel-title same-margin"> Instituciones </h3>
+          </header>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="table table-model-2 table-hover">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="insti in instituciones">
+                    <td>{{insti.nombre}}</td>
+                    <td>
+                      <a ui-sref="institucion.sedes({ idSede: insti.id })" class="btn btn-icon btn-info" alt="mas información">
+                        <i class="fa-search"></i>
+                      </a>
+                      <a ui-sref="institucion.edit({idInstitucion:insti.id})" class="btn btn-icon btn-blue" alt="Editar">
+                        <i class="fa-pencil"></i>
+                      </a>
+                      <button class="btn btn-icon btn-red"  ng-click="borrarInstitucion(insti)" alt="eliminar">
+                        <i class="fa-remove"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <footer class="panel-footing"></footer>
+        </section>
+      </div>
+    </div>
+  </section>
+  <section class="col-md-8" ui-view="ViewInstitucionSedes">
+
+  </section>
+</aside>

@@ -1,0 +1,70 @@
+<div class="page-title">
+  <div class="title-env">
+    <h1 class="title">Catalogo de Bienes</h1>
+    <p class="description">Donde se clasifica los tipos de productos</p>
+  </div>
+  <div class="breadcrumb-env">
+    <ol class="breadcrumb bc-1">
+      <li>
+        <a href="#/"><i class="fa-home"></i>Home</a>
+      </li>
+      <li class="active">
+          <strong>Catalogo de Bienes</strong>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="row" ui-view>
+  <div class="col-sm-12"  ng-init="init()">
+    <section class="panel panel-default">
+      <header class="panel-heading">
+        <span class="pull-right">
+          <a ui-sref=".create" class="btn btn-secondary btn-icon">
+            <i class="fa-plus"></i>
+            <span>Nuevo</span>
+          </a>
+        </span>
+        <h3 class="panel-title"> Lista   </h3>
+      </header>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-model-2 table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Clase</th>
+                <th>Tipo de Catalogo</th>
+                <th>Cuenta Contable</th>
+                <th>Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="catalogo in catalogos">
+                <td>{{catalogo.id}}</td>
+                <td>{{catalogo.nombre}}</td>
+                <td>{{catalogo.clase}}</td>
+                <td>{{catalogo.tipo_catalogo_bien}}</td>
+                <td>{{catalogo.cuenta_contable}}</td>
+                <td>
+                  <a ui-sref=".show({id:catalogo.id})" class="btn btn-icon btn-info" alt="mas información">
+                    <i class="fa-search"></i>
+                  </a>
+                  <a ui-sref=".edit({id:catalogo.id})" class="btn btn-icon btn-blue" alt="Editar">
+                    <i class="fa-pencil"></i>
+                  </a>
+                  <button class="btn btn-icon btn-red" ng-click="remove(catalogo)" alt="eliminar">
+                    <i class="fa-remove"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+      <footer class="panel-footing"></footer>
+    </section>
+  </div>
+</div>

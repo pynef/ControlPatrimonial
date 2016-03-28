@@ -8,4 +8,4 @@ from app.Contabilidad.models import CuentaContable
 class CuentaContableSerializer(serializers.ModelSerializer):
     class Meta:
         model = CuentaContable
-        fields = ('id', 'nombre', 'descripcion', 'numero_cuenta', 'depreciacion', 'cuenta_depreciacion')
+        fields = ('id', 'nombre', 'descripcion', 'numero_cuenta')

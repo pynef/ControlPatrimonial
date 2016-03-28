@@ -1,0 +1,58 @@
+<div class="page">
+  <section class="md-content-section">
+    <md-toolbar class="md-accent">
+      <div class="md-toolbar-tools">
+        Catalogo de Bienes.
+      </div>
+    </md-toolbar>
+    <md-content>
+      <form class="form-horizontal" role="form">
+        <div layout="row">
+           <div flex="66">
+            <div layout-padding>
+              <md-input-container>
+                <label>Nombre</label>
+                <input type="text" class="form-control">
+              </md-input-container>
+              <md-input-container class="md-block">
+                <label>Biography</label>
+                <textarea ng-model="user.biography" columns="1" md-maxlength="150" rows="5"></textarea>
+              </md-input-container>
+            </div>
+          </div>
+          <div flex="33">
+            <div layout-padding>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Grupo</label>
+                <md-select ng-model="user.state">
+                  <md-option ng-repeat="state in states" value="1">
+                    asdsd
+                  </md-option>
+                </md-select>
+              </md-input-container>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Clase</label>
+                <md-select ng-model="user.state">
+                  <md-option ng-repeat="state in states" value="1">
+                    asdasd
+                  </md-option>
+                </md-select>
+              </md-input-container>
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Tipo</label>
+                <md-select ng-model="user.state">
+                  <md-option ng-repeat="state in states" value="1">
+                    asdsad
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </div>
+          </div>
+        </div>
+        <div layout="column">
+              <md-button class="btn-width-medium md-raised md-primary">Submit</md-button>
+        </div>
+      </form>
+    </md-content>
+  </section>
+</div>

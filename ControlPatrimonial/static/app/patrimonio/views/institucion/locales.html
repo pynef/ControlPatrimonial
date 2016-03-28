@@ -1,0 +1,45 @@
+<div class="row" ui-view="viewSedeNew">
+  <div class="col-sm-11"  ng-init="init()">
+    <section class="panel panel-default">
+      <header class="panel-heading">
+        <span class="pull-right">
+          <a ui-sref="sede.new" class="btn btn-secondary btn-icon0">
+            <i class="fa-plus"></i>
+            <span>Nuevo</span>
+          </a>
+        </span>
+        <h3 class="panel-title same-margin"> Locales </h3>
+      </header>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-model-2 table-hover">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="sede in sedes">
+                <td>{{sede.nombre}}</td>
+                <td>
+                  <a ui-sref="institucion.sedes({ id: sede.id })" class="btn btn-icon btn-info" alt="mas información">
+                    <i class="fa-search"></i>
+                  </a>
+                  <a ui-sref="institucion.edit({id:sede.id})" class="btn btn-icon btn-blue" alt="Editar">
+                    <i class="fa-pencil"></i>
+                  </a>
+                  <button class="btn btn-icon btn-red"  ng-click="borrarInstitucion(insti)" alt="eliminar">
+                    <i class="fa-remove"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+
+    <div class="col-sm-1">
+  </div>
+</div>

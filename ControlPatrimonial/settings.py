@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 from django.core.urlresolvers import reverse_lazy
+
 LOGIN_URL = reverse_lazy('home')
 LOGIN_REDIRECT_URL = reverse_lazy('home')
 LOGOUT_URL = reverse_lazy('login')
@@ -29,12 +30,14 @@ SECRET_KEY = '9=+4yj6ukpk=-404ts6e579ufcw&l3bt6jbsxg#6l9b$6bz-kq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['nefi,ninja','www.nefi.ninja']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'jet',
+    'jet.dashboard',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -117,9 +120,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'es-pe'
+LANGUAGE_CODE = 'es-PE'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Lima'
 
 USE_I18N = True
 
@@ -136,4 +139,6 @@ API_URL = '/rest/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'ControlPatrimonial/statics'),
 )
-STATIC_ROOT = ''
+STATIC_ROOT = (
+    os.path.join(BASE_DIR,'ControlPatrimonial/static')
+)

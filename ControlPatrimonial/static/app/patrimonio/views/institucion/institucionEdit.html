@@ -1,0 +1,88 @@
+<div class="col-sm-12"  ng-init="init()">
+  <section class="panel panel-default">
+    <header class="panel-heading">
+      <h3 class="panel-title same-margin"> Nueva Institución </h3>
+    </header>
+    <div class="panel-body">
+      <form name="form_signup" class="form-horizontal form-validation" ng-submit="submitForm()">
+          <div class="form-group">
+            <div class="col-sm-5">
+              <label for="">Nombre</label>
+            </div>
+            <div class="col-sm-7">
+              <input  type="text"
+                      class="form-control"
+                      placeholder=""
+                      ng-model="institucion.nombre"
+                      required
+                      ng-minlength="2"
+                      ng-maxlength="30">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-5">
+              <label for="">Razon Social</label>
+            </div>
+            <div class="col-sm-7">
+              <input  type="text"
+                      class="form-control"
+                      placeholder=""
+                      ng-model="institucion.razon_social"
+                      required
+                      ng-minlength="2"
+                      ng-maxlength="30">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-5">
+              <label for="">Direccion Fiscal</label>
+            </div>
+            <div class="col-sm-7">
+              <input  type="text"
+                      class="form-control"
+                      placeholder=""
+                      ng-model="institucion.direccion_fiscal"
+                      required
+                      ng-minlength="2"
+                      ng-maxlength="30">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-5">
+              <label for="">Email</label>
+            </div>
+            <div class="col-sm-7">
+              <input type="email"
+                     class="form-control"
+                     ng-model="institucion.email"
+                     required>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-5">
+              <label for="">RUC</label>
+            </div>
+            <div class="col-sm-7">
+              <input type="text"
+                     class="form-control"
+                     placeholder=""
+                     ng-model="institucion.ruc"
+                     required>
+            </div>
+          </div>
+          <div class="form-group ">
+            </br>
+              <a ui-sref="institucion" class="pull-right btn btn-red btn-icon0">
+                <i class="fa-close"></i>
+                <span>Cancelar</span>
+              </a>
+              <button ng-click="nuevaInstitucion(institucion);"
+              class="pull-right btn btn-secondary">
+                <i class="fa-plus"></i>
+                <span class="ng-scope">Guardar</span>
+              </button>
+            </br>
+          </div>
+      </form>
+    </div>
+  </div>

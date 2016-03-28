@@ -6,6 +6,13 @@ from app.Institucion.models import Local
 from app.Institucion.models import Ambiente
 from app.RecursosHumanos.models import Persona
 
+OPERADOR_CHOICES = (
+    (1, 'Claro'),
+    (2, 'Movistar'),
+    (3, 'Bitel'),
+    (4, 'Entel'),
+    (5, 'Fijo'),
+)
 
 """Proveedores"""
 class Proveedor(models.Model):
@@ -16,8 +23,8 @@ class Proveedor(models.Model):
     institucion = models.ForeignKey(Institucion)
     nombre = models.CharField(max_length=64)
     razon_social = models.CharField(max_length=128)
-    direccion_fiscal = models.CharField(max_length=64)
-    email = models.CharField(max_length=64)
+    direccion_fiscal = models.CharField(max_length=64, blank=True, null=True)
+    email = models.CharField(max_length=64, blank=True, null=True)
     ruc = models.CharField(max_length=15)
     duenio = models.ForeignKey(Persona)
     is_active = models.BooleanField(default=True)
@@ -42,7 +49,7 @@ class ProveedorTelefonos(models.Model):
     institucion = models.ForeignKey(Institucion)
     proveedor = models.ForeignKey(Proveedor)
     numero = models.CharField(max_length=16)
-    operador = models.CharField(max_length=1)
+    operador = models.CharField(max_length=1, choices=OPERADOR_CHOICES, default=5)
     descriptor = models.CharField(max_length=32,blank=True, null=True)
     create_at = models.DateTimeField(auto_now=True,blank=True, null=True)
 

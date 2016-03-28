@@ -5,6 +5,13 @@ from app.Institucion.models import Sede
 from app.Institucion.models import Local
 from app.Institucion.models import Ambiente
 
+GENERO_CHOICES = (
+    ('M', 'Masculino'),
+    ('F', 'Femenino'),
+)
+TIPO_DOCUMENTO_CHOICES = (
+    ('D', 'DNI'),
+)
 
 """Persona"""
 class Persona(models.Model):
@@ -12,25 +19,25 @@ class Persona(models.Model):
     Es un campo general, donde se registra a toda persona.
     '''
     institucion = models.ForeignKey(Institucion)
-    sede = models.ForeignKey(Sede)
-    local = models.ForeignKey(Local)
-    codigo = models.CharField(max_length=32)
+    sede = models.ForeignKey(Sede, blank=True, null=True)
+    local = models.ForeignKey(Local, blank=True, null=True)
+    codigo = models.CharField(max_length=32, blank=True, null=True)
     apellido_paterno = models.CharField(max_length=64)
     apellido_materno = models.CharField(max_length=64)
     nombres = models.CharField(max_length=64)
-    tipo_documento = models.CharField(max_length=1)
+    tipo_documento = models.CharField(max_length=1, choices=TIPO_DOCUMENTO_CHOICES, default='D', blank=True, null=True)
     nro_documento = models.CharField(max_length=16)
     fecha_nacimiento = models.DateField(blank=True, null=True)
     ubigeo = models.CharField(max_length=6,blank=True, null=True)
     direccion = models.CharField(max_length=128,blank=True, null=True)
     referencia_direccion = models.TextField(blank=True, null=True)
     estado_civil = models.CharField(max_length=1, blank=True, null=True)
-    genero = models.CharField(max_length=1)
+    genero = models.CharField(max_length=1, choices=GENERO_CHOICES, default='M', blank=True, null=True)
     grado_academico = models.CharField(max_length=1, blank=True, null=True)
     imagen = models.CharField(max_length=256,blank=True, null=True)
     img_documento = models.CharField(max_length=256,blank=True, null=True)
     tipo = models.CharField(max_length=1, blank=True, null=True)
-    email = models.CharField(max_length=64)
+    email = models.CharField(max_length=64, blank=True, null=True)
     is_active = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now=True)
@@ -113,7 +120,7 @@ class Area(models.Model):
     area de contabilidad, area de RRHH, etc.
     '''
     institucion = models.ForeignKey(Institucion)
-    sede = models.ForeignKey(Sede)
+    sede = models.ForeignKey(Sede, blank=True, null=True)
     local = models.ForeignKey(Local,blank=True, null=True)
     nombre = models.CharField(max_length=64)
     descripcion = models.TextField(blank=True, null=True)  # This field type is a guess.
@@ -139,8 +146,8 @@ class Puesto(models.Model):
     asistente, etc.
     '''
     institucion = models.ForeignKey(Institucion)
-    sede = models.ForeignKey(Sede)
-    local = models.ForeignKey(Local)
+    sede = models.ForeignKey(Sede, blank=True, null=True)
+    local = models.ForeignKey(Local, blank=True, null=True)
     nombre = models.CharField(max_length=50)
     descripcion = models.TextField(blank=True, null=True)  # This field type is a guess.
     area = models.ForeignKey(Area)
