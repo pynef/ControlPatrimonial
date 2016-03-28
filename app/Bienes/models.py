@@ -52,7 +52,7 @@ class Ingreso(models.Model):
 
     class Meta:
         managed = True
-        db_table = 'Almacen'
+        db_table = 'Ingreso'
 
 _monedas = ((1,'Sol'),(2,'Dolar'))
 class DetalleIngreso(models.Model):
@@ -74,7 +74,7 @@ class DetalleIngreso(models.Model):
 
     class Meta:
         managed = True
-        db_table = 'Inventario'
+        db_table = 'DetalleIngreso'
 
 
 class AltaBien(models.Model):
