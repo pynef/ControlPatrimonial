@@ -2,6 +2,7 @@ from rest_framework import generics, permissions
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import detail_route
+from rest_framework.decorators import list_route
 from app.CatalogoBienes.models import Grupo, Clase, TipoCatalogoBien, CatalogoBien
 from serializers import GrupoSerializer, ClaseSerializer, TipoSerializer, CatalogoBienSerializer
 
@@ -20,6 +21,7 @@ class GrupoViewSet(viewsets.ModelViewSet):
 
         serializer = ClaseSerializer(instance=self.queryset, many=True)
         return Response(serializer.data)
+
 
 class ClaseViewSet(viewsets.ModelViewSet):
     queryset = Clase.objects.all().filter(is_active=True)
@@ -66,3 +68,14 @@ class TipoViewSet(viewsets.ModelViewSet):
 class CatalogoBienViewSet(viewsets.ModelViewSet):
     queryset = CatalogoBien.objects.all().filter(is_active=True)
     serializer_class = CatalogoBienSerializer
+
+    @list_route(methods=['get'])
+    def search(self, request, **kwargs):
+        filter_catalog = request.GET.get('filter_catalog')
+        catalogos = CatalogoBien.objects.filter(
+            nombre__contains=filter_catalog).filter(is_active=True)
+        self.queryset = catalogos
+        self.serializer_class = CatalogoBienSerializer
+
+        serializer = CatalogoBienSerializer(instance=self.queryset, many=True)
+        return Response(serializer.data)

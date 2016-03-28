@@ -1,58 +1,112 @@
-<div class="page">
-  <section class="md-content-section">
-    <md-toolbar class="md-accent">
-      <div class="md-toolbar-tools">
-        Catalogo de Bienes.
+      <div class="row">
+        <div class="col-sm-3">
+          
+          <div class="xe-widget xe-counter" data-count=".num" data-from="0" data-to="99.9" data-suffix="%" data-duration="2">
+            <div class="xe-icon">
+              <i class="linecons-cloud"></i>
+            </div>
+            <div class="xe-label">
+              <strong class="num">0.0%</strong>
+              <span>Server uptime</span>
+            </div>
+          </div>
+          
+        </div>
+        <div class="col-sm-3">
+          
+          <div class="xe-widget xe-counter xe-counter-blue" data-count=".num" data-from="1" data-to="117" data-suffix="k" data-duration="3" data-easing="false">
+            <div class="xe-icon">
+              <i class="linecons-user"></i>
+            </div>
+            <div class="xe-label">
+              <strong class="num">1k</strong>
+              <span>Users Total</span>
+            </div>
+          </div>
+        
+        </div>
+        <div class="col-sm-3">
+          
+          <div class="xe-widget xe-counter xe-counter-info" data-count=".num" data-from="1000" data-to="2470" data-duration="4" data-easing="true">
+            <div class="xe-icon">
+              <i class="linecons-camera"></i>
+            </div>
+            <div class="xe-label">
+              <strong class="num">1000</strong>
+              <span>New Daily Photos</span>
+            </div>
+          </div>
+        
+        </div>
+        <div class="col-sm-3">
+          
+          <div class="xe-widget xe-counter xe-counter-red" data-count=".num" data-from="0" data-to="57" data-prefix="-," data-suffix="%" data-duration="5" data-easing="true" data-delay="1">
+            <div class="xe-icon">
+              <i class="linecons-lightbulb"></i>
+            </div>
+            <div class="xe-label">
+              <strong class="num">-,0%</strong>
+              <span>Exchange Commission</span>
+            </div>
+          </div>
+        
+        </div>
       </div>
-    </md-toolbar>
-    <md-content>
-      <form class="form-horizontal" role="form">
-        <div layout="row">
-           <div flex="50">
-            <div layout-padding>
-              <md-input-container>
-                <label>Nombre</label>
-                <input type="text" class="form-control">
-              </md-input-container>
-              <md-input-container class="md-block">
-                <label>Biography</label>
-                <textarea ng-model="user.biography" columns="1" md-maxlength="150" rows="5"></textarea>
-              </md-input-container>
+      <div class="row">
+        <div class="col-sm-3">
+          
+          <div class="xe-widget xe-vertical-counter xe-vertical-counter-yellow" data-count=".num" data-from="0" data-to="128.4" data-decimal="," data-suffix="%" data-duration="2.5">
+            <div class="xe-icon">
+              <i class="linecons-videocam"></i>
+            </div>
+            
+            <div class="xe-label">
+              <strong class="num">0,0%</strong>
+              <span>Video Views</span>
             </div>
           </div>
-          <div flex="50">
-            <div layout-padding>
-              <md-input-container class="md-block" flex-gt-sm>
-                <label>Grupo</label>
-                <md-select ng-model="user.state">
-                  <md-option ng-repeat="state in states" value="1">
-                    asdsd
-                  </md-option>
-                </md-select>
-              </md-input-container>
-              <md-input-container class="md-block" flex-gt-sm>
-                <label>Clase</label>
-                <md-select ng-model="user.state">
-                  <md-option ng-repeat="state in states" value="1">
-                    asdasd
-                  </md-option>
-                </md-select>
-              </md-input-container>
-              <md-input-container class="md-block" flex-gt-sm>
-                <label>Tipo</label>
-                <md-select ng-model="user.state">
-                  <md-option ng-repeat="state in states" value="1">
-                    asdsad
-                  </md-option>
-                </md-select>
-              </md-input-container>
+          
+        </div>
+        <div class="col-sm-3">
+          
+          <div class="xe-widget xe-vertical-counter xe-vertical-counter-danger" data-count=".num" data-from="0" data-to="67.9" data-decimal="," data-suffix="%" data-duration="3">
+            <div class="xe-icon">
+              <i class="linecons-doc"></i>
+            </div>
+            
+            <div class="xe-label">
+              <strong class="num">0,0%</strong>
+              <span>Document Downloads</span>
             </div>
           </div>
+          
         </div>
-        <div layout="column">
-              <md-button class="btn-width-medium md-raised md-primary">Submit</md-button>
+        <div class="col-sm-3">
+          
+          <div class="xe-widget xe-vertical-counter xe-vertical-counter-white" data-count=".num" data-from="0" data-to="128" data-duration="4">
+            <div class="xe-icon">
+              <i class="linecons-lightbulb"></i>
+            </div>
+            
+            <div class="xe-label">
+              <strong class="num">0</strong>
+              <span>New Topics Published</span>
+            </div>
+          </div>
+          
         </div>
-      </form>
-    </md-content>
-  </section>
-</div>
+        <div class="col-sm-3">
+          
+          <div class="xe-widget xe-vertical-counter xe-vertical-counter-primary" data-count=".num" data-from="0" data-to="442" data-suffix=" TB" data-duration="5">
+            <div class="xe-icon">
+              <i class="linecons-truck"></i>
+            </div>
+            
+            <div class="xe-label">
+              <strong class="num">0</strong>
+              <span>Traffic Delivered</span>
+            </div>
+          </div>
+          
+        </div>
+      </div>

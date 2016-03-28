@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 from django.contrib.auth.models import User
 from app.Institucion.models import Institucion
@@ -14,10 +15,8 @@ class TipoMedida(models.Model):
     '''
     nombre = models.CharField(max_length=15)
     descripcion = models.TextField(blank=True, null=True)
-
     def __str__(self):
         return '{0}'.format(self.nombre)
-
     class Meta:
         managed = True
         db_table = 'TipoMedida'
@@ -35,13 +34,13 @@ class TipoAlmacen(models.Model):
         db_table = 'TipoAlmacen'
 
 
-class Almacen(models.Model):
-    catalogo_de_bien = models.ForeignKey(CatalogoBien)
+class Ingreso(models.Model):
+    ''' Nota de Ingreso '''
+    _condiciones = ((1,'Compra'),(2,'Donación'))
     proveedor = models.ForeignKey(Proveedor)
-    tipo_medida = models.ForeignKey(TipoMedida)
-    tipo_almacen = models.ForeignKey(TipoAlmacen)
-    descripcion = models.TextField()
-    is_active = models.BooleanField(default=True)
+    guia_remision = models.CharField(max_length=24)
+    nombre = models.CharField(max_length=24)
+    condicion = models.CharField(max_length=1, choices=_condiciones)
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User,blank=True, null=True)
@@ -55,11 +54,15 @@ class Almacen(models.Model):
         managed = True
         db_table = 'Almacen'
 
-
-class Inventario(models.Model):
-    catalogo_de_bien = models.ForeignKey(CatalogoBien)
-    descripcion = models.TextField()
-    is_active = models.BooleanField(default=True)
+_monedas = ((1,'Sol'),(2,'Dolar'))
+class DetalleIngreso(models.Model):
+    ''' Detalle de Nota de Ingreso '''
+    catalogo = models.ForeignKey(CatalogoBien)
+    tipo_medida = models.ForeignKey(TipoMedida)
+    medida = models.DecimalField(decimal_places=2, max_digits=6)
+    tipo_moneda = models.CharField(max_length=1, choices=_monedas)
+    precio_unitario = models.DecimalField(decimal_places=2, max_digits=6)
+    # is_active = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User,blank=True, null=True)
@@ -77,7 +80,7 @@ class Inventario(models.Model):
 class AltaBien(models.Model):
     nombre = models.CharField(max_length=128)
     descripcion = models.TextField()
-    inventario = models.ForeignKey(Inventario)
+    # inventario = models.ForeignKey(Inventario)
     is_active = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now=True)
@@ -96,7 +99,7 @@ class AltaBien(models.Model):
 class DisposicionBien(models.Model):
     nombre = models.CharField(max_length=128)
     descripcion = models.TextField()
-    inventario = models.ForeignKey(Inventario)
+    # inventario = models.ForeignKey(Inventario)
     disposicion = models.TextField(max_length=128)
     is_active = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now=True)
@@ -116,7 +119,7 @@ class DisposicionBien(models.Model):
 class AsignacionBien(models.Model):
     nombre = models.CharField(max_length=128)
     descripcion = models.TextField()
-    inventario = models.ForeignKey(Inventario)
+    # inventario = models.ForeignKey(Inventario)
     ambiente = models.ForeignKey(Ambiente)
     is_active = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now=True)
@@ -136,7 +139,7 @@ class AsignacionBien(models.Model):
 class TrasladoBien(models.Model):
     nombre = models.CharField(max_length=128)
     descripcion = models.TextField()
-    inventario = models.ForeignKey(Inventario)
+    # inventario = models.ForeignKey(Inventario)
     origen = models.ForeignKey(Ambiente)
     destino = models.TextField(max_length=250)
     is_active = models.BooleanField(default=True)

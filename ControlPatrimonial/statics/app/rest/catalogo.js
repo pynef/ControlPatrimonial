@@ -8,7 +8,7 @@ angular.module('RESTServices')
       return djResource($rootScope.api_url + 'grupos/:id/:clases',
         {id:'@id'},
         {
-          clases: { method: "GET", isArray:true, params: { clases: 'clases'} }
+          clases: { method: 'GET', isArray:true, params: { clases: 'clases'} }
         }
       );
     }
@@ -27,7 +27,12 @@ angular.module('RESTServices')
   .factory('CatalogoService',
     ['$rootScope', 'djResource',
     function ($rootScope, djResource) {
-      return djResource( $rootScope.api_url + 'catalogobienes/:id/',{id:'@id'});
+      return djResource( $rootScope.api_url + 'catalogobienes/:id/:search/',
+      {id:'@id'},
+      {
+        search: {method: 'GET', isArray:true, params: { search: 'search'}}
+      }
+    );
     }
   ]);
 ///nexus/users/1/movements/
