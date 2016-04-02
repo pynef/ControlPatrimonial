@@ -35,7 +35,7 @@ class Institucion(models.Model):
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User,blank=True, null=True)
-    workstation_name = models.CharField(max_length=64,blank=True, null=True)
+    workstation_name = models.CharField(max_length=64, blank=True, null=True)
     workstation_ip = models.CharField(max_length=64,blank=True, null=True)
 
     def __str__(self):
@@ -84,7 +84,7 @@ class Local(models.Model):
     nombre = models.CharField(max_length=64)
     descripcion = models.TextField(blank=True, null=True)
     ubicacion = models.CharField(max_length=6,blank=True, null=True)
-    direccion = models.CharField(max_length=128)
+    direccion = models.CharField(max_length=128, blank=True, null=True)
     is_active = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now=True)

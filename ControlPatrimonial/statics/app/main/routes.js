@@ -72,7 +72,7 @@ angular.module('app')
         }
       })
       .state('institucion.sedes', {
-        url: '/:idSede/sedes',
+        url: '/:idInstitucion/sedes',
         views: {
           "ViewInstitucionSedes": {
             templateUrl: window.static_url + 'app/patrimonio/views/institucion/sedes.html',
@@ -86,6 +86,24 @@ angular.module('app')
           "viewSedeNew": {
             templateUrl: window.static_url + 'app/patrimonio/views/institucion/sedeNew.html',
             controller: 'institucionSedeNewCtrl'
+          }
+        }
+      })
+      .state('institucion.sedes.edit', {
+        url: '/:idSede/edit',
+        views: {
+          "viewSedeNew": {
+            templateUrl: window.static_url + 'app/patrimonio/views/institucion/sedeNew.html',
+            controller: 'institucionSedeNewCtrl'
+          }
+        }
+      })
+      .state('institucion.sedes.locales', {
+        url: '/:idSede/locales',
+        views: {
+          "ViewInstitucionSedeLocales": {
+            templateUrl: window.static_url + 'app/patrimonio/views/institucion/locales.html',
+            controller: 'institucionSedeLocalesCtrl'
           }
         }
       })

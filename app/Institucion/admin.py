@@ -1,7 +1,7 @@
 import socket
 from django.contrib import admin
 from app.Institucion.models import TipoAmbiente
-#from app.Institucion.models import Institucion
+from app.Institucion.models import Institucion
 from app.Institucion.models import Sede
 from app.Institucion.models import Local
 from app.Institucion.models import Ambiente
@@ -9,7 +9,7 @@ from app.Institucion.models import Puesto
 
 
 admin.site.register(TipoAmbiente)
-#admin.site.register(Institucion)
+admin.site.register(Institucion)
 admin.site.register(Sede)
 admin.site.register(Local)
 admin.site.register(Ambiente)

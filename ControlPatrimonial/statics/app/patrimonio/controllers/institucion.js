@@ -41,20 +41,24 @@ angular.module('patrimonioModule')
     $scope.nuevaInstitucion = function(institucion){
       $scope.instituciones = institucionService.query();
       institucionService.save(institucion);
-      //$scope.instituciones.push(institucion);
+      //$scope.instituciones.push(institucion);s
       $state.go('institucion');
     };
   }
 ])
-.controller('institucionSedesCtrl',['$scope', '$stateParams', 'institucionSedesService',
-  function($scope, $stateParams, institucionSedesService){
+.controller('institucionSedesCtrl',['$scope', '$stateParams', 'institucionSedesService', 'sedeService',
+  function($scope, $stateParams, institucionSedesService, sedeService){
     $scope.init = function(){
-      console.log(666);
-      institucionSedesService.query({id: $stateParams.idSede},
+      institucionSedesService.query({id: $stateParams.idInstitucion},
         function(sedes){
           $scope.sedes = sedes;
-          console.log(sedes);
         });
+    };
+    $scope.borrarSede = function(sede){
+      if( confirm('Esta seguro que dese borrar la Sede: ' + sede.nombre)){
+        sedeService.delete(sede);
+        $scope.sedes = _.without( $scope.sedes, _.findWhere($scope.sedes,{id:sede.id}));
+      };
     };
     $scope.validate_parent = function(){
       console.log($scope.$parent.sede_id);
@@ -63,17 +67,32 @@ angular.module('patrimonioModule')
 ])
 
 .controller('institucionSedeNewCtrl',['$scope', '$state', '$stateParams', 'sedeService',
-  function($scope, $state, $stateParams,  sedeService){
+  function($scope, $state, $stateParams, sedeService){
+    console.log($stateParams)
     $scope.init = function(){
-      if($stateParams.id){
+      if($stateParams.idSede){
         $scope.sedes = sedeService.query();
-        $scope.sede = sedeService.get({id:$stateParams.id});
+        $scope.sede = sedeService.get({id:$stateParams.idSede});
       }
     };
     $scope.nuevaSede = function(sede){
       $scope.sedes = sedeService.query();
-      sedeService.save(institucion);
+      if(!$stateParams.idSede){
+          sede.institucion = $stateParams.idInstitucion
+        }
+      sedeService.save(sede);
       $state.go('^');
     };
+  }
+])
+.controller('institucionSedeLocalesCtrl',['$scope', '$state', '$stateParams', 'localService',
+  function($scope, $state, $stateParams, localService){
+    console.log($stateParams)
+    $scope.init = function(){
+      if($stateParams.idLocal){
+        $scope.locales = localService.query();
+        $scope.locales = localService.get({id:$stateParams.idLocal});
+      }
+    }
   }
 ]);

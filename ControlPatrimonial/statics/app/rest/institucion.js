@@ -17,6 +17,11 @@ angular.module('RESTServices')
     ['$rootScope', 'djResource', function ($rootScope, djResource) {
       return djResource($rootScope.api_url + 'sedes/:id/',{id:'@id'});
     }
+  ])
+  .factory('localService',
+    ['$rootScope', 'djResource', function ($rootScope, djResource) {
+      return djResource($rootScope.api_url + 'locales/:id/',{id:'@id'});
+    }
   ]);
 
 ///nexus/users/1/movements/

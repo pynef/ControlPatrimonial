@@ -1,0 +1,9 @@
+# reportes
+
+  depreciacion hasta la fecha actual
+
+  la depreciacion por año deberia tener una tabla cada año apara tener el historial en bruto
+  y no hacer calculos en tiempo real  ya que la base de datos siempre crecera y hacer calculo en tiempo real
+  se demorara.
+
+  
