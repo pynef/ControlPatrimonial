@@ -8,19 +8,6 @@
         </a>
       </span>
       <h3 class="panel-title"> Nueva Nota de Ingreso </h3>
-      <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          Dropdown
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-          <li><a href="#">Action</a></li>
-          <li><a href="#">Another action</a></li>
-          <li><a href="#">Something else here</a></li>
-          <li role="separator" class="divider"></li>
-          <li><a href="#">Separated link</a></li>
-        </ul>
-      </div>
       <div class="clearfix"></div>
     </header>
     <div class="panel-body" ng-init="init()">
@@ -51,7 +38,7 @@
           </div>
           <div class="col-sm-2">
             <div class="form-group" ng-class="{'validate-has-error':notaEntradaFrm.condicion.$invalid}">
-              <label class="control-label" for="condicion">condicion</label>
+              <label class="control-label" for="condicion">condición</label>
               <select class="form-control" name="condicion" ng-model="nota.condicion" required>
                 <option value="1">Compra</option>
                 <option value="1">Donacion</option>
@@ -60,65 +47,135 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="">Tipo de Moneda</label>
+              <select class="form-control" name="tipo_moneda" ng-model="nota.tipo_moneda">
+                <option ng-repeat="u in st.tipo_moneda" value="{{u.id}}">{{u.nombre}} </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-3" ng-if="nota.tipo_moneda=='2'">
+            <div class="form-group" ng-class="{'validate-has-error':notaEntradaFrm.tipo_cambio.$invalid}">
+              <label for="">Tipo de Tipo de Cambio a soles</label>
+              <input class="form-control" type="number" step="0.01" name="tipo_cambio" ng-model="nota.tipo_cambio" placeholder="0.00" required>
+              <span ng-show="notaEntradaFrm.tipo_cambio.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
+            </div>
+          </div>
+        </div>
         <div class="row"><!--  search section -->
-          <div class="col-sm-8">
+          <div class="col-sm-10">
+            <label for="">Busquede de Catalogo de Bienes</label>
             <div class="input-group dropdown">
-              <input type="text" class="form-control" ng-model="filter_person" ng-change="searchCatalogo(filter_person)" placeholder="Buscar Catalogo de Bienes">
+              <input type="text" class="form-control" ng-model="filter_catalog" ng-change="searchCatalogo(filter_catalog)" placeholder="Buscar Catalogo de Bienes">
               <span class="input-group-btn">
                 <button class="btn btn-info" type="button" id="dropdownMenu1" data-toggle="dropdown"> <i class="fa fa-search"></i> Buscar!</button>
               </span>
-              <ul uib-dropdown-menu role="menu" aria-labelledby="split-button">
-                <li role="menuitem"><a href="#">Action</a></li>
-                <li role="menuitem"><a href="#">Another action</a></li>
-                <li role="menuitem"><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li role="menuitem"><a href="#">Separated link</a></li>
-              </ul>
             </div><!-- /input-group -->
           </div>
-          <div class="col-sm-4">
-            <div class="from-group text-right">
-              <button type="button" class="btn btn-primary" name="button">Agregar <i class="fa fa-plus"></i> </button>
-            </div>
-
-          </div>
-          <div class="col-sm-12">
-
-            <div class="" ng-repeat="res in results">
-
-              {{res}}
-            </div>
-          </div>
-        </div> <!-- end search section -->
+        </div>
         <div class="row">
           <div class="col-sm-12">
-            <div class="table-responsive">
-              <table class="table">
+            <table class="table" ng-show="results.length > 0">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nombre</th>
+                  <th>Agregar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="res in results">
+                  <td>{{res.id}}</td>
+                  <td>{{res.nombre}}</td>
+                  <td>
+                    <button type="button" class="btn btn-primary" name="button" ng-click="addCatalogo(res)">
+                      Agregar <i class="fa fa-plus"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div> <!-- end search section -->
+        <div class="row well">
+          <div class="col-sm-12 text-center">
+            <h3> Detalle de Nota de Entrada</h3>
+          </div>
+          <div class="col-sm-12">
+            <div class="">
+              <table class="table table-responsive">
                 <thead>
                   <tr>
                     <td> # </td>
                     <td> Catalogo </td>
-                    <td colspan="2"> Medida </td>
-                    <td colspan="2"> Precio </td>
+                    <td> Cantidad </td>
+                    <td> Precio Unitario</td>
                     <td> Subtotal </td>
+                    <td> Eliminar</td>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr ng-repeat="detalle in nota.detalles">
+                <tbody<!--  nota.total=detalle.medida*detalle.precio_unitario-->
+                  <tr ng-repeat="detalle in nota.detalles" ng-init="detalle.id = $index+1;">
                     <td>{{detalle.id}}</td>
-                    <td>{{detalle.catalogo}}</td>
-                    <td>{{detalle.tipo_medida}}</td>
-                    <td>{{detalle.medida}}</td>
-                    <td>{{detalle.tipo_moneda}}</td>
-                    <td>{{detalle.precio_unitario}}</td>
-                    <td>{{detalle.precio_unitario * detalle.medida}}</td>
+                    <td>{{detalle.catalogo.nombre}}</td>
+                    <td>
+                      <input type="number" step="1" name="medida" ng-model="detalle.medida" value="0">
+                      <label for="">Unidades</label>
+                    </td>
+                    <td>
+                      <span ng-if="nota.tipo_moneda==1">S/ </span>
+                      <span ng-if="nota.tipo_moneda==2">$ </span>
+                      <input type="number" step="0.01" name="precio_unitario" ng-model="detalle.precio_unitario" value="0">
+                    </td>
+                    <td class="text-danger">
+                      <strong class="text-color-danger">
+                        <span ng-if="nota.tipo_moneda==1">S/ </span>
+                        <span ng-if="nota.tipo_moneda==2">$ </span>
+                        {{detalle.precio_unitario * detalle.medida}}
+                      </strong>
+                    </td>
+                    <td>
+                      <button type="button" class="btn btn-danger" name="button" ng-click="remCatalogo(detalle)">
+                        <i class="fa fa-times"></i>
+                      </button>
+                    </td>
                   </tr>
                 </tbody>
+                <tfoot>
+                  <tr ng-if="nota.tipo_moneda==2">
+                    <td colspan="3"></td>
+                    <td class="bg-danger"> Total en Dolares </td>
+                    <td class="bg-danger"> $ {{totalDetalle()}} </td>
+                    <td></td>
+                  </tr>
+                  <tr ng-if="nota.tipo_moneda==2">
+                    <td colspan="3"></td>
+                    <td class="bg-danger"> Total en Soles </td>
+                    <td class="bg-danger"> s/ {{totalDetalle()*nota.tipo_cambio}} </td>
+                    <td></td>
+                  </tr>
+                  <tr ng-if="nota.tipo_moneda==1">
+                    <td colspan="3"></td>
+                    <td class="bg-danger"> Total en Soles </td>
+                    <td class="bg-danger"> S/ {{totalDetalle()}} </td>
+                    <td></td>
+                  </tr>
+                </tfoot>
               </table>
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-sm-12 text-right">
+            <button class="btn btn-lg btn-secondary btn-icon btn-icon-standalone" ng-disabled="notaEntradaFrm.$invalid">
+              <i class="fa-floppy-o"></i>
+              <span>Procesar la nota de venta</span>
+            </button>
+          </div>
+
+        </div>
       </form>
     </div>
-    <footer class="panel-footer"></footer>
   </section>
