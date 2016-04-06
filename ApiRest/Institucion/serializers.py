@@ -36,5 +36,5 @@ class LocalSerializer(serializers.ModelSerializer):
 class AmbienteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ambiente
-        fields = ('id', 'nombre', 'nombre', 'capacidad', 'institucion', 'sede', 'local', 'tipo_ambiente')
+        fields = ('id', 'nombre', 'piso', 'institucion', 'sede', 'local', 'tipo_ambiente')
         read_only_fields = ('created_at', 'updated_at',)

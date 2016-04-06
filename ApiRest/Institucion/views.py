@@ -26,7 +26,7 @@ class SedeViewSet(viewsets.ModelViewSet):
     serializer_class = SedeSerializer
 
     @detail_route(methods=['get'])
-    def local(self, request, **kwargs):
+    def locales(self, request, **kwargs):
         sede = self.get_object()
         local = Local.objects.filter(sede=sede.id).filter(is_active=True)
         self.queryset = local
@@ -41,7 +41,7 @@ class LocalViewSet(viewsets.ModelViewSet):
     serializer_class = LocalSerializer
 
     @detail_route(methods=['get'])
-    def ambiente(self, request, **kwargs):
+    def ambientes(self, request, **kwargs):
         local = self.get_object()
         ambiente = Ambiente.objects.filter(local=local.id).filter(is_active=True)
         self.queryset = ambiente

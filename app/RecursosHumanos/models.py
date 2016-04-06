@@ -84,6 +84,7 @@ class Trabajador(models.Model):
     local = models.ForeignKey(Local)
     ambiente = models.ForeignKey(Ambiente)
     persona = models.ForeignKey(Persona)
+    codigo  = models.CharField(max_length=256,blank=True, null=True)
     nro_aportantes = models.IntegerField(blank=True, null=True)
     nro_dependientes = models.IntegerField(blank=True, null=True)
     ingreso_familiar = models.DecimalField(max_digits=7, decimal_places=2, blank=True, null=True)
@@ -107,7 +108,7 @@ class Trabajador(models.Model):
     workstation_ip = models.CharField(max_length=64,blank=True, null=True)
 
     def __str__(self):
-        return '{0}'.format(self.codigo)
+        return '{0}'.format(self.persona)
 
     class Meta:
         managed = True

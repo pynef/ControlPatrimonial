@@ -81,7 +81,7 @@ angular.module('app')
         }
       })
       .state('institucion.sedes.new', {
-        url: '/sede/new',
+        url: '/new',
         views: {
           "viewSedeNew": {
             templateUrl: window.static_url + 'app/patrimonio/views/institucion/sedeNew.html',
@@ -104,6 +104,51 @@ angular.module('app')
           "ViewInstitucionSedeLocales": {
             templateUrl: window.static_url + 'app/patrimonio/views/institucion/locales.html',
             controller: 'institucionSedeLocalesCtrl'
+          }
+        }
+      })
+      .state('institucion.sedes.locales.new', {
+        url: '/new',
+        views: {
+          "ViewInstitucionSedeLocalesNew": {
+            templateUrl: window.static_url + 'app/patrimonio/views/institucion/localNew.html',
+            controller: 'institucionSedeLocalesNewCtrl'
+          }
+        }
+      })
+      .state('institucion.sedes.locales.edit', {
+        url: '/:idLocal/edit',
+        views: {
+          "ViewInstitucionSedeLocalesNew": {
+            templateUrl: window.static_url + 'app/patrimonio/views/institucion/localNew.html',
+            controller: 'institucionSedeLocalesNewCtrl'
+          }
+        }
+      })
+      .state('institucion.sedes.locales.ambientes', {
+        url: '/:idLocal/ambientes',
+        views: {
+          "ViewInstitucionSedeLocalAmbientes": {
+            templateUrl: window.static_url + 'app/patrimonio/views/institucion/ambientes.html',
+            controller: 'institucionSedeLocalAmbientesCtrl'
+          }
+        }
+      })
+      .state('institucion.sedes.locales.ambientes.new', {
+        url: '/new',
+        views: {
+          "ViewInstitucionSedeLocalAmbientesNew": {
+            templateUrl: window.static_url + 'app/patrimonio/views/institucion/ambienteNew.html',
+            controller: 'institucionSedeLocalAmbientesNewCtrl'
+          }
+        }
+      })
+      .state('institucion.sedes.locales.ambientes.edit', {
+        url: '/:idAmbiente/edit',
+        views: {
+          "ViewInstitucionSedeLocalAmbientesNew": {
+            templateUrl: window.static_url + 'app/patrimonio/views/institucion/ambienteNew.html',
+            controller: 'institucionSedeLocalAmbientesNewCtrl'
           }
         }
       })
