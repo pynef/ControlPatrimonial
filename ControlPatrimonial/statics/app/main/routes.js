@@ -167,5 +167,14 @@ angular.module('app')
         templateUrl: window.static_url + 'app/patrimonio/views/contabilidad/cuenta_contableNew.html',
         controller: 'cuenta_contableNewCtrl'
       })
+      .state('cuenta_contable.depreciacion', {
+        url: '/:idCuentaContable/depreciacion',
+        views: {
+          "ViewCuentasDepreciacion": {
+            templateUrl: window.static_url + 'app/patrimonio/views/contabilidad/depreciacion.html',
+            controller: 'cuenta_contableDepreciacionCtrl'
+          }
+        }
+      })
   }
 ]);

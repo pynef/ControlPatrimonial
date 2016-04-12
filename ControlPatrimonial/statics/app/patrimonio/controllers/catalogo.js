@@ -51,7 +51,7 @@ function($scope, $state, $stateParams, grupoService, tipoService, cuenta_contabl
         $scope.grupos = grupoService.query();
         $scope.tipos = tipoService.query();
         $scope.cuentas = cuenta_contableService.query();
-    } 
+    }
     $scope.changeGrupo = function(grupo_id){
       //$scope.clases = null;
       $scope.clases = grupoService.clases({id: grupo_id});

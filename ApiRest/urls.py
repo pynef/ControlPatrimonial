@@ -19,7 +19,7 @@ router.register(r'tipos', TipoViewSet)
 router.register(r'catalogobienes', CatalogoBienViewSet)
 
 #rutas de contabilidad
-router.register(r'cuenta_contables', CuentaContableViewSet)
+router.register(r'cuentas', CuentasViewSet)
 
 #rutas de institucion
 router.register(r'tipo_ambientes', TipoAmbienteViewSet)
