@@ -9,11 +9,11 @@
           </button>
         </span>
         <div class="form-group"  ng-show="editable">
-          <button ng-click="editable=0"  class="pull-right btn btn-danger">
+          <button ng-click="editable=0;cancelar();"  class="pull-right btn btn-danger">
             <i class="fa-close"></i>
             <span>Cancelar</span>
           </button>
-            <button ng-click="nuevaCuentaContable(cuenta);" class="pull-right btn btn-secondary">
+            <button ng-click="agregarDepreciacion(cuenta);" class="pull-right btn btn-secondary">
               <i class="fa-plus"></i>
               <span class="ng-scope">Guardar</span>
             </button>
@@ -30,7 +30,6 @@
           	            <div class="col-sm-7">
           	              <input  type="text"
           	                      class="form-control"
-          	                      placeholder=""
           	                      ng-model="cuenta.depreciacion_nombre"
           	                      required
           	                      ng-minlength="2"
@@ -44,7 +43,6 @@
           	            <div class="col-sm-7">
           	              <input  type="number"
           	                      class="form-control"
-          	                      placeholder=""
           	                      ng-model="cuenta.depreciacion_numero"
           	                      required>
           	            </div>
@@ -91,6 +89,10 @@
                         <tr>
                           <td>Porcentaje de depreciacion</td>
                           <td>{{cuenta.depreciacion_porcentaje}}</td>
+                        </tr>
+                        <tr>
+                          <td>Descripción</td>
+                          <td>{{cuenta.depreciacion_descripcion}}</td>
                         </tr>
                     </table>
                   </div>

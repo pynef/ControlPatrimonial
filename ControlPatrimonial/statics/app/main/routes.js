@@ -176,5 +176,20 @@ angular.module('app')
           }
         }
       })
+      .state('proveedor', {
+        url: '/proveedores',
+        templateUrl: window.static_url + 'app/patrimonio/views/proveedor/proveedores.html',
+        controller: 'proveedoresCtrl'
+      })
+      .state('rrhh', {
+        url: '/rrhh',
+        templateUrl: window.static_url + 'app/patrimonio/views/rrhh/rrhh.html',
+        controller: 'rrhhCtrl'
+      })
+      .state('rrhh.personas', {
+        url: '/personas',
+        templateUrl: window.static_url + 'app/patrimonio/views/rrhh/personas.html',
+        controller: 'personaCtrl'
+      })
   }
 ]);

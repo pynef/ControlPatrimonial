@@ -23,20 +23,16 @@ angular.module('patrimonioModule')
     $scope.init = function(){
     	if($stateParams.idCuentaContable){
     		$scope.cuentas_contables = cuentasService.query();
-        $scope.cuenta_contable = cuentasService.get({id:$stateParams.idCuentaContable});
+        	$scope.cuenta_contable = cuentasService.get({id:$stateParams.idCuentaContable});
     	}
     };
     $scope.nuevaCuentaContable = function(cuenta_contable){
     	console.log(cuenta_contable);
-      if($stateParams.idCuentaContable){
-      	cuentasService.save(cuenta_contable);
-      	$state.go('^');
-      }
-      cuentasService.save(cuenta_contable);
+    	cuentasService.save(cuenta_contable);
+    	$state.go('^');
     }
   }
 ])
-
 // $scope.init = function(){
 //   if($stateParams.idSede){
 //     $scope.sedes = sedeService.query();
@@ -51,21 +47,20 @@ angular.module('patrimonioModule')
 //   sedeService.save(sede);
 //   $state.go('^');
 // };
-
-
-angular.module('patrimonioModule')
-.controller('cuenta_contableEditCtrl',['$scope', '$state', '$stateParams', 'cuentasService',
-  function($scope, $state, $stateParams, cuentasService){
-    $scope.init = function(){
-      console.log($stateParams.idCuentaContable)
-    };
-    $scope.nuevaCuentaContable = function(cuenta_contable){
-    	console.log(cuenta_contable);
-    	cuentasService.save(cuenta_contable);
-    	$state.go('^');
-    }
-  }
-])
+// angular.module('patrimonioModule')
+// .controller('cuenta_contableDepreciacionCtrl',['$scope', '$state', '$stateParams', 'cuentasService',
+//   function($scope, $state, $stateParams, cuentasService){
+//     $scope.init = function(){
+//       console.log($stateParams)
+//       console.log($stateParams.idCuentaContable)
+//     };
+//     $scope.agregarDepreciacion = function(cuenta){
+//     	console.log(cuenta);
+//     	cuentasService.save(cuenta_contable);
+//     	$state.go('^');
+//     }
+//   }
+// ])
 
 angular.module('patrimonioModule')
 .controller('cuenta_contableDepreciacionCtrl',['$scope', '$state', '$stateParams', 'cuentasService',
@@ -76,6 +71,13 @@ angular.module('patrimonioModule')
       console.log($scope.cuenta)
       console.log($scope.editable)
     };
-
+        $scope.agregarDepreciacion = function(cuenta){
+        	console.log(cuenta);
+        	cuentasService.save(cuenta);
+        	$state.go('^');
+        }
+        $scope.cancelar = function(cuenta){
+          $scope.cuenta = cuentasService.get({id:$stateParams.idCuentaContable})
+        }
   }
 ])

@@ -8,10 +8,10 @@ angular.module('patrimonioModule')
 
  }
 ])
-.controller('newNotaEntradaCtrl',['$scope', 'statics', 'ProveedorService', 'CatalogoService',
-  function($scope, statics, ProveedorService, CatalogoService){
+.controller('newNotaEntradaCtrl',['$scope', 'statics', 'proveedorService', 'CatalogoService',
+  function($scope, statics, proveedorService, CatalogoService){
     $scope.init = function(){
-      $scope.proveedores = ProveedorService.query();
+      $scope.proveedores = proveedorService.query();
       $scope.st = statics;
       $scope.tipo_moneda= '1';
       $scope.nota = {

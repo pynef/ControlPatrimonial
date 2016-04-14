@@ -48,7 +48,7 @@
             <div class="form-group" ng-class="{'validate-has-error':catalogoForm.cuenta.$invalid}">
               <label class="control-label" for="cuenta">Cuenta Contable</label>
               <select class="form-control" name="cuenta" ng-model="catalogo.cuenta_contable" required>
-                <option ng-repeat="cuenta in cuentas" value="{{cuenta.id}}"> {{cuenta.nombre}} </option>
+                <option ng-repeat="cuenta in cuentas" value="{{cuenta.id}}"> {{cuenta.cuenta_nombre}} </option>
               </select>
               <span ng-show="catalogoForm.cuenta.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
             </div>

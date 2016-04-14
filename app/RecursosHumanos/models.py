@@ -175,6 +175,7 @@ class TrabajadorPuesto(models.Model):
     institucion = models.ForeignKey(Institucion)
     sede = models.ForeignKey(Sede)
     local = models.ForeignKey(Local)
+    ambiente = models.ForeignKey(Ambiente)
     trabajador = models.ForeignKey(Trabajador)
     puesto = models.ForeignKey(Puesto)
     is_active = models.BooleanField(default=True)

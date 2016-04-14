@@ -3,6 +3,7 @@ from django.conf.urls import url, include
 from rest_framework import routers
 
 
+from ApiRest.RecursosHumanos.views import *
 from ApiRest.CatalogoBienes.views import *
 from ApiRest.Contabilidad.views import *
 from ApiRest.Institucion.views import *
@@ -36,6 +37,12 @@ router.register(r'telefono_proveedor', ProveedorTelefonosViewSet)
 #rutas de bienes
 
 #rutas de recursos humanos
+router.register(r'personas', PersonaViewSet)
+router.register(r'trabajadores', TrabajadorViewSet)
+router.register(r'areas', AreaViewSet)
+router.register(r'puestos', PuestoViewSet)
+router.register(r'trabajador_puesto', TrabajadorPuestoViewSet)
+router.register(r'trabajador_telefonos', PersonaTelefonosViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
