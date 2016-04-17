@@ -2,9 +2,9 @@ from rest_framework import generics, permissions
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import detail_route
-from app.RecursosHumanos.models import Persona, PersonaTelefono, Trabajador, Area, Puesto, TrabajadorPuesto
+from app.RecursosHumanos.models import Persona, PersonaTelefono, Trabajador, Area, Puesto
 from serializers import PersonaSerializer, PersonaTelefonosSerializer,  TrabajadorSerializer
-from serializers import AreaSerializer, PuestoSerializer,  TrabajadorPuestoSerializer
+from serializers import AreaSerializer, PuestoSerializer
 
 
 class PersonaViewSet(viewsets.ModelViewSet):
@@ -34,7 +34,7 @@ class PersonaViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 class PersonaTelefonosViewSet(viewsets.ModelViewSet):
-    queryset = PersonaTelefono.objects.all()
+    queryset = PersonaTelefono.objects.all().filter(is_active=True)
     serializer_class = PersonaTelefonosSerializer
 
 
@@ -44,7 +44,7 @@ class TrabajadorViewSet(viewsets.ModelViewSet):
 
 
 class AreaViewSet(viewsets.ModelViewSet):
-    queryset = Area.objects.all()
+    queryset = Area.objects.all().filter(is_active=True)
     serializer_class = AreaSerializer
 
 
@@ -52,6 +52,17 @@ class PuestoViewSet(viewsets.ModelViewSet):
     queryset = Puesto.objects.all().filter(is_active=True)
     serializer_class = PuestoSerializer
 
-class TrabajadorPuestoViewSet(viewsets.ModelViewSet):
-    queryset = TrabajadorPuesto.objects.all().filter(is_active=True)
-    serializer_class = TrabajadorPuestoSerializer
+    #area
+    @detail_route(methods=['get'])
+    def area(self, request, **kwargs):
+        area = self.get_object()
+        puestos = Puesto.objects.filter(area=area.id)
+        self.queryset = puestos
+        self.serializer_class = PuestoSerializer
+
+        serializer = PuestoSerializer(instance=self.queryset, many=True)
+        return Response(serializer.data)
+
+# class TrabajadorPuestoViewSet(viewsets.ModelViewSet):
+#     queryset = TrabajadorPuesto.objects.all().filter(is_active=True)
+#     serializer_class = TrabajadorPuestoSerializer

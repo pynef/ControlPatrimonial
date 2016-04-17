@@ -1,7 +1,7 @@
 <div class="page-title">
   <div class="title-env">
-    <h1 class="title">Personas</h1>
-    <p class="description">Donde se registra a las persona de manera global</p>
+    <h1 class="title">Areas</h1>
+    <p class="description">Son la oficinas que son asiganados los trabajadores</p>
   </div>
   <div class="breadcrumb-env">
     <ol class="breadcrumb bc-1">
@@ -9,18 +9,18 @@
         <a href="#/"><i class="fa-home"></i>Home</a>
       </li>
       <li class="active">
-          <strong>Personas</strong>
+          <strong>Areas</strong>
       </li>
     </ol>
   </div>
 </div>
 
 <div class="row" ui-view>
-  <div class="col-sm-12"  ng-init="init()">
+  <div class="col-sm-7"  ng-init="init()">
     <section class="panel panel-default">
       <header class="panel-heading">
         <span class="pull-right">
-          <a ui-sref="personas.new" class="btn btn-secondary btn-icon">
+          <a ui-sref="areas.new" class="btn btn-secondary btn-icon">
             <i class="fa-plus"></i>
             <span>Nuevo</span>
           </a>
@@ -33,30 +33,24 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>N° Documento</th>
                 <th>Nombre</th>
-                <th>Apellido Paterno</th>
-                <th>Apellido Materno</th>
-                <!-- <th>Genero</th> -->
+                <th>Descripcion</th>
                 <th>Opciones</th>
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="persona in personas">
-                <td>{{persona.id}}</td>
-                <td>{{persona.nro_documento}}</td>
-                <td>{{persona.nombres}}</td>
-                <td>{{persona.apellido_paterno}}</td>
-                <td>{{persona.apellido_materno}}</td>
-                <!-- <td>{{persona.genero}}</td> -->
+              <tr ng-repeat="area in areas">
+                <td>{{area.id}}</td>
+                <td>{{area.nombre}}</td>
+                <td>{{area.descripcion}}</td>
                 <td>
-                  <!-- <a ui-sref=".show({id:persona.id})" class="btn btn-icon btn-info" alt="mas información">
+                  <a ui-sref="areas.puestos({idArea:area.id})" class="btn btn-icon btn-info" alt="mas información">
                     <i class="fa-search"></i>
-                  </a> -->
-                  <a ui-sref="personas.edit({idPersona:persona.id})" class="btn btn-icon btn-blue" alt="Editar">
+                  </a>
+                  <a ui-sref="areas.edit({idArea:area.id})" class="btn btn-icon btn-blue" alt="Editar">
                     <i class="fa-pencil"></i>
                   </a>
-                  <button class="btn btn-icon btn-red" ng-click="remove(persona)" alt="eliminar">
+                  <button class="btn btn-icon btn-red" ng-click="remove(area)" alt="eliminar">
                     <i class="fa-remove"></i>
                   </button>
                 </td>
@@ -68,5 +62,8 @@
       </div>
       <footer class="panel-footing"></footer>
     </section>
+  </div>
+  <div class="col-sm-5" ui-view="ViewAreaPuestosShow">
+
   </div>
 </div>

@@ -8,6 +8,7 @@ from ApiRest.CatalogoBienes.views import *
 from ApiRest.Contabilidad.views import *
 from ApiRest.Institucion.views import *
 from ApiRest.Proveedor.views import *
+from ApiRest.Bienes.views import *
 
 #from app.ApiRest.Bienes import views
 #from app.ApiRest.RecursosHumanos import views
@@ -35,13 +36,15 @@ router.register(r'proveedores', ProveedorViewSet)
 router.register(r'telefono_proveedor', ProveedorTelefonosViewSet)
 
 #rutas de bienes
+router.register(r'bienes', BienViewSet)
+
 
 #rutas de recursos humanos
 router.register(r'personas', PersonaViewSet)
 router.register(r'trabajadores', TrabajadorViewSet)
 router.register(r'areas', AreaViewSet)
 router.register(r'puestos', PuestoViewSet)
-router.register(r'trabajador_puesto', TrabajadorPuestoViewSet)
+# router.register(r'trabajador_puesto', TrabajadorPuestoViewSet)
 router.register(r'trabajador_telefonos', PersonaTelefonosViewSet)
 
 urlpatterns = [

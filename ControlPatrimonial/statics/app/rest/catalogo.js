@@ -28,11 +28,11 @@ angular.module('RESTServices')
     ['$rootScope', 'djResource',
     function ($rootScope, djResource) {
       return djResource( $rootScope.api_url + 'catalogobienes/:id/:search/',
-      {id:'@id'},
-      {
-        search: {method: 'GET', isArray:true, params: { search: 'search'}}
-      }
-    );
+        {id:'@id'},
+          {
+            search: {method: 'GET', isArray:true, params: { search: 'search'}}
+          }
+      );
     }
   ]);
 ///nexus/users/1/movements/

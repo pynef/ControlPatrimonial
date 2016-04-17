@@ -176,20 +176,88 @@ angular.module('app')
           }
         }
       })
-      .state('proveedor', {
-        url: '/proveedores',
-        templateUrl: window.static_url + 'app/patrimonio/views/proveedor/proveedores.html',
-        controller: 'proveedoresCtrl'
-      })
       .state('rrhh', {
         url: '/rrhh',
         templateUrl: window.static_url + 'app/patrimonio/views/rrhh/rrhh.html',
         controller: 'rrhhCtrl'
       })
-      .state('rrhh.personas', {
+      .state('personas', {
         url: '/personas',
         templateUrl: window.static_url + 'app/patrimonio/views/rrhh/personas.html',
         controller: 'personaCtrl'
+      })
+      .state('personas.new', {
+        url: '/nuevo',
+        templateUrl: window.static_url + 'app/patrimonio/views/rrhh/personaNew.html',
+        controller: 'personaNewCtrl'
+      })
+      .state('personas.edit', {
+        url: '/:idPersona/edit',
+        templateUrl: window.static_url + 'app/patrimonio/views/rrhh/personaNew.html',
+        controller: 'personaNewCtrl'
+      })
+      .state('areas', {
+        url: '/areas',
+        templateUrl: window.static_url + 'app/patrimonio/views/rrhh/areas.html',
+        controller: 'areaCtrl'
+      })
+      .state('areas.new', {
+        url: '/new',
+        templateUrl: window.static_url + 'app/patrimonio/views/rrhh/areaNew.html',
+        controller: 'areaNewCtrl'
+      })
+      .state('areas.edit', {
+        url: '/:idArea/edit',
+        templateUrl: window.static_url + 'app/patrimonio/views/rrhh/areaNew.html',
+        controller: 'areaNewCtrl'
+      })
+      .state('areas.puestos', {
+        url: '/:idArea/puesto',
+        views: {
+          "ViewAreaPuestosShow": {
+            templateUrl: window.static_url + 'app/patrimonio/views/rrhh/areaPuestos.html',
+            controller: 'areaPuestosCtrl'
+          }
+        }
+      })
+      .state('areas.puestos.edit', {
+        url: '/:idPuesto',
+        views: {
+          "ViewAreaPuestosEdit": {
+            templateUrl: window.static_url + 'app/patrimonio/views/rrhh/areaPuestoEdit.html',
+            controller: 'areaPuestosEditCtrl'
+          }
+        }
+      })
+      .state('proveedor', {
+        url: '/proveedores',
+        templateUrl: window.static_url + 'app/patrimonio/views/proveedor/proveedores.html',
+        controller: 'proveedorCtrl'
+      })
+      .state('proveedor.new', {
+        url: '/new',
+        templateUrl: window.static_url + 'app/patrimonio/views/proveedor/proveedorNew.html',
+        controller: 'proveedorNewCtrl'
+      })
+      .state('proveedor.edit', {
+        url: '/:idProveedor/edit',
+        templateUrl: window.static_url + 'app/patrimonio/views/proveedor/proveedorNew.html',
+        controller: 'proveedorNewCtrl'
+      })
+      .state('trabajadores', {
+        url: '/trabajadores',
+        templateUrl: window.static_url + 'app/patrimonio/views/rrhh/trabajadores.html',
+        controller: 'trabajadorCtrl'
+      })
+      .state('trabajadores.new', {
+        url: '/new',
+        templateUrl: window.static_url + 'app/patrimonio/views/rrhh/trabajadorNew.html',
+        controller: 'trabajadorNewCtrl'
+      })
+      .state('trabajadores.edit', {
+        url: '/:idTrabajador/edit',
+        templateUrl: window.static_url + 'app/patrimonio/views/rrhh/trabajadorNew.html',
+        controller: 'trabajadorNewCtrl'
       })
   }
 ]);

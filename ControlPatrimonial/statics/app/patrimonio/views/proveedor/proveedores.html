@@ -1,1 +1,72 @@
-proveedores
+<div class="page-title">
+  <div class="title-env">
+    <h1 class="title">Proveedores</h1>
+    <p class="description">Donde se registra a los proveedores para poder hacer las compras necesarias</p>
+  </div>
+  <div class="breadcrumb-env">
+    <ol class="breadcrumb bc-1">
+      <li>
+        <a href="#/"><i class="fa-home"></i>Home</a>
+      </li>
+      <li class="active">
+          <strong>Provedor</strong>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="row" ui-view>
+  <div class="col-sm-12"  ng-init="init()">
+    <section class="panel panel-default">
+      <header class="panel-heading">
+        <span class="pull-right">
+          <a ui-sref="proveedor.new" class="btn btn-secondary btn-icon">
+            <i class="fa-plus"></i>
+            <span>Nuevo</span>
+          </a>
+        </span>
+        <h3 class="panel-title"> Lista </h3>
+      </header>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-model-2 table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nombre de la empresa</th>
+                <th>RUC</th>
+                <th>Razon Social</th>
+                <th>Dueño</th>
+                <!-- <th>Direccion</th> -->
+                <th>Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="proveedor in proveedores">
+                <td>{{proveedor.id}}</td>
+                <td>{{proveedor.nombre}}</td>
+                <td>{{proveedor.ruc}}</td>
+                <td>{{proveedor.razon_social}}</td>
+                <td>{{proveedor.duenio}}</td>
+                <!-- <td>{{proveedor.direccion_fiscal}}</td> -->
+                <td>
+                  <!-- <a ui-sref=".show({id:proveedor.id})" class="btn btn-icon btn-info" alt="mas información">
+                    <i class="fa-search"></i>
+                  </a> -->
+                  <a ui-sref="proveedor.edit({idProveedor:proveedor.id})" class="btn btn-icon btn-blue" alt="Editar">
+                    <i class="fa-pencil"></i>
+                  </a>
+                  <button class="btn btn-icon btn-red" ng-click="remove(proveedor)" alt="eliminar">
+                    <i class="fa-remove"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+      <footer class="panel-footing"></footer>
+    </section>
+  </div>
+</div>
