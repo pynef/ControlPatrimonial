@@ -8,11 +8,14 @@ angular.module('patrimonioModule')
 
  }
 ])
-.controller('newNotaEntradaCtrl',['$scope', 'statics', 'ProveedorService', 'CatalogoService',
-  function($scope, statics, ProveedorService, CatalogoService){
+.controller('newNotaEntradaCtrl',['$scope', 'statics', 'proveedorService', 'CatalogoService', 'nota_ingresoService', 'ingresoPorGuiaRemisionService',
+  'nota_ingreso_detalleService',
+  function($scope, statics, proveedorService, CatalogoService, nota_ingresoService, ingresoPorGuiaRemisionService,
+  nota_ingreso_detalleService){
     $scope.init = function(){
-      $scope.proveedores = ProveedorService.query();
+      $scope.proveedores = proveedorService.query();
       $scope.st = statics;
+      console.log($scope.st)
       $scope.tipo_moneda= '1';
       $scope.nota = {
         detalles: [],
@@ -32,8 +35,9 @@ angular.module('patrimonioModule')
       }
       $scope.nota.detalles.push({
         catalogo: catalogo,
-        medida:0,
-        precio_unitario:0
+        cantidad:0,
+        precio_unitario:0,
+        tipo_moneda:1
       });
       $scope.results = [];
       $scope.filter_catalog = '';
@@ -59,12 +63,38 @@ angular.module('patrimonioModule')
     $scope.totalDetalle = function(){
       var total = 0;
       for (var i = 0; i < $scope.nota.detalles.length; i++) {
-        var cantidad = $scope.nota.detalles[i].medida?$scope.nota.detalles[i].medida:0;
+        var cantidad = $scope.nota.detalles[i].cantidad?$scope.nota.detalles[i].cantidad:0;
         var precio = $scope.nota.detalles[i].precio_unitario?$scope.nota.detalles[i].precio_unitario:0;
         total += cantidad*precio;
       }
       $scope.nota.total = total;
       return total;
     };
+    $scope.procesar = function(nota){
+      if(confirm("Seguro que desea hacer ingresar el numero de guia :  " + nota.guia_remision)){
+          console.log(nota);
+          var nota_ingreso = new Object();
+          nota_ingreso.guia_remision = nota.guia_remision;
+          nota_ingreso.orden_compra = nota.orden_compra;
+          nota_ingreso.condicion = nota.condicion;
+          nota_ingreso.tipo_moneda = nota.tipo_moneda;
+          nota_ingreso.tipo_cambio   = nota.tipo_cambio;
+          nota_ingreso.total = nota.total;
+          nota_ingreso.proveedor = nota.proveedor;
+          console.log(nota_ingreso)
+          var ingreso = new Object();
+          if(ingreso = nota_ingresoService.save(nota_ingreso)){
+            // ingreso_nota = ingresoPorGuiaRemisionService.get({guia_remision:nota.guia_remision});
+            // for (var i = 0; i < $scope.nota.detalles.length; i++) {
+            for (var i = 0; i < nota.detalles.length; i++){
+              console.log(nota.detalles[i]);
+              nota_ingreso_detalleService.save(nota.detalles[i]);
+            }
+            console.log(nota.detalles)
+
+          }
+      }
+
+    }
   }
 ]);

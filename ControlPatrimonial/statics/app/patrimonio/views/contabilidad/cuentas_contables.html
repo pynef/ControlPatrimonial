@@ -15,7 +15,7 @@
   </div>
 </div>
 <aside class="md-content-section">
-  <section class="col-md-10">
+  <section class="col-md-7">
 
     <div class="row" ui-view="">
       <div class="col-sm-12"  ng-init="init()">
@@ -34,22 +34,19 @@
               <table class="table table-model-1 table-hover">
                 <thead>
                   <tr>
-                    <th> N °</th>
-                    <th> Nombre </th>
+                    <th> N° de Cuenta </th>
+                    <th> Nombre de la Cuenta Contable </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr ng-repeat="cuenta in cuentas">
-                    <td>{{cuenta.numero_cuenta}}</td>
-                    <td>{{cuenta.nombre}}</td>
+                    <td>{{cuenta.cuenta_numero}}</td>
+                    <td>{{cuenta.cuenta_nombre}}</td>
                     <td  class="pull-right">
                       <a ui-sref="cuenta_contable.edit({ idCuentaContable: cuenta.id })" class="btn btn-icon btn-info" alt="mas información">
                         <i class="fa-search"> Editar</i>
                       </a>
-                      <a ui-sref="cuenta_contable.edit({idInstitucion:cuenta.id})" class="btn btn-icon btn-blue" alt="Cuenta">
-                        <i class="fa-check"> Cuenta</i>
-                      </a>
-                      <a ui-sref="cuenta_contable.edit({idInstitucion:cuenta.id})" class="btn btn-icon btn-orange" alt="Editar">
+                      <a ui-sref="cuenta_contable.depreciacion({idCuentaContable:cuenta.id})" class="btn btn-icon btn-orange" alt="Editar">
                         <i class="fa-pencil"> Depreciacion</i>
                       </a>
                       <button class="btn btn-icon btn-red"  ng-click="borrarCuentaContable(cuenta)" alt="eliminar">
@@ -66,7 +63,7 @@
       </div>
     </div>
   </section>
-  <section class="col-md-2" ui-view="ViewCuentasDepreciacion">
+  <section class="col-md-5" ui-view="ViewCuentasDepreciacion">
 
   </section>
 </aside>

@@ -16,7 +16,7 @@
           <div class="col-sm-4">
             <div class="form-group" ng-class="{'validate-has-error':notaEntradaFrm.proveedor.$invalid}">
               <label class="control-label" for="proveedor">Proveedor</label>
-              <select class="form-control" name="proovedor" ng-disabled="!proveedores.$resolved">
+              <select class="form-control" name="proovedor" ng-disabled="!proveedores.$resolved" ng-model="nota.proveedor">
                 <option ng-repeat="prov in proveedores" value="{{prov.id}}"> {{prov.nombre}}</option>
               </select>
               <span ng-show="notaEntradaFrm.proveedor.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
@@ -41,7 +41,8 @@
               <label class="control-label" for="condicion">condición</label>
               <select class="form-control" name="condicion" ng-model="nota.condicion" required>
                 <option value="1">Compra</option>
-                <option value="1">Donacion</option>
+                <option value="2">Donacion</option>
+                <option value="3">Bonificación</option>
               </select>
               <span ng-show="notaEntradaFrm.condicion.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
             </div>
@@ -116,12 +117,12 @@
                     <td> Eliminar</td>
                   </tr>
                 </thead>
-                <tbody<!--  nota.total=detalle.medida*detalle.precio_unitario-->
+                <tbody<!--  nota.total=detalle.cantidad*detalle.precio_unitario-->
                   <tr ng-repeat="detalle in nota.detalles" ng-init="detalle.id = $index+1;">
                     <td>{{detalle.id}}</td>
                     <td>{{detalle.catalogo.nombre}}</td>
                     <td>
-                      <input type="number" step="1" name="medida" ng-model="detalle.medida" value="0">
+                      <input type="number" step="1" name="cantidad" ng-model="detalle.cantidad" value="0">
                       <label for="">Unidades</label>
                     </td>
                     <td>
@@ -133,7 +134,7 @@
                       <strong class="text-color-danger">
                         <span ng-if="nota.tipo_moneda==1">S/ </span>
                         <span ng-if="nota.tipo_moneda==2">$ </span>
-                        {{detalle.precio_unitario * detalle.medida}}
+                        {{detalle.precio_unitario * detalle.cantidad}}
                       </strong>
                     </td>
                     <td>
@@ -169,7 +170,7 @@
         </div>
         <div class="row">
           <div class="col-sm-12 text-right">
-            <button class="btn btn-lg btn-secondary btn-icon btn-icon-standalone" ng-disabled="notaEntradaFrm.$invalid">
+            <button ng-click="procesar(nota);" class="btn btn-lg btn-secondary btn-icon btn-icon-standalone" ng-disabled="notaEntradaFrm.$invalid">
               <i class="fa-floppy-o"></i>
               <span>Procesar la nota de venta</span>
             </button>

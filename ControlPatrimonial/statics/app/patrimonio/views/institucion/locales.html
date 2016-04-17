@@ -1,9 +1,9 @@
-<div class="row" ui-view="ViewInstitucionSedeLocalesss">
-  <div class="col-sm-12"  ng-init="init()">
+<div class="row" ui-view="ViewInstitucionSedeLocalesNew">
+  <div class="col-sm-6"  ng-init="init()">
     <section class="panel panel-default">
       <header class="panel-heading">
         <span class="pull-right">
-          <a ui-sref="local.new" class="btn btn-secondary btn-icon0">
+          <a ui-sref="institucion.sedes.locales.new" class="btn btn-secondary btn-icon0">
             <i class="fa-plus"></i>
             <span>Nuevo</span>
           </a>
@@ -22,13 +22,13 @@
               <tr ng-repeat="local in locales">
                 <td>{{local.nombre}}</td>
                 <td>
-                  <a ui-sref="institucion.sedes({ id: local.id })" class="btn btn-icon btn-info" alt="mas información">
+                  <a ui-sref="institucion.sedes.locales.ambientes({ idLocal: local.id })" class="btn btn-icon btn-info" alt="mas información">
                     <i class="fa-search"></i>
                   </a>
-                  <a ui-sref="institucion.edit({id:local.id})" class="btn btn-icon btn-blue" alt="Editar">
+                  <a ui-sref="institucion.sedes.locales.edit({idLocal:local.id})" class="btn btn-icon btn-blue" alt="Editar">
                     <i class="fa-pencil"></i>
                   </a>
-                  <button class="btn btn-icon btn-red"  ng-click="borrarInstitucion(insti)" alt="eliminar">
+                  <button class="btn btn-icon btn-red"  ng-click="borrarLocal(local)" alt="eliminar">
                     <i class="fa-remove"></i>
                   </button>
                 </td>
@@ -39,4 +39,6 @@
       </div>
     </section>
   </div>
+  <div class="col-sm-6" ui-view="ViewInstitucionSedeLocalAmbientes">
+</div>
 </div>

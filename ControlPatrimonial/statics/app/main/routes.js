@@ -81,7 +81,7 @@ angular.module('app')
         }
       })
       .state('institucion.sedes.new', {
-        url: '/sede/new',
+        url: '/new',
         views: {
           "viewSedeNew": {
             templateUrl: window.static_url + 'app/patrimonio/views/institucion/sedeNew.html',
@@ -107,6 +107,51 @@ angular.module('app')
           }
         }
       })
+      .state('institucion.sedes.locales.new', {
+        url: '/new',
+        views: {
+          "ViewInstitucionSedeLocalesNew": {
+            templateUrl: window.static_url + 'app/patrimonio/views/institucion/localNew.html',
+            controller: 'institucionSedeLocalesNewCtrl'
+          }
+        }
+      })
+      .state('institucion.sedes.locales.edit', {
+        url: '/:idLocal/edit',
+        views: {
+          "ViewInstitucionSedeLocalesNew": {
+            templateUrl: window.static_url + 'app/patrimonio/views/institucion/localNew.html',
+            controller: 'institucionSedeLocalesNewCtrl'
+          }
+        }
+      })
+      .state('institucion.sedes.locales.ambientes', {
+        url: '/:idLocal/ambientes',
+        views: {
+          "ViewInstitucionSedeLocalAmbientes": {
+            templateUrl: window.static_url + 'app/patrimonio/views/institucion/ambientes.html',
+            controller: 'institucionSedeLocalAmbientesCtrl'
+          }
+        }
+      })
+      .state('institucion.sedes.locales.ambientes.new', {
+        url: '/new',
+        views: {
+          "ViewInstitucionSedeLocalAmbientesNew": {
+            templateUrl: window.static_url + 'app/patrimonio/views/institucion/ambienteNew.html',
+            controller: 'institucionSedeLocalAmbientesNewCtrl'
+          }
+        }
+      })
+      .state('institucion.sedes.locales.ambientes.edit', {
+        url: '/:idAmbiente/edit',
+        views: {
+          "ViewInstitucionSedeLocalAmbientesNew": {
+            templateUrl: window.static_url + 'app/patrimonio/views/institucion/ambienteNew.html',
+            controller: 'institucionSedeLocalAmbientesNewCtrl'
+          }
+        }
+      })
       .state('cuenta_contable', {
         url: '/contabilidad',
         templateUrl: window.static_url + 'app/patrimonio/views/contabilidad/cuentas_contables.html',
@@ -121,6 +166,103 @@ angular.module('app')
         url: '/:idCuentaContable/edit',
         templateUrl: window.static_url + 'app/patrimonio/views/contabilidad/cuenta_contableNew.html',
         controller: 'cuenta_contableNewCtrl'
+      })
+      .state('cuenta_contable.depreciacion', {
+        url: '/:idCuentaContable/depreciacion',
+        views: {
+          "ViewCuentasDepreciacion": {
+            templateUrl: window.static_url + 'app/patrimonio/views/contabilidad/depreciacion.html',
+            controller: 'cuenta_contableDepreciacionCtrl'
+          }
+        }
+      })
+      .state('rrhh', {
+        url: '/rrhh',
+        templateUrl: window.static_url + 'app/patrimonio/views/rrhh/rrhh.html',
+        controller: 'rrhhCtrl'
+      })
+      .state('personas', {
+        url: '/personas',
+        templateUrl: window.static_url + 'app/patrimonio/views/rrhh/personas.html',
+        controller: 'personaCtrl'
+      })
+      .state('personas.new', {
+        url: '/nuevo',
+        templateUrl: window.static_url + 'app/patrimonio/views/rrhh/personaNew.html',
+        controller: 'personaNewCtrl'
+      })
+      .state('personas.edit', {
+        url: '/:idPersona/edit',
+        templateUrl: window.static_url + 'app/patrimonio/views/rrhh/personaNew.html',
+        controller: 'personaNewCtrl'
+      })
+      .state('areas', {
+        url: '/areas',
+        templateUrl: window.static_url + 'app/patrimonio/views/rrhh/areas.html',
+        controller: 'areaCtrl'
+      })
+      .state('areas.new', {
+        url: '/new',
+        templateUrl: window.static_url + 'app/patrimonio/views/rrhh/areaNew.html',
+        controller: 'areaNewCtrl'
+      })
+      .state('areas.edit', {
+        url: '/:idArea/edit',
+        templateUrl: window.static_url + 'app/patrimonio/views/rrhh/areaNew.html',
+        controller: 'areaNewCtrl'
+      })
+      .state('areas.puestos', {
+        url: '/:idArea/puesto',
+        views: {
+          "ViewAreaPuestosShow": {
+            templateUrl: window.static_url + 'app/patrimonio/views/rrhh/areaPuestos.html',
+            controller: 'areaPuestosCtrl'
+          }
+        }
+      })
+      .state('areas.puestos.edit', {
+        url: '/:idPuesto',
+        views: {
+          "ViewAreaPuestosEdit": {
+            templateUrl: window.static_url + 'app/patrimonio/views/rrhh/areaPuestoEdit.html',
+            controller: 'areaPuestosEditCtrl'
+          }
+        }
+      })
+      .state('proveedor', {
+        url: '/proveedores',
+        templateUrl: window.static_url + 'app/patrimonio/views/proveedor/proveedores.html',
+        controller: 'proveedorCtrl'
+      })
+      .state('proveedor.new', {
+        url: '/new',
+        templateUrl: window.static_url + 'app/patrimonio/views/proveedor/proveedorNew.html',
+        controller: 'proveedorNewCtrl'
+      })
+      .state('proveedor.edit', {
+        url: '/:idProveedor/edit',
+        templateUrl: window.static_url + 'app/patrimonio/views/proveedor/proveedorNew.html',
+        controller: 'proveedorNewCtrl'
+      })
+      .state('trabajadores', {
+        url: '/trabajadores',
+        templateUrl: window.static_url + 'app/patrimonio/views/rrhh/trabajadores.html',
+        controller: 'trabajadorCtrl'
+      })
+      .state('trabajadores.new', {
+        url: '/new',
+        templateUrl: window.static_url + 'app/patrimonio/views/rrhh/trabajadorNew.html',
+        controller: 'trabajadorNewCtrl'
+      })
+      .state('trabajadores.edit', {
+        url: '/:idTrabajador/edit',
+        templateUrl: window.static_url + 'app/patrimonio/views/rrhh/trabajadorNew.html',
+        controller: 'trabajadorNewCtrl'
+      })
+      .state('mantenimiento', {
+        url: '/mantenimiento',
+        templateUrl: window.static_url + 'app/patrimonio/views/catalogo/mantenimientoBien.html',
+        controller: 'mantenimientoBienCtrl'
       })
   }
 ]);

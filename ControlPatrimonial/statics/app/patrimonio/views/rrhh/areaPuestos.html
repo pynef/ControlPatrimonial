@@ -1,0 +1,70 @@
+<div class="row" ui-view="ViewAreaPuestosEdit">
+  <div class="col-sm-12"  ng-init="init()">
+    <section class="panel panel-default">
+      <header class="panel-heading">
+        <span class="pull-right"  ng-hide="editable">
+          <button ng-click="editable=1" class="pull-right btn btn-blue">
+            <i class="fa-plus"></i>
+            <span class="ng-scope">Agregar Puesto </span>
+          </button>
+        </span>
+        <div class="form-group"  ng-show="editable">
+          <button ng-click="editable=0;cancelar();"  class="pull-right btn btn-danger">
+            <i class="fa-close"></i>
+            <span>Cancelar</span>
+          </button>
+            <button ng-click="agregarPuesto(puesto);" class="pull-right btn btn-secondary">
+              <i class="fa-plus"></i>
+              <span class="ng-scope">Guardar</span>
+            </button>
+          </br>
+        </div>
+        <h3 class="panel-title same-margin"> Puesto {{area.nombre}} </h3>
+      </header>
+      <div ng-show="editable">
+          	<form name="form_signup" class="form-horizontal form-validation panel-body" ng-submit="submitForm()">
+                      <div class="form-group">
+          	            <div class="col-sm-5">
+          	              <label for="">Nombre</label>
+          	            </div>
+          	            <div class="col-sm-7">
+          	              <input  type="text"
+          	                      class="form-control"
+          	                      ng-model="puesto.nombre"
+          	                      required
+          	                      ng-minlength="2"
+          	                      ng-maxlength="30">
+          	            </div>
+          	          </div>
+              </form>
+        </div>
+        <div ng-hide="editable">
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table class="table table-model-2 table-hover">
+                        <tr>
+                          <th>#</th>
+                          <th>Nombre</th>
+                          <th>Opciones</th>
+                        </tr>
+                        <tr ng-repeat="puesto in puestos">
+                          <td>{{puesto.id}}</td>
+                          <td>{{puesto.nombre}}</td>
+                          <td>
+                            <a ui-sref="areas.puestos.edit({idPuesto:puesto.id})" class="btn btn-icon btn-blue" alt="Editar">
+                              <i class="fa-pencil"></i>
+                            </a>
+                            <button class="btn btn-icon btn-red" ng-click="remove(puesto)" alt="eliminar">
+                              <i class="fa-remove"></i>
+                            </button>
+                          </td>
+                        </tr>
+                    </table>
+                  </div>
+                </div>
+        </div>
+
+
+        </section>
+    </div>
+</div>

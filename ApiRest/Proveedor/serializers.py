@@ -8,7 +8,7 @@ from app.Proveedor.models import Proveedor
 class ProveedorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Proveedor
-        fields = ('id', 'institucion', 'nombre', 'razon_social', 'direccion_fiscal', 'email', 'ruc', 'duenio')
+        fields = ('id', 'institucion', 'nombre', 'razon_social', 'direccion_fiscal', 'email', 'ruc', 'duenio','is_active')
         read_only_fields = ('created_at', 'updated_at',)
 
 

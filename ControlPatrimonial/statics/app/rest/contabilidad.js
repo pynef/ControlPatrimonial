@@ -3,9 +3,9 @@
 /* global angular */
 
 angular.module('RESTServices')
-  .factory('cuenta_contableService',
+  .factory('cuentasService',
     ['$rootScope', 'djResource',
     function ($rootScope, djResource) {
-      return djResource($rootScope.api_url + 'cuenta_contables/:id/', {id: '@id'});
+      return djResource($rootScope.api_url + 'cuentas/:id/', {id: '@id'});
     }
   ]);

@@ -1,0 +1,111 @@
+
+      <div class="col-sm-12"  ng-init="init()">
+        <section class="panel panel-default">
+          <header class="panel-heading">
+            <p class="text-center">{{cabecera}}{{trabajador.id}}</p>
+          </header>
+          <div class="panel-body">
+
+    				<form name="form_signup" class="form-horizontal form-validation" ng-submit="submitForm()">
+                    <div class="form-group">
+                      <div class="col-sm-5">
+                        <label for="">Area</label>
+                      </div>
+                      <select  type="text"
+                              class="form-control"
+                              placeholder=""
+                              ng-model="trabajador.area"
+                              required
+                              ng-change="changeAreas(trabajador.area)">
+                              <option ng-repeat="area in areas"
+                                      value="{{area.id}}">{{area.nombre}}</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-5">
+                        <label for="">Puesto</label>
+                      </div>
+                      <select  type="text"
+                              class="form-control"
+                              placeholder=""
+                              ng-model="trabajador.puesto"
+                              required>
+                              <option ng-repeat="puesto in puestos"
+                                      value="{{puesto.id}}">{{puesto.nombre}}</option>
+                      </select>
+                    </div>
+        		          <div class="form-group">
+        		            <div class="col-sm-5">
+        		              <label for="">Sede</label>
+        		            </div>
+                        <select  type="text"
+                                class="form-control"
+                                placeholder=""
+                                ng-model="trabajador.sede"
+                                ng-change="changeSedes(trabajador.sede)"
+                                required>
+                                <option ng-repeat="sede in sedes"
+                                        value="{{sede.id}}">{{sede.nombre}}</option>
+                        </select>
+        		          </div>
+        		          <div class="form-group">
+        		            <div class="col-sm-5">
+        		              <label for="">Local</label>
+        		            </div>
+                          <select  type="text"
+                                  class="form-control"
+                                  placeholder=""
+                                  ng-model="trabajador.local"
+                                  ng-change="changeLocales(trabajador.local)"
+                                  required>
+                                  <option ng-repeat="local in locales"
+                                          value="{{local.id}}">{{local.nombre}}</option>
+                          </select>
+        		          </div>
+                      <div class="form-group">
+        		            <div class="col-sm-5">
+        		              <label for="">Ambiente</label>
+        		            </div>
+                          <select  type="text"
+                                  class="form-control"
+                                  placeholder=""
+                                  ng-model="trabajador.ambiente"
+                                  required>
+                                  <option ng-repeat="ambiente in ambientes"
+                                          value="{{ambiente.id}}">{{ambiente.nombre}}</option>
+                          </select>
+        		          </div>
+                      <div class="form-group">
+        		            <div class="col-sm-5">
+        		              <label for="">Persona</label>
+        		            </div>
+                          <select  type="text"
+                                  class="form-control"
+                                  placeholder=""
+                                  ng-model="trabajador.persona"
+                                  required>
+                                  <option ng-repeat="persona in personas"
+                                          value="{{persona.id}}">{{persona.apellido_paterno}} {{persona.apellido_materno}} {{persona.nombres}}</option>
+                          </select>
+        		          </div>
+    		          <div class="form-group">
+                    <div class="col-ms-12">
+    		            </br>
+    		              <a ui-sref="trabajadores" class="pull-right btn btn-red btn-icon0">
+    		                <i class="fa-close"></i>
+    		                <span>Cancelar</span>
+    		              </a>
+      		              <button ng-click="saveTrabajador(trabajador);"
+    		              class="pull-right btn btn-secondary">
+    		                <i class="fa-plus"></i>
+    		                <span class="ng-scope">Guardar</span>
+    		              </button>
+    		            </br>
+                    </div>
+    		          </div>
+    		      </form>
+
+          </div>
+          <footer class="panel-footing"></footer>
+        </section>
+      </div>

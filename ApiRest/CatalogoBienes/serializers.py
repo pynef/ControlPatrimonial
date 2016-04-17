@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from app.CatalogoBienes.models import Grupo, Clase, TipoCatalogoBien, CatalogoBien
 from app.Institucion.models import Institucion
-from ApiRest.Contabilidad.serializers import CuentaContableSerializer
+from ApiRest.Contabilidad.serializers import CuentasSerializer
 
 class GrupoSerializer(serializers.ModelSerializer):
     class Meta:
