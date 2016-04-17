@@ -11,22 +11,9 @@ from app.CatalogoBienes.models import CatalogoBien
 from app.Proveedor.models import Proveedor
 
 
-class TipoMedida(models.Model):
-    '''
-    Son los tipos de medida que se usaran como kilogramos, unidades, decenas, ciento, etc.
-    '''
-    nombre = models.CharField(max_length=15)
-    descripcion = models.TextField(blank=True, null=True)
-    def __str__(self):
-        return '{0}'.format(self.nombre)
-    class Meta:
-        managed = True
-        db_table = 'TipoMedida'
-
-
 class TipoAlmacen(models.Model):
     '''
-    No me acuerdo para que esta clase de objecto
+    No me acuerdo para que esta clase de objeto
     '''
     nombre = models.CharField(max_length=15)
     descripcion = models.TextField(blank=True, null=True)
@@ -42,13 +29,12 @@ class TipoAlmacen(models.Model):
 class Ingreso(models.Model):
     ''' Nota de Ingreso '''
     _condiciones = ((1,'Compra'),(2,'Donación'))
-    proveedor = models.ForeignKey(Proveedor)
-    guia_remision = models.CharField(max_length=24)
+    proveedor = models.ForeignKey(Proveedor, related_name='proveedor')
     orden_compra = models.CharField(max_length=24)
     guia_remision = models.CharField(max_length=24)
     numero_factura = models.CharField(max_length=24,blank=True, null=True)
-    nombre = models.CharField(max_length=24)
     condicion = models.CharField(max_length=1, choices=_condiciones)
+    # campos de auditoria
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User,blank=True, null=True)
@@ -68,11 +54,11 @@ class DetalleIngreso(models.Model):
     ''' Detalle de Nota de Ingreso '''
     ingreso = models.ForeignKey(Ingreso)
     catalogo = models.ForeignKey(CatalogoBien)
-    tipo_medida = models.ForeignKey(TipoMedida)
     cantidad = models.IntegerField()
     tipo_moneda = models.CharField(max_length=1, choices=_monedas)
     precio_unitario = models.DecimalField(decimal_places=2, max_digits=6)
     # is_active = models.BooleanField(default=True)
+    # campos de auditoria
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User,blank=True, null=True)
@@ -92,6 +78,7 @@ class DisposicionBienDetalle(models.Model):
     detalle_ingreso = models.ForeignKey(DetalleIngreso)
     cantidad = models.IntegerField()
     fecha  = models.DateField(auto_now=True)
+    # campos de auditoria
     is_active = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now=True)
