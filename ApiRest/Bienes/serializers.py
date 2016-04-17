@@ -8,16 +8,17 @@ from app.Bienes.models import Bien, Ingreso, DetalleIngreso
 class BienSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bien
-        fields = ('id', 'proveedor', 'orden_compra', 'guia_remision',
-         'condicion', 'proveedor')
+        fields = ('id', 'catalogo', 'codigo', 'descripcion',
+         'marca', 'modelo','numero_serie','dimension','color','otro_detalle')
         read_only_fields = ('created_at', 'updated_at',)
 
 
 class IngresoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ingreso
-        fields = ('id', 'proveedor', 'orden_compra', 'guia_remision',
-         'condicion', 'proveedor', 'pendiente')
+        fields = ('id', 'proveedor', 'orden_compra', 'guia_remision','tipo_moneda','tipo_cambio',
+         'condicion', 'proveedor', 'pendiente','total','condicion','tipo_moneda','pendiente',
+         'tipo_comprobante','numero_comprobante')
         read_only_fields = ('created_at', 'updated_at',)
 
 

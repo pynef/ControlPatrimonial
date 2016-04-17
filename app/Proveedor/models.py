@@ -25,7 +25,7 @@ class Proveedor(models.Model):
     razon_social = models.CharField(max_length=128)
     direccion_fiscal = models.CharField(max_length=64, blank=True, null=True)
     email = models.CharField(max_length=64, blank=True, null=True)
-    ruc = models.IntegerField(max_length=15)
+    ruc = models.IntegerField()
     duenio = models.ForeignKey(Persona, related_name='Persona')
     is_active = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now=True)

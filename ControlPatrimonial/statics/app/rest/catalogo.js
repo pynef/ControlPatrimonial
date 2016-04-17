@@ -34,5 +34,24 @@ angular.module('RESTServices')
           }
       );
     }
-  ]);
+  ])
+  .factory('nota_ingresoService',
+    ['$rootScope', 'djResource',
+    function ($rootScope, djResource) {
+      return djResource( $rootScope.api_url + 'nota_ingreso/:id',{id:'@id'});
+    }
+  ])
+  .factory('nota_ingreso_detalleService',
+    ['$rootScope', 'djResource',
+    function ($rootScope, djResource) {
+      return djResource( $rootScope.api_url + 'nota_ingreso_detalle/:id',{id:'@id'});
+    }
+  ])
+.factory('ingresoPorGuiaRemisionService',
+  ['$rootScope', 'djResource',
+  function ($rootScope, djResource) {
+    return djResource( $rootScope.api_url + 'nota_ingreso_detalle/:guia_remision/guia_remision',{guia_remision:'@guia_remision'});
+  }
+])
+;
 ///nexus/users/1/movements/

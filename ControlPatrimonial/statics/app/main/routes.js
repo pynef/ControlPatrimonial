@@ -259,5 +259,10 @@ angular.module('app')
         templateUrl: window.static_url + 'app/patrimonio/views/rrhh/trabajadorNew.html',
         controller: 'trabajadorNewCtrl'
       })
+      .state('mantenimiento', {
+        url: '/mantenimiento',
+        templateUrl: window.static_url + 'app/patrimonio/views/catalogo/mantenimientoBien.html',
+        controller: 'mantenimientoBienCtrl'
+      })
   }
 ]);

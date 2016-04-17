@@ -45,24 +45,24 @@ class Ingreso(models.Model):
     _tipo_comprobante = ((1,'Factura'),(2,'Boleta'))
     _tipo_moneda = ((1,'Soles'),(2,'Dolares'))
     proveedor = models.ForeignKey(Proveedor)
-    orden_compra = models.CharField(max_length=24,blank=True, null=True)
-    guia_remision = models.CharField(max_length=24,blank=True, null=True)
-    tipo_comprobante = models.CharField(max_length=1, choices=_tipo_comprobante,blank=True, null=True)
-    numero_comprobante = models.CharField(max_length=24,blank=True, null=True)
-    nombre = models.CharField(max_length=24,blank=True, null=True)
-    condicion = models.CharField(max_length=1, choices=_condiciones,blank=True, null=True)
-    tipo_moneda = models.CharField(max_length=1, choices=_tipo_moneda,blank=True, null=True)
+    orden_compra = models.CharField(max_length=24, blank=True, null=True)
+    guia_remision = models.CharField(max_length=24, unique=True)
+    tipo_comprobante = models.CharField(max_length=1, choices=_tipo_comprobante, blank=True, null=True)
+    numero_comprobante = models.CharField(max_length=24, blank=True, null=True)
+    nombre = models.CharField(max_length=24, blank=True, null=True)#para que sirve?????
+    condicion = models.CharField(max_length=1, choices=_condiciones, blank=True, null=True)
+    tipo_moneda = models.CharField(max_length=1, choices=_tipo_moneda, blank=True, null=True)
     tipo_cambio = models.DecimalField(decimal_places=2, max_digits=6, blank=True, null=True)
     total = models.IntegerField(blank=True, null=True)
     pendiente = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User,blank=True, null=True)
-    workstation_name = models.CharField(max_length=64,blank=True, null=True)
-    workstation_ip = models.CharField(max_length=64,blank=True, null=True)
+    user = models.ForeignKey(User, blank=True, null=True)
+    workstation_name = models.CharField(max_length=64, blank=True, null=True)
+    workstation_ip = models.CharField(max_length=64, blank=True, null=True)
 
     def __str__(self):
-        return '{0}'.format(self.catalogo_de_bien)
+        return '{0}'.format(self.id)
 
     class Meta:
         managed = True
@@ -74,23 +74,60 @@ class DetalleIngreso(models.Model):
     ''' Detalle de Nota de Ingreso '''
     ingreso = models.ForeignKey(Ingreso)
     catalogo = models.ForeignKey(CatalogoBien)
-    tipo_medida = models.ForeignKey(TipoMedida)
+    tipo_medida = models.ForeignKey(TipoMedida, blank=True, null=True)
     cantidad = models.IntegerField()
     tipo_moneda = models.CharField(max_length=1, choices=_monedas)
     precio_unitario = models.DecimalField(decimal_places=2, max_digits=6)
     pendiente = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User,blank=True, null=True)
-    workstation_name = models.CharField(max_length=64,blank=True, null=True)
-    workstation_ip = models.CharField(max_length=64,blank=True, null=True)
+    user = models.ForeignKey(User, blank=True, null=True)
+    workstation_name = models.CharField(max_length=64, blank=True, null=True)
+    workstation_ip = models.CharField(max_length=64, blank=True, null=True)
 
     def __str__(self):
-        return '{0}'.format(self.catalogo_de_bien)
+        return '{0} - {1}'.format(self.ingreso.id, self.catalogo)
 
     class Meta:
         managed = True
         db_table = 'DetalleIngreso'
+
+
+_estado = ((1,'Bueno'),(2,'Regular'),(3,'De baja'))
+class Bien(models.Model):
+    '''
+    Es el bien en si con codoficacion su marca, modelo, placa y otras especificaciones
+    '''
+    catalogo = models.ForeignKey(CatalogoBien)
+    descripcion = models.TextField(blank=True, null=True)
+    codigo = models.IntegerField(blank=True, null=True)
+    marca = models.CharField(max_length=200, blank=True, null=True)
+    modelo = models.CharField(max_length=200, blank=True, null=True)
+    numero_serie = models.CharField(max_length=200, blank=True, null=True)
+    dimension = models.CharField(max_length=200, blank=True, null=True)
+    color = models.CharField(max_length=200, blank=True, null=True)
+    otro_detalle = models.TextField(blank=True, null=True)
+    #estos campos se usaran cuando se hace la asignacion del bien a un usuario solicitante
+    usuario = models.ForeignKey(Trabajador, blank=True, null=True)
+    local = models.ForeignKey(Local, blank=True, null=True)
+    ambiente = models.ForeignKey(Ambiente, blank=True, null=True)
+    saldo_inicial = models.DecimalField(decimal_places=2, max_digits=6, blank=True, null=True)
+    estado = models.CharField(max_length=1, choices= _estado)# bueno e regular
+    fecha_revaluacion = models.DateField(blank=True, null=True)
+    #Saber el estado del bien si ya esta en uso, almacen, rebaluado,de baja etc
+    is_active = models.BooleanField(default=True)
+    create_at = models.DateTimeField(auto_now=True)
+    update_at = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, blank=True, null=True)
+    workstation_name = models.CharField(max_length=64, blank=True, null=True)
+    workstation_ip = models.CharField(max_length=64, blank=True, null=True)
+
+    def __str__(self):
+        return '{0} - {1}'.format(self.codigo,self.catalogo.nombre)
+
+    class Meta:
+        managed = True
+        db_table = 'Bien'
 
 
 class DisposicionBienDetalle(models.Model):
@@ -101,9 +138,9 @@ class DisposicionBienDetalle(models.Model):
     is_active = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User,blank=True, null=True)
-    workstation_name = models.CharField(max_length=64,blank=True, null=True)
-    workstation_ip = models.CharField(max_length=64,blank=True, null=True)
+    user = models.ForeignKey(User, blank=True, null=True)
+    workstation_name = models.CharField(max_length=64, blank=True, null=True)
+    workstation_ip = models.CharField(max_length=64, blank=True, null=True)
 
     def __str__(self):
         return '{0} - {1}'.format(self.detalle_ingreso,self.cantidad)
@@ -127,9 +164,9 @@ class DisposicionBien(models.Model):
     is_active = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User,blank=True, null=True)
-    workstation_name = models.CharField(max_length=64,blank=True, null=True)
-    workstation_ip = models.CharField(max_length=64,blank=True, null=True)
+    user = models.ForeignKey(User, blank=True, null=True)
+    workstation_name = models.CharField(max_length=64, blank=True, null=True)
+    workstation_ip = models.CharField(max_length=64, blank=True, null=True)
 
     def __str__(self):
         return '{0}'.format(self.nombre)
@@ -137,44 +174,6 @@ class DisposicionBien(models.Model):
     class Meta:
         managed = True
         db_table = 'DisposicionBien'
-
-
-_estado = ((1,'Bueno'),(2,'Regular'),(3,'De baja'))
-class Bien(models.Model):
-    '''
-    Es el bien en si con codoficacion su marca, modelo, placa y otras especificaciones
-    '''
-    ambiente = models.ForeignKey(Ambiente)
-    descripcion = models.CharField(max_length=300)
-    codigo = models.IntegerField(blank=True, null=True)
-    catalogo = models.ForeignKey(CatalogoBien)
-    marca = models.CharField(max_length=200,blank=True, null=True)
-    modelo = models.CharField(max_length=200,blank=True, null=True)
-    numero_serie = models.CharField(max_length=200,blank=True, null=True)
-    dimension = models.CharField(max_length=200,blank=True, null=True)
-    color = models.CharField(max_length=200,blank=True, null=True)
-    otro_detalle = models.TextField(blank=True, null=True)
-    usuario = models.ForeignKey(Trabajador)
-    local = models.ForeignKey(Local)
-    ambiente = models.ForeignKey(Ambiente)
-    saldo_inicial = models.DecimalField(decimal_places=2, max_digits=6)
-    estado = models.TextField(max_length=1, choices= _estado)# bueno e regular
-    fecha_revaluacion = models.DateField(auto_now=True)
-    #Saber el estado del bien si ya esta en uso, almacen, rebaluado,de baja etc
-    is_active = models.BooleanField(default=True)
-    create_at = models.DateTimeField(auto_now=True)
-    update_at = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User,blank=True, null=True)
-    workstation_name = models.CharField(max_length=64,blank=True, null=True)
-    workstation_ip = models.CharField(max_length=64,blank=True, null=True)
-
-    def __str__(self):
-        return '{0} - {1}'.format(self.codigo,self.catalogo.nombre)
-
-    class Meta:
-        managed = True
-        db_table = 'Bien'
-
 
 
 class ActivoFijo(models.Model):
@@ -187,8 +186,8 @@ class ActivoFijo(models.Model):
     anio = models.IntegerField()
     mes = models.IntegerField()
     saldo_inicial = models.DecimalField(decimal_places=2, max_digits=6)
-    adquisiciones_adicionales = models.DecimalField(decimal_places=2, max_digits=6,blank=True, null=True)
-    mejoras = models.DecimalField(decimal_places=2, max_digits=6,blank=True, null=True)
+    adquisiciones_adicionales = models.DecimalField(decimal_places=2, max_digits=6, blank=True, null=True)
+    mejoras = models.DecimalField(decimal_places=2, max_digits=6, blank=True, null=True)
     retiros = models.CharField(max_length=50, blank=True, null=True)
     otros_ajustes = models.CharField(max_length=50, blank=True, null=True)
     valor_revaluado = models.CharField(max_length=150, blank=True, null=True)
@@ -199,19 +198,19 @@ class ActivoFijo(models.Model):
     tipo_depreciacion_metodo = models.CharField(max_length=200) # lo que se usa es linea recta en todo el libro
     tipo_depreciacion_nro_doc = models.CharField(max_length=200) # lo que se usa es linea recta en todo el libro
     porcentaje_depreciacion = models.IntegerField()
-    depreciacion_acumulada_cierre_anterior = models.DecimalField(decimal_places=2, max_digits=6,blank=True, null=True)
-    valor_depre_ejercicio_sin_revaluacion = models.DecimalField(decimal_places=2, max_digits=6,blank=True, null=True)
-    valor_depre_relacionada_bajas = models.DecimalField(decimal_places=2, max_digits=6,blank=True, null=True)
-    valor_depre_relacionada_otros = models.DecimalField(decimal_places=2, max_digits=6,blank=True, null=True)
-    depreciacion_acumulada_actual = models.DecimalField(decimal_places=2, max_digits=6,blank=True, null=True)
-    valor_neto = models.DecimalField(decimal_places=2, max_digits=6,blank=True, null=True)
-    valor_depreciacion_de_revaluacion = models.DecimalField(decimal_places=2, max_digits=6,blank=True, null=True)
+    depreciacion_acumulada_cierre_anterior = models.DecimalField(decimal_places=2, max_digits=6, blank=True, null=True)
+    valor_depre_ejercicio_sin_revaluacion = models.DecimalField(decimal_places=2, max_digits=6, blank=True, null=True)
+    valor_depre_relacionada_bajas = models.DecimalField(decimal_places=2, max_digits=6, blank=True, null=True)
+    valor_depre_relacionada_otros = models.DecimalField(decimal_places=2, max_digits=6, blank=True, null=True)
+    depreciacion_acumulada_actual = models.DecimalField(decimal_places=2, max_digits=6, blank=True, null=True)
+    valor_neto = models.DecimalField(decimal_places=2, max_digits=6, blank=True, null=True)
+    valor_depreciacion_de_revaluacion = models.DecimalField(decimal_places=2, max_digits=6, blank=True, null=True)
     is_active = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User,blank=True, null=True)
-    workstation_name = models.CharField(max_length=64,blank=True, null=True)
-    workstation_ip = models.CharField(max_length=64,blank=True, null=True)
+    user = models.ForeignKey(User, blank=True, null=True)
+    workstation_name = models.CharField(max_length=64, blank=True, null=True)
+    workstation_ip = models.CharField(max_length=64, blank=True, null=True)
 
     def __str__(self):
         return '{0} - {1}'.format(self.codigo,self.catalogo.nombre)
@@ -229,9 +228,9 @@ class ActivoFijo(models.Model):
 #     is_active = models.BooleanField(default=True)
 #     create_at = models.DateTimeField(auto_now=True)
 #     update_at = models.DateTimeField(auto_now=True)
-#     user = models.ForeignKey(User,blank=True, null=True)
-#     workstation_name = models.CharField(max_length=64,blank=True, null=True)
-#     workstation_ip = models.CharField(max_length=64,blank=True, null=True)
+#     user = models.ForeignKey(User, blank=True, null=True)
+#     workstation_name = models.CharField(max_length=64, blank=True, null=True)
+#     workstation_ip = models.CharField(max_length=64, blank=True, null=True)
 #
 #     def __str__(self):
 #         return '{0}'.format(self.nombre)
@@ -250,9 +249,9 @@ class TrasladoBien(models.Model):
     is_active = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User,blank=True, null=True)
-    workstation_name = models.CharField(max_length=64,blank=True, null=True)
-    workstation_ip = models.CharField(max_length=64,blank=True, null=True)
+    user = models.ForeignKey(User, blank=True, null=True)
+    workstation_name = models.CharField(max_length=64, blank=True, null=True)
+    workstation_ip = models.CharField(max_length=64, blank=True, null=True)
 
     def __str__(self):
         return '{0}'.format(self.nombre)
@@ -266,15 +265,15 @@ class TrasladoBien(models.Model):
 
 class BajaBien(models.Model):
     bien = models.ForeignKey(Bien)
-    ambiente = models.ForeignKey(Ambiente,blank=True, null=True)
-    observacion = models.CharField(max_length=100,blank=True, null=True)
+    ambiente = models.ForeignKey(Ambiente, blank=True, null=True)
+    observacion = models.CharField(max_length=100, blank=True, null=True)
     motivo = models.TextField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User,blank=True, null=True)
-    workstation_name = models.CharField(max_length=64,blank=True, null=True)
-    workstation_ip = models.CharField(max_length=64,blank=True, null=True)
+    user = models.ForeignKey(User, blank=True, null=True)
+    workstation_name = models.CharField(max_length=64, blank=True, null=True)
+    workstation_ip = models.CharField(max_length=64, blank=True, null=True)
 
     def __str__(self):
         return '{0}'.format(self.nombre)

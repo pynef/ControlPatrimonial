@@ -26,7 +26,7 @@ class Persona(models.Model):
     apellido_materno = models.CharField(max_length=64)
     nombres = models.CharField(max_length=64)
     tipo_documento = models.CharField(max_length=1, choices=TIPO_DOCUMENTO_CHOICES, default='D', blank=True, null=True)
-    nro_documento = models.IntegerField(max_length=16)
+    nro_documento = models.IntegerField()
     fecha_nacimiento = models.DateField(blank=True, null=True)
     ubigeo = models.CharField(max_length=6,blank=True, null=True)
     direccion = models.CharField(max_length=128,blank=True, null=True)

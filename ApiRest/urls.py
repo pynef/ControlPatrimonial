@@ -37,6 +37,8 @@ router.register(r'telefono_proveedor', ProveedorTelefonosViewSet)
 
 #rutas de bienes
 router.register(r'bienes', BienViewSet)
+router.register(r'nota_ingreso', IngresoViewSet)
+router.register(r'nota_ingreso_detalle', DetalleIngresoViewSet)
 
 
 #rutas de recursos humanos
