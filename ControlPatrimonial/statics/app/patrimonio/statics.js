@@ -12,4 +12,13 @@ angular.module('patrimonioModule')
       {id: 1, nombre: 'Soles'},
       {id: 2, nombre: 'Dolares'}
     ],
+    tipo_comprobante: [
+      {id: 1, nombre: 'Factura'},
+      {id: 2, nombre: 'Boleta'}
+    ],
+    tipo_condiciones: [
+      {id: 1, nombre: 'Compra'},
+      {id: 2, nombre: 'Donación'},
+      {id: 3, nombre: 'Bonificación'}
+    ]
   });

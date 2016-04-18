@@ -38,6 +38,11 @@ angular.module('app')
         templateUrl: window.static_url + 'app/patrimonio/views/catalogo/nota_entrada.html',
         controller: 'notaEntradaCtrl'
       })
+      .state('nota_entrada.info', {
+        url: '/:id_nota',
+        templateUrl: window.static_url + 'app/patrimonio/views/catalogo/nota_entrada.info.html',
+        controller: 'infoNotaEntradaCtrl'
+      })
       .state('nota_entrada.create', {
         url: '/nota-de-entrada/nueva',
         templateUrl: window.static_url + 'app/patrimonio/views/catalogo/nota_entrada.nuevo.html',

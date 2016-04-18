@@ -1,0 +1,79 @@
+<div class="row" ng-init="init()">
+  <div class="col-sm-12"  >
+    <section class="panel panel-default">
+      <header class="panel-heading">
+        <span class="pull-right">
+          <a ui-sref=".^" class="btn btn-secondary btn-icon">
+            <i class="fa-plus"></i>
+            <span>Regresar</span>
+          </a>
+        </span>
+        <h3 class="panel-title"> Detalle   </h3>
+      </header>
+      <div class="panel-body">
+        <div class="">
+          Información de la nota
+        </div>
+        <div class="">
+          <strong> Detalles</strong>
+          <div class="row">
+            <div class="col-sm-3">
+              <strong>Catalogo</strong>
+            </div>
+            <div class="col-sm-3">
+              <strong>Cantidad</strong>
+            </div>
+            <div class="col-sm-3">
+              <strong>Precio Unitario</strong>
+            </div>
+            <div class="col-sm-3">
+              <strong>Procesar</strong>
+            </div>
+          </div>
+          <div class="row" ng-repeat="detalle in nota.detalles" ng-init="detalle.proc = false">
+            <div class="col-sm-3">
+              {{detalle.catalogo.nombre}}
+            </div>
+            <div class="col-sm-3">
+              {{detalle.cantidad}}
+            </div>
+            <div class="col-sm-3">
+              {{detalle.precio_unitario}}
+            </div>
+            <div class="col-sm-3">
+              <button ng-click="generar(detalle)" type="button" class="btn btn-primary" name="button">
+                <i class="fa fa-gears"></i> Procesar</button>
+            </div>
+            <div class="col-sm-12 danger" ng-if="detalle.proc">
+              <div class="col-sm-3 text-right">
+                Codigos de {{detalle.catalogo.nombre}}
+              </div>
+              <div class="col-sm-6" ng-init="detalle.inicio = 1">
+                <div class="input-group">
+                  <span class="input-group-addon">Codigo</span>
+                  <input type="text" class="form-control" ng-model="detalle.code_base" >
+                  <span class="input-group-addon">del</span>
+                  <input type="number" class="form-control" ng-model="detalle.inicio" >
+                  <span class="input-group-addon">al</span>
+                  <input type="text" class="form-control" value="{{detalle.inicio + detalle.cantidad-1}}" disabled>
+                  <span class="input-group-btn">
+                    <button class="btn btn-info" type="button">Go!</button>
+                  </span>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <strong>
+                  {{detalle.code_base}}0001 <br>
+                  {{detalle.code_base}}0002 <br>
+                  {{detalle.code_base}}0003 <br>
+                </strong>
+              </div>
+            </div>
+          </div>
+        </div>
+        sadasdsdasdlsads
+      </div>
+      <footer class="panel-footing"></footer>
+    </section>
+  </div>
+</div>

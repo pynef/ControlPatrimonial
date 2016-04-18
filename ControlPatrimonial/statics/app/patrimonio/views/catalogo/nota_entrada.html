@@ -27,6 +27,16 @@
         <h3 class="panel-title"> Lista   </h3>
       </header>
       <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="input-group">
+              <input type="text" class="form-control" ng-model="search_input" placeholder="Buscar">
+              <span class="input-group-btn">
+                <button class="btn btn-info" type="button" id="dropdownMenu1"> <i class="fa fa-search"></i> Buscar!</button>
+              </span>
+            </div><!-- /input-group -->
+          </div>
+        </div>
         <div class="table-responsive">
           <table class="table table-model-2 table-hover">
             <thead>
@@ -34,28 +44,27 @@
                 <th>#</th>
                 <th>Proveedor</th>
                 <th>G. Remisión</th>
-                <th>O. Compra</th>
+                <th>Orden de Compra</th>
                 <th>Condición</th>
-                <th>N. Productos</th>
+                <th> Estado </th>
+                <th>Ver mas.</th>
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="nota in notas">
-                <td>{{nota.id}}</td>
-                <td>{{nota.nombre}}</td>
-                <td>{{nota.clase}}</td>
-                <td>{{nota.tipo_nota_bien}}</td>
-                <td>{{nota.cuenta_contable}}</td>
+              <tr ng-repeat="nota in notas | filter:search_input">
+                <td> {{$index + 1 }}</td>
+                <td>{{nota.proveedor}}</td>
+                <td>{{nota.guia_remision}}</td>
+                <td>{{nota.orden_compra}}</td>
                 <td>
-                  <a ui-sref=".show({id:nota.id})" class="btn btn-icon btn-info" alt="mas información">
-                    <i class="fa-search"></i>
+                  <span ng-if="nota.pendiente"> Pendiente</span>
+                  <span ng-if="!nota.pendiente"> Procesada</span>
+                </td>
+                <td> <span ng-repeat="item in st.tipo_condiciones | filter:{id: nota.condicion}">{{item.nombre}}</span></td>
+                <td>
+                  <a ui-sref=".info({id_nota:nota.id})" class="btn btn-icon btn-info" alt="mas información">
+                    <i class="fa-bars"></i>
                   </a>
-                  <a ui-sref=".edit({id:nota.id})" class="btn btn-icon btn-blue" alt="Editar">
-                    <i class="fa-pencil"></i>
-                  </a>
-                  <button class="btn btn-icon btn-red" ng-click="remove(nota)" alt="eliminar">
-                    <i class="fa-remove"></i>
-                  </button>
                 </td>
               </tr>
             </tbody>

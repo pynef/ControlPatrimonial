@@ -1,21 +1,22 @@
 'use strict';
 /* jshint -W097 */
-/* global angular */
+/* global angular, confirm */
 
 angular.module('patrimonioModule')
-.controller('notaEntradaCtrl',['$scope',
-  function($scope){
-
+.controller('notaEntradaCtrl',['$scope', 'statics', 'NotaIngresoService',
+  function($scope, statics, NotaIngresoService){
+    $scope.init = function(){
+      $scope.st = statics;
+      $scope.notas = NotaIngresoService.query();
+    };
  }
 ])
-.controller('newNotaEntradaCtrl',['$scope', 'statics', 'proveedorService', 'CatalogoService', 'nota_ingresoService', 'ingresoPorGuiaRemisionService',
-  'nota_ingreso_detalleService',
-  function($scope, statics, proveedorService, CatalogoService, nota_ingresoService, ingresoPorGuiaRemisionService,
-  nota_ingreso_detalleService){
+.controller('newNotaEntradaCtrl',['$scope', '$state', 'statics', 'proveedorService', 'CatalogoService', 'NotaIngresoService', 'ingresoPorGuiaRemisionService',
+  function($scope, $state, statics, proveedorService, CatalogoService, NotaIngresoService, ingresoPorGuiaRemisionService){
     $scope.init = function(){
       $scope.proveedores = proveedorService.query();
       $scope.st = statics;
-      console.log($scope.st)
+      // console.log($scope.st)
       $scope.tipo_moneda= '1';
       $scope.nota = {
         detalles: [],
@@ -60,6 +61,7 @@ angular.module('patrimonioModule')
       }
       return true;
     };
+
     $scope.totalDetalle = function(){
       var total = 0;
       for (var i = 0; i < $scope.nota.detalles.length; i++) {
@@ -71,30 +73,61 @@ angular.module('patrimonioModule')
       return total;
     };
     $scope.procesar = function(nota){
-      if(confirm("Seguro que desea hacer ingresar el numero de guia :  " + nota.guia_remision)){
-          console.log(nota);
-          var nota_ingreso = new Object();
-          nota_ingreso.guia_remision = nota.guia_remision;
-          nota_ingreso.orden_compra = nota.orden_compra;
-          nota_ingreso.condicion = nota.condicion;
-          nota_ingreso.tipo_moneda = nota.tipo_moneda;
-          nota_ingreso.tipo_cambio   = nota.tipo_cambio;
-          nota_ingreso.total = nota.total;
-          nota_ingreso.proveedor = nota.proveedor;
-          console.log(nota_ingreso)
-          var ingreso = new Object();
-          if(ingreso = nota_ingresoService.save(nota_ingreso)){
-            // ingreso_nota = ingresoPorGuiaRemisionService.get({guia_remision:nota.guia_remision});
-            // for (var i = 0; i < $scope.nota.detalles.length; i++) {
-            for (var i = 0; i < nota.detalles.length; i++){
-              console.log(nota.detalles[i]);
-              nota_ingreso_detalleService.save(nota.detalles[i]);
+      var res = confirm("Seguro que desea hacer ingresar el numero de guia :  " + nota.guia_remision);
+      if(res){
+        var nota_ingreso = new NotaIngresoService(nota);
+        nota_ingreso.detalles = null;
+        nota_ingreso.$save(
+          function(){
+            nota_ingreso.detalles = nota.detalles;
+            $scope.procesarDetalle(nota_ingreso);
+          },
+          function(err){
+            //CREAR funcion para manejo de errores
+            $scope.error_form = 'Hay un error, no se a podido guardar';
+            for(var item in err.data){
+              $scope.error_form += '-'+item;
+              for (var i = 0; i < err.data[item].length; i++) {
+                $scope.error_form += '-'+ err.data[item][i];
+              }
             }
-            console.log(nota.detalles)
-
           }
+        );
       }
+    };
 
-    }
+    $scope.procesarDetalle = function(nota){
+      NotaIngresoService.save_detalles(
+        {id: nota.id, detalles: nota.detalles},
+        function(data){
+          $state.go('^');
+        },
+        function(err){}
+      );
+    };
+  }
+])
+.controller('infoNotaEntradaCtrl',['$scope', '$state','$stateParams', 'statics', 'NotaIngresoService', 'NotaIngresoDetalleService',
+  function($scope, $state, $stateParams, statics, NotaIngresoService, NotaIngresoDetalleService){
+    $scope.init = function(){
+      NotaIngresoService.get({id:$stateParams.id_nota},
+        function(data){
+          $scope.nota = data;
+          $scope.nota.detalles = NotaIngresoService.detalles({id:$stateParams.id_nota});
+        },
+        function(err){}
+      );
+
+    };
+
+    $scope.generar = function(detalle){
+      NotaIngresoDetalleService.generar({id: detalle.id},
+        function(data){
+          debugger;
+        },
+        function(err){
+        }
+      );
+    };
   }
 ]);

@@ -35,16 +35,33 @@ angular.module('RESTServices')
       );
     }
   ])
-  .factory('nota_ingresoService',
+  .factory('NotaIngresoService',
     ['$rootScope', 'djResource',
     function ($rootScope, djResource) {
-      return djResource( $rootScope.api_url + 'nota_ingreso/:id',{id:'@id'});
+      return djResource( $rootScope.api_url + 'nota_ingreso/:id/:ext/',{id:'@id'},
+        {
+          'save_detalles': {
+            method: 'post',
+            isArray: true,
+            params: {'ext': 'savedetalles'}
+          },
+          'detalles': {
+            method: 'get',
+            isArray: true,
+            params: {'ext': 'detalles'}
+          }
+
+        }
+      );
     }
   ])
-  .factory('nota_ingreso_detalleService',
+  .factory('NotaIngresoDetalleService',
     ['$rootScope', 'djResource',
     function ($rootScope, djResource) {
-      return djResource( $rootScope.api_url + 'nota_ingreso_detalle/:id',{id:'@id'});
+      return djResource( $rootScope.api_url + 'nota_ingreso_detalle/:id/:ext/',{id:'@id'},
+      {
+        generar: {method: 'POST', isArray:true, params: {ext:'generar'}}
+      });
     }
   ])
 .factory('ingresoPorGuiaRemisionService',

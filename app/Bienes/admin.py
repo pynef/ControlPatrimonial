@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from app.Bienes.models import TipoMedida
+# from app.Bienes.models import TipoMedida
 from app.Bienes.models import DisposicionBienDetalle
 from app.Bienes.models import Ingreso
 from app.Bienes.models import DetalleIngreso
@@ -12,7 +12,7 @@ from app.Bienes.models import ActivoFijo
 
 
 
-admin.site.register(TipoMedida)
+# admin.site.register(TipoMedida)
 admin.site.register(DisposicionBienDetalle)
 admin.site.register(Ingreso)
 admin.site.register(DetalleIngreso)

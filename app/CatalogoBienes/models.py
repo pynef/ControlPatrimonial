@@ -5,7 +5,7 @@ from app.Institucion.models import Institucion
 from app.Institucion.models import Sede
 from app.Institucion.models import Local
 from app.Institucion.models import Ambiente
-from app.Contabilidad.models import CuentaContable
+from app.Contabilidad.models import Cuentas
 
 
 """Patrimonio"""
@@ -86,7 +86,7 @@ class CatalogoBien(models.Model):
     descripcion = models.TextField(blank=True, null=True)
     clase = models.ForeignKey(Clase)
     tipo_catalogo_bien = models.ForeignKey(TipoCatalogoBien)
-    cuenta_contable = models.ForeignKey(CuentaContable)
+    cuenta_contable = models.ForeignKey(Cuentas)
     is_active = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now=True)

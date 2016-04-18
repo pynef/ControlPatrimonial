@@ -6,7 +6,6 @@ from app.Institucion.models import Institucion
 from app.Institucion.models import Sede
 from app.Institucion.models import Local
 from app.Institucion.models import Ambiente
-from app.Contabilidad.models import CuentaContable
 from app.CatalogoBienes.models import CatalogoBien
 from app.Proveedor.models import Proveedor
 
@@ -31,7 +30,7 @@ class Ingreso(models.Model):
     _condiciones = ((1,'Compra'),(2,'Donación'),(3,'Bonificación'))
     _tipo_comprobante = ((1,'Factura'),(2,'Boleta'))
     _tipo_moneda = ((1,'Soles'),(2,'Dolares'))
-    proveedor = models.ForeignKey(Proveedor)
+    proveedor = models.ForeignKey(Proveedor, related_name='proveedor')
     orden_compra = models.CharField(max_length=24, blank=True, null=True)
     guia_remision = models.CharField(max_length=24, unique=True)
     tipo_comprobante = models.CharField(max_length=1, choices=_tipo_comprobante, blank=True, null=True)
@@ -40,7 +39,7 @@ class Ingreso(models.Model):
     condicion = models.CharField(max_length=1, choices=_condiciones, blank=True, null=True)
     tipo_moneda = models.CharField(max_length=1, choices=_tipo_moneda, blank=True, null=True)
     tipo_cambio = models.DecimalField(decimal_places=2, max_digits=6, blank=True, null=True)
-    total = models.IntegerField(blank=True, null=True)
+    total = models.DecimalField(decimal_places=2, max_digits=8,blank=True, null=True)
     pendiente = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now=True)
@@ -61,19 +60,11 @@ class DetalleIngreso(models.Model):
     ''' Detalle de Nota de Ingreso '''
     ingreso = models.ForeignKey(Ingreso)
     catalogo = models.ForeignKey(CatalogoBien)
-<<<<<<< HEAD
     cantidad = models.IntegerField()
-    tipo_moneda = models.CharField(max_length=1, choices=_monedas)
+    pendiente = models.BooleanField(default= True)
     precio_unitario = models.DecimalField(decimal_places=2, max_digits=6)
     # is_active = models.BooleanField(default=True)
     # campos de auditoria
-=======
-    tipo_medida = models.ForeignKey(TipoMedida, blank=True, null=True)
-    cantidad = models.IntegerField()
-    tipo_moneda = models.CharField(max_length=1, choices=_monedas)
-    precio_unitario = models.DecimalField(decimal_places=2, max_digits=6)
-    pendiente = models.BooleanField(default=True)
->>>>>>> 979a9951eeca4c8f8540d81ea27b91483d1d4ebb
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, blank=True, null=True)
@@ -93,9 +84,10 @@ class Bien(models.Model):
     '''
     Es el bien en si con codoficacion su marca, modelo, placa y otras especificaciones
     '''
+    codigo = models.CharField(max_length=200, blank=True, null=True)
     catalogo = models.ForeignKey(CatalogoBien)
+    detalle_ingreso = models.ForeignKey(DetalleIngreso)
     descripcion = models.TextField(blank=True, null=True)
-    codigo = models.IntegerField(blank=True, null=True)
     marca = models.CharField(max_length=200, blank=True, null=True)
     modelo = models.CharField(max_length=200, blank=True, null=True)
     numero_serie = models.CharField(max_length=200, blank=True, null=True)

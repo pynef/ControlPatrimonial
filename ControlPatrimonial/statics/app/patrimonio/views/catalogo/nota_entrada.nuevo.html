@@ -49,6 +49,20 @@
           </div>
         </div>
         <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="">Tipo de Comprobante</label>
+              <select class="form-control" name="tipo_comprobante" ng-model="nota.tipo_comprobante">
+                <option ng-repeat="u in st.tipo_comprobante" value="{{u.id}}">{{u.nombre}} </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="">Numero de Comprobante</label>
+              <input type="text" class="form-control" name="numero_comprobante" ng-model="nota.numero_comprobante">
+            </div>
+          </div>
           <div class="col-sm-3">
             <div class="form-group">
               <label for="">Tipo de Moneda</label>
@@ -57,9 +71,9 @@
               </select>
             </div>
           </div>
-          <div class="col-sm-3" ng-if="nota.tipo_moneda=='2'">
+          <div class="col-sm-2" ng-if="nota.tipo_moneda=='2'">
             <div class="form-group" ng-class="{'validate-has-error':notaEntradaFrm.tipo_cambio.$invalid}">
-              <label for="">Tipo de Tipo de Cambio a soles</label>
+              <label for="">Tipo de Cambio a soles</label>
               <input class="form-control" type="number" step="0.01" name="tipo_cambio" ng-model="nota.tipo_cambio" placeholder="0.00" required>
               <span ng-show="notaEntradaFrm.tipo_cambio.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
             </div>
@@ -170,6 +184,7 @@
         </div>
         <div class="row">
           <div class="col-sm-12 text-right">
+            <span class="text-danger">{{error_form}}</span>
             <button ng-click="procesar(nota);" class="btn btn-lg btn-secondary btn-icon btn-icon-standalone" ng-disabled="notaEntradaFrm.$invalid">
               <i class="fa-floppy-o"></i>
               <span>Procesar la nota de venta</span>
