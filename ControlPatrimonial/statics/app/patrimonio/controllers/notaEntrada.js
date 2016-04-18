@@ -123,7 +123,7 @@ angular.module('patrimonioModule')
     $scope.generar = function(detalle){
       NotaIngresoDetalleService.generar({id: detalle.id},
         function(data){
-          debugger;
+          detalle.pendiente = false;
         },
         function(err){
         }

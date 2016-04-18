@@ -3,75 +3,46 @@
     <section class="panel panel-default">
       <header class="panel-heading">
         <span class="pull-right">
-          <a ui-sref=".^" class="btn btn-secondary btn-icon">
-            <i class="fa-plus"></i>
-            <span>Regresar</span>
+          <a ui-sref="^" class="btn btn-red btn-icon">
+            <i class="fa-chevron-left"></i>
+            <span>regresar</span>
           </a>
         </span>
-        <h3 class="panel-title"> Detalle   </h3>
+        <h1 class="panel-title"> Detalle   </h1>
       </header>
       <div class="panel-body">
         <div class="">
-          Información de la nota
+          <strong>Proveedor: </strong>    {{nota.proveedor}}
         </div>
-        <div class="">
-          <strong> Detalles</strong>
-          <div class="row">
-            <div class="col-sm-3">
-              <strong>Catalogo</strong>
-            </div>
-            <div class="col-sm-3">
-              <strong>Cantidad</strong>
-            </div>
-            <div class="col-sm-3">
-              <strong>Precio Unitario</strong>
-            </div>
-            <div class="col-sm-3">
-              <strong>Procesar</strong>
-            </div>
-          </div>
-          <div class="row" ng-repeat="detalle in nota.detalles" ng-init="detalle.proc = false">
-            <div class="col-sm-3">
-              {{detalle.catalogo.nombre}}
-            </div>
-            <div class="col-sm-3">
-              {{detalle.cantidad}}
-            </div>
-            <div class="col-sm-3">
-              {{detalle.precio_unitario}}
-            </div>
-            <div class="col-sm-3">
-              <button ng-click="generar(detalle)" type="button" class="btn btn-primary" name="button">
-                <i class="fa fa-gears"></i> Procesar</button>
-            </div>
-            <div class="col-sm-12 danger" ng-if="detalle.proc">
-              <div class="col-sm-3 text-right">
-                Codigos de {{detalle.catalogo.nombre}}
-              </div>
-              <div class="col-sm-6" ng-init="detalle.inicio = 1">
-                <div class="input-group">
-                  <span class="input-group-addon">Codigo</span>
-                  <input type="text" class="form-control" ng-model="detalle.code_base" >
-                  <span class="input-group-addon">del</span>
-                  <input type="number" class="form-control" ng-model="detalle.inicio" >
-                  <span class="input-group-addon">al</span>
-                  <input type="text" class="form-control" value="{{detalle.inicio + detalle.cantidad-1}}" disabled>
-                  <span class="input-group-btn">
-                    <button class="btn btn-info" type="button">Go!</button>
-                  </span>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <strong>
-                  {{detalle.code_base}}0001 <br>
-                  {{detalle.code_base}}0002 <br>
-                  {{detalle.code_base}}0003 <br>
-                </strong>
-              </div>
-            </div>
-          </div>
+        <div class="table-resposive">
+          <table class="table table-stripped">
+            <thead>
+              <tr>
+                <th colspan="5" class="text-center">  Detalles</th>
+              </tr>
+              <tr>
+                <th> # </th>
+                <th>Catalogo</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th> <i class="fa fa-gears"></i> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="detalle in nota.detalles" >
+                <td>{{$index+1}}</td>
+                <td>{{detalle.catalogo.nombre}}</td>
+                <td>{{detalle.cantidad}}</td>
+                <td>{{detalle.precio_unitario}}</td>
+                <td>
+                  <button ng-if="detalle.pendiente" ng-click="generar(detalle)" type="button" class="btn btn-primary" name="button">
+                  <i class="fa fa-gears"></i> Generar Codigo</button>
+                  <a href="#" class="btn btn-info"> <i class="fa fa-bars"></i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        sadasdsdasdlsads
       </div>
       <footer class="panel-footing"></footer>
     </section>

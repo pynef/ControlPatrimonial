@@ -17,7 +17,7 @@
             <div class="form-group" ng-class="{'validate-has-error':notaEntradaFrm.proveedor.$invalid}">
               <label class="control-label" for="proveedor">Proveedor</label>
               <select class="form-control" name="proovedor" ng-disabled="!proveedores.$resolved" ng-model="nota.proveedor">
-                <option ng-repeat="prov in proveedores" value="{{prov.id}}"> {{prov.nombre}}</option>
+                <option ng-repeat="prov in proveedores" value="{{prov.nombre}}"> {{prov.nombre}}</option>
               </select>
               <span ng-show="notaEntradaFrm.proveedor.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
             </div>

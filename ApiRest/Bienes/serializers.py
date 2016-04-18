@@ -15,7 +15,8 @@ class BienSerializer(serializers.ModelSerializer):
 
 
 class IngresoSerializer(serializers.ModelSerializer):
-    #proveedor = serializers.StringRelatedField(many=False, read_only=True)
+    # proveedor = serializers.StringRelatedField(many=False)
+    proveedor = serializers.SlugRelatedField(many=False, read_only=False, slug_field='nombre', queryset=Proveedor.objects.all() )
     class Meta:
         model = Ingreso
         fields = ('id', 'proveedor', 'orden_compra', 'guia_remision','tipo_moneda','tipo_cambio',
@@ -26,7 +27,7 @@ class IngresoSerializer(serializers.ModelSerializer):
 
 class DetalleIngresoSerializer(serializers.ModelSerializer):
     # catalogo = serializers.StringRelatedField(many=False, read_only=True)
-    catalogo = CatalogoBienSerializer(many=False, read_only=True)
+    catalogo = CatalogoBienSerializer(many=False)
     class Meta:
         model = DetalleIngreso
         fields = ('id', 'ingreso', 'catalogo',

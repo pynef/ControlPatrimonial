@@ -16,7 +16,7 @@ class BienViewSet(viewsets.ModelViewSet):
 
 class IngresoViewSet(viewsets.ModelViewSet):
     ''' Nota de Ingres o Nota de Entrada '''
-    queryset = Ingreso.objects.all()
+    queryset = Ingreso.objects.all().order_by('-create_at')
     serializer_class = IngresoSerializer
 
     @detail_route(methods=['get'])
