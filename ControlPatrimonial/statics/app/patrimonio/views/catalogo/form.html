@@ -34,21 +34,21 @@
             <div class="form-group" ng-class="{'validate-has-error':catalogoForm.clase.$invalid}">
               <label class="control-label" for="clase">Clase</label>
               <select ng-disabled="!clases || clases.length <= 0" class="form-control" name="clase" ng-model="catalogo.clase" required>
-                <option ng-repeat="clase in clases" value="{{clase.id}}"> {{clase.nombre}} </option>
+                <option ng-repeat="clase in clases" value="{{clase.nombre}}"> {{clase.nombre}} </option>
               </select>
               <span ng-show="catalogoForm.clase.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
             </div>
             <div class="form-group" ng-class="{'validate-has-error':catalogoForm.tipo.$invalid}">
               <label class="control-label" for="tipo">Tipo</label>
               <select class="form-control" name="tipo" ng-model="catalogo.tipo_catalogo_bien" required>
-                <option ng-repeat="tipo in tipos" value="{{tipo.id}}"> {{tipo.nombre}} </option>
+                <option ng-repeat="tipo in tipos" value="{{tipo.nombre}}"> {{tipo.nombre}} </option>
               </select>
               <span ng-show="catalogoForm.tipo.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
             </div>
             <div class="form-group" ng-class="{'validate-has-error':catalogoForm.cuenta.$invalid}">
               <label class="control-label" for="cuenta">Cuenta Contable</label>
               <select class="form-control" name="cuenta" ng-model="catalogo.cuenta_contable" required>
-                <option ng-repeat="cuenta in cuentas" value="{{cuenta.id}}"> {{cuenta.cuenta_nombre}} </option>
+                <option ng-repeat="cuenta in cuentas" value="{{cuenta.cuenta_numero}}"> {{cuenta.cuenta_nombre}} </option>
               </select>
               <span ng-show="catalogoForm.cuenta.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
             </div>

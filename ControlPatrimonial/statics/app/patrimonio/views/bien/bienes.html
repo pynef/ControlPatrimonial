@@ -1,0 +1,72 @@
+<div class="page-title">
+  <div class="title-env">
+    <h1 class="title">Bien</h1>
+    <p class="description">El bien registrado en la empresa</p>
+  </div>
+  <div class="breadcrumb-env">
+    <ol class="breadcrumb bc-1">
+      <li>
+        <a href="#/"><i class="fa-home"></i>Home</a>
+      </li>
+      <li class="active">
+          <strong>Reporte de bienes</strong>
+      </li>
+    </ol>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12"  ng-init="init()">
+    <section class="panel panel-default">
+      <header class="panel-heading">
+        <h3 class="panel-title"> Lista   </h3>
+      </header>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="input-group">
+              <input type="text" class="form-control" ng-model="search_input" placeholder="Buscar">
+              <span class="input-group-btn">
+                <button class="btn btn-info" type="button" id="dropdownMenu1"> <i class="fa fa-search"></i> Buscar!</button>
+              </span>
+            </div><!-- /input-group -->
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-model-2 table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Codigo</th>
+                <th>Catalogo</th>
+                <th>marca</th>
+                <th>modelo</th>
+                <th>Ubicacion</th>
+                <th>Ver mas.</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="bien in bienes | filter:search_input">
+                <td> {{$index + 1 }}</td>
+                <td>{{bien.codigo}}</td>
+                <td>{{bien.catalogo}}</td>
+                <td>{{bien.marca}}</td>
+                <td>{{bien.modelo}}</td>
+                <td>
+                  <span ng-if="bien.ambiente=''"> Almacen</span>
+                  <span ng-if="bien.ambiente!=''"> {{bien.ambiente}}</span>
+                </td>
+                <td>
+                  <a ui-sref=".info({id_nota:bien.id})" class="btn btn-icon btn-blue" alt="Editar">
+                    <i class="fa-pencil"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+      <footer class="panel-footing"></footer>
+    </section>
+  </div>
+</div>

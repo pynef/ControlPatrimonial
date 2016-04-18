@@ -4,6 +4,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from app.CatalogoBienes.models import Grupo, Clase, TipoCatalogoBien, CatalogoBien
+from app.Contabilidad.models import Cuentas
 from app.Institucion.models import Institucion
 from ApiRest.Contabilidad.serializers import CuentasSerializer
 
@@ -29,6 +30,9 @@ class TipoSerializer(serializers.ModelSerializer):
 
 
 class CatalogoBienSerializer(serializers.ModelSerializer):
+    clase = serializers.SlugRelatedField(many=False, read_only=False, slug_field='nombre', queryset=Clase.objects.all() )
+    tipo_catalogo_bien = serializers.SlugRelatedField(many=False, read_only=False, slug_field='nombre', queryset=TipoCatalogoBien.objects.all() )
+    cuenta_contable = serializers.SlugRelatedField(many=False, read_only=False, slug_field='cuenta_numero', queryset=Cuentas.objects.all() )
     # clase = serializers.StringRelatedField(many=False)
     # tipo_catalogo_bien = serializers.StringRelatedField(many=False)
     # cuenta_contable = serializers.StringRelatedField(many=False)

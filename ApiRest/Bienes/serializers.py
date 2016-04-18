@@ -4,9 +4,11 @@ from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from ApiRest.CatalogoBienes.serializers import CatalogoBienSerializer
 from app.Bienes.models import Bien, Ingreso, DetalleIngreso
+from app.CatalogoBienes.models import CatalogoBien
 from app.Proveedor.models import Proveedor
 
 class BienSerializer(serializers.ModelSerializer):
+    catalogo = serializers.SlugRelatedField(many=False, read_only=False, slug_field='nombre', queryset=CatalogoBien.objects.all() )
     class Meta:
         model = Bien
         fields = ('id', 'catalogo', 'codigo', 'descripcion',

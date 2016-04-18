@@ -66,7 +66,7 @@ class TipoViewSet(viewsets.ModelViewSet):
 
 
 class CatalogoBienViewSet(viewsets.ModelViewSet):
-    queryset = CatalogoBien.objects.all().filter(is_active=True)
+    queryset = CatalogoBien.objects.all().filter(is_active=True).order_by('-create_at')
     serializer_class = CatalogoBienSerializer
 
     @list_route(methods=['get'])

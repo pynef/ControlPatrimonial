@@ -57,6 +57,7 @@ function($scope, $state, $stateParams, grupoService, tipoService, cuentasService
       $scope.clases = grupoService.clases({id: grupo_id});
     };
     $scope.saveCatalogo = function(e, obj){
+      console.log(obj)
       var btn = angular.element(e.currentTarget);
       btn.attr('disabled', true);
       var catalogo = new CatalogoService(obj);

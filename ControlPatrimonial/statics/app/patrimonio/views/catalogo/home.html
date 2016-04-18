@@ -42,7 +42,7 @@
             </thead>
             <tbody>
               <tr ng-repeat="catalogo in catalogos">
-                <td>{{catalogo.id}}</td>
+                <td>{{$index + 1 }}</td>
                 <td>{{catalogo.nombre}}</td>
                 <td>{{catalogo.clase}}</td>
                 <td>{{catalogo.tipo_catalogo_bien}}</td>

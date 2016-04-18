@@ -37,7 +37,7 @@
                 <td>
                   <button ng-if="detalle.pendiente" ng-click="generar(detalle)" type="button" class="btn btn-primary" name="button">
                   <i class="fa fa-gears"></i> Generar Codigo</button>
-                  <a href="#" class="btn btn-info"> <i class="fa fa-bars"></i></a>
+                  <a  ng-if="!detalle.pendiente" href="#" class="btn btn-info"> <i class="fa fa-bars"></i></a>
                 </td>
               </tr>
             </tbody>
