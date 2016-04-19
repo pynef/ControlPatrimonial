@@ -15,7 +15,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-12"  ng-init="init()">
+  <div class="col-sm-12"  ng-init="init()" ui-view="viewBienEdit">
     <section class="panel panel-default">
       <header class="panel-heading">
         <h3 class="panel-title"> Lista   </h3>
@@ -40,7 +40,7 @@
                 <th>Catalogo</th>
                 <th>marca</th>
                 <th>modelo</th>
-                <th>Ubicacion</th>
+                <!-- <th>Ubicacion</th> -->
                 <th>Ver mas.</th>
               </tr>
             </thead>
@@ -51,12 +51,12 @@
                 <td>{{bien.catalogo}}</td>
                 <td>{{bien.marca}}</td>
                 <td>{{bien.modelo}}</td>
-                <td>
+                <!-- <td>
                   <span ng-if="bien.ambiente=''"> Almacen</span>
                   <span ng-if="bien.ambiente!=''"> {{bien.ambiente}}</span>
-                </td>
+                </td> -->
                 <td>
-                  <a ui-sref=".info({id_nota:bien.id})" class="btn btn-icon btn-blue" alt="Editar">
+                  <a ui-sref="bienes.edit({idBien:bien.id})" class="btn btn-icon btn-blue" alt="Editar">
                     <i class="fa-pencil"></i>
                   </a>
                 </td>

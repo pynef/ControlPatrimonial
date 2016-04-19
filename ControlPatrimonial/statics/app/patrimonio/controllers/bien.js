@@ -1,5 +1,5 @@
 'use strict';
-/* jshint -W097 */
+/* jshint -W097 */-
 /* global angular */
 
 angular.module('patrimonioModule').
@@ -14,6 +14,19 @@ controller('bienCtrl',['$scope',
     $scope.init = function(){
       console.log('bienessss');
       $scope.bienes = bienService.query();
+    }
+ }
+])
+.controller('bienEditCtrl',['$scope', '$state', '$stateParams', 'bienService',
+  function($scope, $state, $stateParams, bienService){
+    console.log('bienessss controller');
+    $scope.init = function(){
+      $scope.bien = bienService.get({id : $stateParams.idBien});
+      console.log($scope.bien)
+    }
+    $scope.saveBien = function(bien){
+      bienService.save(bien);
+      $state.go('.^')
     }
  }
 ]);

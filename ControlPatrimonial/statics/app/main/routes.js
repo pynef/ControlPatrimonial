@@ -269,5 +269,14 @@ angular.module('app')
         templateUrl: window.static_url + 'app/patrimonio/views/bien/bienes.html',
         controller: 'bienesCtrl'
       })
+      .state('bienes.edit', {
+        url: '/:idBien/edit',
+        views: {
+          "viewBienEdit": {
+            templateUrl: window.static_url + 'app/patrimonio/views/bien/bienEdit.html',
+            controller: 'bienEditCtrl'
+          }
+        }
+      })
   }
 ]);

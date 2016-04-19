@@ -10,31 +10,77 @@
       <h3 class="panel-title"> Editar Bien Registrado </h3>
       <div class="clearfix"></div>
     </header>
-    <div class="panel-body" ng-init="init()">
+    <div class="panel-body" ng-init="init(); disabled">
       <form name="form_signup" class="form-horizontal form-validation row" ng-submit="submitForm()">
                 <div class="form-group">
                   <div class="col-sm-5">
-                    <label for="">Nombre de la Cuenta</label>
+                    <label for="">Catalogo</label>
                   </div>
                   <div class="col-sm-7">
                     <input  type="text"
                             class="form-control"
                             placeholder=""
-                            ng-model="bien.cuenta_nombre"
-                            required
-                            ng-minlength="2"
-                            ng-maxlength="30">
+                            ng-model="bien.catalogo"
+                            ng-disabled="bien.catalogo">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="col-sm-5">
-                    <label for="">Número de Cuenta</label>
+                    <label for="">Codigo</label>
                   </div>
                   <div class="col-sm-7">
-                    <input  type="number"
+                    <input  type="text"
                             class="form-control"
                             placeholder=""
-                            ng-model="bien.cuenta_numero"
+                            ng-model="bien.codigo"
+                            ng-disabled="bien.codigo">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-5">
+                    <label for="">Marca</label>
+                  </div>
+                  <div class="col-sm-7">
+                    <input  type="text"
+                            class="form-control"
+                            placeholder=""
+                            ng-model="bien.marca"
+                            required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-5">
+                    <label for="">Modelo</label>
+                  </div>
+                  <div class="col-sm-7">
+                    <input  type="text"
+                            class="form-control"
+                            placeholder=""
+                            ng-model="bien.modelo"
+                            required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-5">
+                    <label for="">N° de Serie</label>
+                  </div>
+                  <div class="col-sm-7">
+                    <input  type="text"
+                            class="form-control"
+                            placeholder=""
+                            ng-model="bien.numero_serie"
+                            required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-5">
+                    <label for="">Color</label>
+                  </div>
+                  <div class="col-sm-7">
+                    <input  type="text"
+                            class="form-control"
+                            placeholder=""
+                            ng-model="bien.color"
                             required>
                   </div>
                 </div>
@@ -46,7 +92,20 @@
                     <textarea  type="text"
                             class="form-control"
                             placeholder=""
-                            ng-model="bien.cuenta_descripcion"
+                            ng-model="bien.descripcion"
+                            ng-minlength="2"
+                            ng-maxlength="30"></textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-5">
+                    <label for="">Otro detalles</label>
+                  </div>
+                  <div class="col-sm-7">
+                    <textarea  type="text"
+                            class="form-control"
+                            placeholder=""
+                            ng-model="bien.otro_detalle"
                             ng-minlength="2"
                             ng-maxlength="30"></textarea>
                   </div>
@@ -55,11 +114,11 @@
             <div class="form-group">
               <div class="col-ms-12">
               </br>
-                <a ui-sref="cuenta_contable" class="pull-right btn btn-red btn-icon0">
+                <a ui-sref="bienes" class="pull-right btn btn-red btn-icon0">
                   <i class="fa-close"></i>
                   <span>Cancelar</span>
                 </a>
-                <button ng-click="nuevaCuentaContable(cuenta_contable);"
+                <button ng-click="saveBien(bien);"
                 class="pull-right btn btn-secondary">
                   <i class="fa-plus"></i>
                   <span class="ng-scope">Guardar</span>
