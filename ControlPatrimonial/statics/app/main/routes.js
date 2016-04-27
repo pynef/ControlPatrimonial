@@ -278,5 +278,38 @@ angular.module('app')
           }
         }
       })
+      .state('grupos', {
+        url: '/grupos',
+        templateUrl: window.static_url + 'app/patrimonio/views/gruposClases/grupos.html',
+        controller: 'grupoCtrl'
+      })
+      .state('grupos.new', {
+        url: '/new',
+        templateUrl: window.static_url + 'app/patrimonio/views/gruposClases/grupoNew.html',
+        controller: 'grupoNewCtrl'
+      })
+      .state('grupos.edit', {
+        url: '/:idGrupo/edit',
+        templateUrl: window.static_url + 'app/patrimonio/views/gruposClases/grupoNew.html',
+        controller: 'grupoNewCtrl'
+      })
+      .state('grupos.clases', {
+        url: '/:idGrupo/clase',
+        views: {
+          "ViewGrupoPuestosShow": {
+            templateUrl: window.static_url + 'app/patrimonio/views/gruposClases/grupoPuestos.html',
+            controller: 'grupoPuestosCtrl'
+          }
+        }
+      })
+      .state('grupos.clases.edit', {
+        url: '/:idClase',
+        views: {
+          "ViewGrupoClasesEdit": {
+            templateUrl: window.static_url + 'app/patrimonio/views/gruposClases/grupoClaseEdit.html',
+            controller: 'grupoClasesEditCtrl'
+          }
+        }
+      });
   }
 ]);

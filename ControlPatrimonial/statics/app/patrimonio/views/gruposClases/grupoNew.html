@@ -1,7 +1,7 @@
 <div class="col-sm-7"  ng-init="init()">
   <section class="panel panel-default">
     <header class="panel-heading">
-      <h3 class="panel-title same-margin"> Nueva Area </h3>
+      <h3 class="panel-title same-margin"> Nueva Grupo </h3>
     </header>
     <div class="panel-body">
       <form name="form_signup" class="form-horizontal form-validation" ng-submit="submitForm()">
@@ -13,7 +13,7 @@
               <input  type="text"
                       class="form-control"
                       placeholder=""
-                      ng-model="area.nombre"
+                      ng-model="grupo.nombre"
                       required
                       ng-minlength="2"
                       ng-maxlength="30">
@@ -24,21 +24,21 @@
               <label for="">descripcion</label>
             </div>
             <div class="col-sm-7">
-              <textarea  type="text"
+              <textgrupo  type="text"
                       class="form-control"
                       placeholder=""
-                      ng-model="area.descripcion"
+                      ng-model="grupo.descripcion"
                       ng-minlength="2"
-                      ng-maxlength="30"></textarea>
+                      ng-maxlength="30"></textgrupo>
             </div>
           </div>
           <div class="form-group ">
             </br>
-              <a ui-sref="areas" ng-click="cancelar()" class="pull-right btn btn-red btn-icon0">
+              <a ui-sref="grupos" ng-click="cancelar()" class="pull-right btn btn-red btn-icon0">
                 <i class="fa-close"></i>
                 <span>Cancelar</span>
               </a>
-              <button ng-click="saveArea(area);"
+              <button ng-click="saveGrupo(grupo);"
               class="pull-right btn btn-secondary">
                 <i class="fa-plus"></i>
                 <span class="ng-scope">Guardar</span>

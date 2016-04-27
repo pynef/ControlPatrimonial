@@ -1,0 +1,69 @@
+<div class="page-title">
+  <div class="title-env">
+    <h1 class="title">Grupos</h1>
+    <p class="description">Son los grupos que se clasifican los tipos de ......</p>
+  </div>
+  <div class="breadcrumb-env">
+    <ol class="breadcrumb bc-1">
+      <li>
+        <a href="#/"><i class="fa-home"></i>Home</a>
+      </li>
+      <li class="active">
+          <strong>Grupos</strong>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="row" ui-view>
+  <div class="col-sm-7"  ng-init="init()">
+    <section class="panel panel-default">
+      <header class="panel-heading">
+        <span class="pull-right">
+          <a ui-sref="areas.new" class="btn btn-secondary btn-icon">
+            <i class="fa-plus"></i>
+            <span>Nuevo</span>
+          </a>
+        </span>
+        <h3 class="panel-title"> Lista </h3>
+      </header>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-model-2 table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="grupo in grupos">
+                <td>{{grupo.id}}</td>
+                <td>{{grupo.nombre}}</td>
+                <td>{{grupo.descripcion}}</td>
+                <td>
+                  <a ui-sref="grupos.clases({idGrupo:grupo.id})" class="btn btn-icon btn-info" alt="mas información">
+                    <i class="fa-search"></i>
+                  </a>
+                  <a ui-sref="grupos.edit({idGrupo:grupo.id})" class="btn btn-icon btn-blue" alt="Editar">
+                    <i class="fa-pencil"></i>
+                  </a>
+                  <button class="btn btn-icon btn-red" ng-click="remove(area)" alt="eliminar">
+                    <i class="fa-remove"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+      <footer class="panel-footing"></footer>
+    </section>
+  </div>
+  <div class="col-sm-5" ui-view="ViewAreaPuestosShow">
+
+  </div>
+</div>

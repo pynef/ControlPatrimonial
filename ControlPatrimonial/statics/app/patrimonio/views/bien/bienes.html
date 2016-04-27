@@ -17,8 +17,8 @@
 <div class="row">
   <div class="col-sm-12"  ng-init="init()" ui-view="viewBienEdit">
     <section class="panel panel-default">
-      <header class="panel-heading">
-        <h3 class="panel-title"> Lista   </h3>
+      <header class="">
+        <h3 class="panel-title"> {{titleBien}}{{numeroDetalle}} </h3>
       </header>
       <div class="panel-body">
         <div class="row">
@@ -38,10 +38,10 @@
                 <th>#</th>
                 <th>Codigo</th>
                 <th>Catalogo</th>
-                <th>marca</th>
-                <th>modelo</th>
+                <th>Marca</th>
+                <th>Modelo</th>
                 <!-- <th>Ubicacion</th> -->
-                <th>Ver mas.</th>
+                <th>Editar</th>
               </tr>
             </thead>
             <tbody>

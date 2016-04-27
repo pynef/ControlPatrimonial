@@ -17,11 +17,10 @@ angular.module('patrimonioModule')
     $scope.remove = function(persona){
       if(confirm("Esta seguro que desea borrar a: " + persona.nombres )){
           persona.is_active = false;
-          personaService.save(persona)
-          $scope.personas = _.without( $scope.personas, _.findWhere($scope.personas,{id:persona.id}));
-          console.log(persona)
+          personaService.save(persona);
+          $scope.personas = _.without( $scope.personas, _.findWhere($scope.personas,{id:persona.id}))
       }
-    }
+    };
   }
 ])
 .controller('personaNewCtrl',['$scope', '$stateParams', '$state', 'personaService',
@@ -30,27 +29,22 @@ angular.module('patrimonioModule')
         if($stateParams.idPersona){
           $scope.cabecera = "Editar datos de la persona ";
           $scope.persona = personaService.get({id: $stateParams.idPersona});
-          console.log($stateParams)
-          console.log($scope.persona)
         }else{
           $scope.cabecera = "Registro de nueva Persona";
-          $scope.generos = [{'id':'M', 'nombre':'Masculino'},{'id':'F', 'nombre':'Femefino'}]
-          console.log(666)
+          $scope.generos = [{'id':'M', 'nombre':'Masculino'},{'id':'F', 'nombre':'Femefino'}];
 
         }
-      }
+      };
     $scope.savePersona = function(persona){
       if($stateParams.idPersona){
-          console.log(persona)
           personaService.save(persona);
           $state.go('^');
       }else{
-        console.log(persona)
         persona.institucion = 1;
         personaService.save(persona);
         $state.go('^');
       }
-    }
+    };
   }
 ])
 
@@ -58,30 +52,25 @@ angular.module('patrimonioModule')
   function($scope, areaService){
     $scope.init = function(){
       $scope.areas = areaService.query();
-      console.log($scope.areas)
     };
     $scope.remove = function(area){
       if(confirm("Desea eliminar el area: " + area.nombre)){
         area.is_active = false;
-        areaService.save(area)
+        areaService.save(area);
       }
       $scope.areas = _.without( $scope.areas, _.findWhere($scope.areas,{id:area.id}));
-    }
+    };
   }
 ])
 .controller('areaNewCtrl',['$scope', '$state', '$stateParams' ,'areaService',
   function($scope, $state, $stateParams, areaService){
       $scope.init = function(area){
-        console.log($stateParams.idArea)
           if($stateParams.idArea){
-              $scope.area = areaService.get({id:$stateParams.idArea})
-              console.log('$scope.area')
-              console.log($stateParams)
+              $scope.area = areaService.get({id:$stateParams.idArea});
           }
-      }
+      };
       $scope.saveArea = function(area){
         if($stateParams.idArea){
-            console.log(area);
             areaService.save(area);
             $state.go('^');
         }else{
@@ -89,7 +78,7 @@ angular.module('patrimonioModule')
             areaService.save(area);
             $state.go('^');
         }
-      }
+      };
 
     $scope.cancelar = function(){
       $scope.areas = areaService.query();

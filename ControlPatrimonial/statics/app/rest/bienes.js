@@ -48,5 +48,11 @@ angular.module('RESTServices')
     function ($rootScope, djResource) {
       return djResource( $rootScope.api_url + 'deposits/:id',{id:'@id'});
     }
+  ])
+///Grupos y Clases
+  .factory('grupoService',
+    ['$rootScope', 'djResource',
+    function ($rootScope, djResource) {
+      return djResource( $rootScope.api_url + 'grupos/:id',{id:'@id'});
+    }
   ]);
-///nexus/users/1/movements/
