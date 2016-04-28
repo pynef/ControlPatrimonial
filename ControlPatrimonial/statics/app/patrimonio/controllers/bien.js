@@ -32,5 +32,54 @@ angular.module('patrimonioModule')
     $scope.init = function(){
       $scope.grupos = grupoService.query();
     };
+    $scope.remove = function(grupo){
+      if(confirm("Desea eliminar el grupo: " + grupo.nombre)){
+        grupo.is_active = false;
+        grupoService.save(grupo);
+      }
+      $scope.grupos = _.without( $scope.grupos, _.findWhere($scope.grupos,{id:grupo.id}));
+    };
  }
+])
+.controller('grupoNewCtrl',['$scope', '$state', '$stateParams', 'grupoService',
+  function($scope, $state, $stateParams, grupoService){
+    $scope.init = function(grupo){
+        if($stateParams.idGrupo){
+            $scope.grupo = grupoService.get({id:$stateParams.idGrupo});
+        }
+    };
+    $scope.saveGrupo = function(grupo){
+      if($stateParams.idGrupo){
+          grupoService.save(grupo);
+          $state.go('grupos');
+      }else{
+          grupo.institucion = 1;
+          grupoService.save(grupo);
+          $state.go('grupos');
+      }
+    };
+
+  $scope.cancelar = function(){
+    $scope.grupos = grupoService.query();
+  };
+ }
+])
+.controller('grupoClasesCtrl',['$scope', '$state', '$stateParams' ,'grupoClasesService', 'grupoService',
+  function($scope, $state, $stateParams, grupoClasesService, grupoService){
+        $scope.init = function(){
+            $scope.clases = grupoClasesService.query({id:$stateParams.idGrupo});
+        };
+        $scope.agregarClase = function(clase){
+            clase.institucion = 1;
+            clase.grupo = $stateParams.idGrupo;
+            grupoClasesService.save(clase);
+            $state.go('grupos.clases');
+        };
+        $scope.remove = function(clase){
+          if(confirm('Esta seguro que desea borrar el Puesto: ' + clase.nombre)){
+            grupoClasesService.delete(clase);
+            $scope.clases = _.without( $scope.clases, _.findWhere($scope.clases,{id:puesto.id}));
+          }
+        };
+    }
 ])

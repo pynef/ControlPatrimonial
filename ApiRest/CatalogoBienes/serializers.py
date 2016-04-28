@@ -11,21 +11,21 @@ from ApiRest.Contabilidad.serializers import CuentasSerializer
 class GrupoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Grupo
-        fields = ('id', 'institucion', 'nombre', 'descripcion')
+        fields = ('id', 'institucion', 'nombre', 'descripcion', 'is_active')
         read_only_fields = ('created_at', 'updated_at',)
 
 
 class ClaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Clase
-        fields = ('id', 'institucion', 'grupo', 'nombre', 'descripcion')
+        fields = ('id', 'institucion', 'grupo', 'nombre', 'descripcion', 'is_active')
         read_only_fields = ('created_at', 'updated_at',)
 
 
 class TipoSerializer(serializers.ModelSerializer):
     class Meta:
         model = TipoCatalogoBien
-        fields = ('id', 'institucion', 'nombre', 'descripcion')
+        fields = ('id', 'institucion', 'nombre', 'descripcion', 'is_active')
         read_only_fields = ('created_at', 'updated_at',)
 
 

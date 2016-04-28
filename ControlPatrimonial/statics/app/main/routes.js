@@ -296,9 +296,9 @@ angular.module('app')
       .state('grupos.clases', {
         url: '/:idGrupo/clase',
         views: {
-          "ViewGrupoPuestosShow": {
-            templateUrl: window.static_url + 'app/patrimonio/views/gruposClases/grupoPuestos.html',
-            controller: 'grupoPuestosCtrl'
+          "ViewGrupoClasesShow": {
+            templateUrl: window.static_url + 'app/patrimonio/views/gruposClases/grupoClases.html',
+            controller: 'grupoClasesCtrl'
           }
         }
       })

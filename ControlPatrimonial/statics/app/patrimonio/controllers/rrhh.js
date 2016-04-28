@@ -82,24 +82,22 @@ angular.module('patrimonioModule')
 
     $scope.cancelar = function(){
       $scope.areas = areaService.query();
-    }
+    };
   }
 ])
 .controller('areaPuestosCtrl',['$scope', '$state', '$stateParams' ,'areaPuestosService', 'puestoService',
   function($scope, $state, $stateParams, areaPuestosService, puestoService){
         $scope.init = function(){
             $scope.puestos = areaPuestosService.query({id:$stateParams.idArea});
-            console.log($stateParams.idArea)
         };
         $scope.agregarPuesto = function(puesto){
-          console.log($stateParams.idArea)
             puesto.institucion = 1;
             puesto.area = $stateParams.idArea;
             puestoService.save(puesto);
             $state.go('^');
-        }
+        };
         $scope.remove = function(puesto){
-          if( confirm('Esta seguro que desea borrar el Puesto: ' + puesto.nombre)){
+          if(confirm('Esta seguro que desea borrar el Puesto: ' + puesto.nombre)){
             puestoService.delete(puesto);
             $scope.puestos = _.without( $scope.puestos, _.findWhere($scope.puestos,{id:puesto.id}));
           };
@@ -109,27 +107,25 @@ angular.module('patrimonioModule')
 .controller('areaPuestosEditCtrl',['$scope', '$state', '$stateParams' ,'areaPuestosService', 'puestoService',
   function($scope, $state, $stateParams, areaPuestosService, puestoService){
         $scope.init = function(){
-            console.log("edit puesto");
             $scope.puesto = puestoService.get({id:$stateParams.idPuesto});
-            console.log($scope.puesto);
-        }
+        };
         $scope.savePuesto = function(puesto){
-            puestoService.save(puesto)
+            puestoService.save(puesto);
             $state.go('^');
-        }
+        };
     }
 ])
 .controller('trabajadorCtrl',['$scope', '$state', '$stateParams' ,'trabajadorService', 'puestoService',
   function($scope, $state, $stateParams, trabajadorService, puestoService){
         $scope.init = function(){
             $scope.trabajadores = trabajadorService.query();
-        }
+        };
         $scope.remove = function(trabajador){
           if( confirm('Esta seguro que desea borrar al trabajador: ' + trabajador.persona)){
             trabajadorService.delete(trabajador);
             $scope.trabajadores = _.without( $scope.trabajadores, _.findWhere($scope.trabajadores,{id:trabajador.id}));
-          };
-        }
+          }
+        };
     }
 ])
 .controller('trabajadorNewCtrl',['$scope', '$stateParams', '$state', 'institucionSedesService', 'personaService',
@@ -143,37 +139,28 @@ angular.module('patrimonioModule')
         if($stateParams.idTrabajador){
           $scope.trabajador = trabajadorService.get({id: $stateParams.idTrabajador})
           $scope.cabecera = "Editar datos del trabajador ";
-          console.log($stateParams.idTrabajador);
-          console.log($scope.trabajador);
-          console.log("$scope.trabajador");
         }else{
           $scope.cabecera = "Registro de nueva Trabajador";
-          console.log(666);
         }
-      }
+      };
     $scope.changeSedes = function(sede_id){
-      console.log(sede_id);
         $scope.locales = SedeLocalesService.query({id:sede_id});
-        console.log($scope.locales);
-    }
+    };
     $scope.changeLocales = function(local_id){
         $scope.ambientes = localAmbientesService.query({id:local_id});
-        console.log($scope.ambientes);
-    }
+    };
     $scope.changeAreas = function(area_id){
         $scope.puestos = areaPuestosService.query({id:area_id});
-    }
+    };
     $scope.saveTrabajador = function(trabajador){
       if($stateParams.idTrabajador){
-          console.log(trabajador)
           trabajadorService.save(trabajador);
           $state.go('^');
       }else{
-        console.log(trabajador)
         trabajador.institucion = 1;
         trabajadorService.save(trabajador);
         $state.go('^');
       }
-    }
+    };
   }
 ]);
