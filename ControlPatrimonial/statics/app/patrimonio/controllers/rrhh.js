@@ -85,8 +85,8 @@ angular.module('patrimonioModule')
     };
   }
 ])
-.controller('areaPuestosCtrl',['$scope', '$state', '$stateParams' ,'areaPuestosService', 'puestoService',
-  function($scope, $state, $stateParams, areaPuestosService, puestoService){
+.controller('areaPuestosCtrl',['$scope', '$window',  '$state', '$stateParams' ,'areaPuestosService', 'puestoService',
+  function($scope, $window,  $state, $stateParams, areaPuestosService, puestoService){
         $scope.init = function(){
             $scope.puestos = areaPuestosService.query({id:$stateParams.idArea});
         };
@@ -94,7 +94,7 @@ angular.module('patrimonioModule')
             puesto.institucion = 1;
             puesto.area = $stateParams.idArea;
             puestoService.save(puesto);
-            $state.go('^');
+            $window.location.reload();
         };
         $scope.remove = function(puesto){
           if(confirm('Esta seguro que desea borrar el Puesto: ' + puesto.nombre)){

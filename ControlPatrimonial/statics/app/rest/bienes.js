@@ -61,4 +61,10 @@ angular.module('RESTServices')
     function ($rootScope, djResource) {
       return djResource($rootScope.api_url + 'grupos/:id/clases',{id:'@id'});
     }
+  ])
+  .factory('claseService',
+    ['$rootScope', 'djResource',
+    function ($rootScope, djResource) {
+      return djResource( $rootScope.api_url + 'clases/:id',{id:'@id'});
+    }
   ]);
