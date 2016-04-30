@@ -34,7 +34,7 @@ angular.module('RESTServices')
   .factory('disposicionBienService',
     ['$rootScope', 'djResource',
     function ($rootScope, djResource) {
-      return djResource( $rootScope.api_url + 'deposits/:id/',{id:'@id'});
+      return djResource( $rootScope.api_url + 'disposicion_bienes/:id/',{id:'@id'});
     }
   ])
   .factory('asignacionBienService',

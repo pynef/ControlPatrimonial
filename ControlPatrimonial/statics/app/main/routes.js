@@ -310,6 +310,21 @@ angular.module('app')
             controller: 'grupoClasesEditCtrl'
           }
         }
+      })
+      .state('disposicion', {
+        url: '/disposicion',
+        templateUrl: window.static_url + 'app/patrimonio/views/bien/disposicion.html',
+        controller: 'disposicionCtrl'
+      })
+      .state('traslados', {
+        url: '/traslados',
+        templateUrl: window.static_url + 'app/patrimonio/views/bien/traslados.html',
+        controller: 'trasladosCtrl'
+      })
+      .state('bajas', {
+        url: '/bajas',
+        templateUrl: window.static_url + 'app/patrimonio/views/bien/bajas.html',
+        controller: 'bajasCtrl'
       });
   }
 ]);

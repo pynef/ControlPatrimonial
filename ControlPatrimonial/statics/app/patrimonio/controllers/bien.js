@@ -76,7 +76,7 @@ angular.module('patrimonioModule')
             $window.location.reload();
         };
         $scope.remove = function(clase){
-          if(confirm('Esta seguro que desea borrar el Puesto: ' + clase.nombre)){
+          if(confirm('Esta seguro que desea borrar la Clase: ' + clase.nombre)){
             claseService.delete(clase);
             $scope.clases = _.without( $scope.clases, _.findWhere($scope.clases,{id:clase.id}));
           }

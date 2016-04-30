@@ -3,16 +3,35 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from ApiRest.CatalogoBienes.serializers import CatalogoBienSerializer
-from app.Bienes.models import Bien, Ingreso, DetalleIngreso
+from app.Bienes.models import Bien, Ingreso, DetalleIngreso, DisposicionBien
 from app.CatalogoBienes.models import CatalogoBien
+from app.Institucion.models import Institucion, Sede, Local, Ambiente
+from app.RecursosHumanos.models import Trabajador, Persona
 from app.Proveedor.models import Proveedor
 
+
+class DisposicionBienSerializer(serializers.ModelSerializer):
+    institucion = serializers.SlugRelatedField(many=False, read_only=False, slug_field='nombre', queryset=Institucion.objects.all() )
+    sede = serializers.SlugRelatedField(many=False, read_only=False, slug_field='nombre', queryset=Sede.objects.all() )
+    local = serializers.SlugRelatedField(many=False, read_only=False, slug_field='nombre', queryset=Local.objects.all() )
+    ambiente = serializers.SlugRelatedField(many=False, read_only=False, slug_field='nombre', queryset=Ambiente.objects.all() )
+    # solicitante = serializers.SlugRelatedField(many=False, read_only=False, slug_field='nombres', queryset=Persona.objects.all() )
+    # bien = serializers.SlugRelatedField(many=False, read_only=False, slug_field='nombre', queryset=CatalogoBien.objects.all() )
+    class Meta:
+        model = DisposicionBien
+        fields = ('id', 'institucion', 'sede', 'local',
+         'ambiente', 'fecha','solicitante','bien','descripcion',
+         'is_active')
+        read_only_fields = ('created_at', 'updated_at',)
+
+
 class BienSerializer(serializers.ModelSerializer):
-    catalogo = serializers.SlugRelatedField(many=False, read_only=False, slug_field='nombre', queryset=CatalogoBien.objects.all() )
+    # catalogo = serializers.SlugRelatedField(many=False, read_only=False, slug_field='nombre', queryset=CatalogoBien.objects.all() )
     class Meta:
         model = Bien
         fields = ('id', 'catalogo', 'codigo', 'descripcion',
-         'marca', 'modelo','numero_serie','dimension','color','otro_detalle')
+         'marca', 'modelo','numero_serie','dimension','color','otro_detalle','usuario',
+         'institucion','sede','local','ambiente','saldo_inicial','estado','fecha_revaluacion')
         read_only_fields = ('created_at', 'updated_at',)
 
 

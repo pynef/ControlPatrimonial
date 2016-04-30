@@ -2,9 +2,10 @@ from rest_framework import generics, permissions
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import detail_route, list_route
-from app.Bienes.models import Bien, Ingreso, DetalleIngreso
+from app.Bienes.models import Bien, Ingreso, DetalleIngreso, DisposicionBien
 from app.CatalogoBienes.models import CatalogoBien
-from serializers import BienSerializer, IngresoSerializer, DetalleIngresoSerializer
+from app.Institucion.models import Institucion
+from serializers import BienSerializer, IngresoSerializer, DetalleIngresoSerializer, DisposicionBienSerializer
 from app.Helpers.main import complete_zeros
 
 
@@ -12,7 +13,9 @@ class BienViewSet(viewsets.ModelViewSet):
     queryset = Bien.objects.all()
     serializer_class = BienSerializer
 
-
+class DisposicionBienViewSet(viewsets.ModelViewSet):
+    queryset = DisposicionBien.objects.all()
+    serializer_class = DisposicionBienSerializer
 
 class IngresoViewSet(viewsets.ModelViewSet):
     ''' Nota de Ingres o Nota de Entrada '''
@@ -86,9 +89,11 @@ class DetalleIngresoViewSet(viewsets.ModelViewSet):
                         base_code, complete_zeros(4, str(last_number+i)))
             # guardamos el bien
             b = Bien()
-            b.codigo = code;
+            b.codigo = code
             b.detalle_ingreso = detalle
             b.catalogo = catalogo
+            b.institucion = Institucion.objects.get(id=1)
+            b.estado = 1
             b.save()
             print code
         detalle.pendiente = False

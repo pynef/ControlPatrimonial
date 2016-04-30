@@ -1,0 +1,73 @@
+<div class="page-title">
+  <div class="title-env">
+    <h1 class="title">Disposicion de Bien</h1>
+    <p class="description">Son las disposiciones de los bienes que se encuentra en almacen </p>
+  </div>
+  <div class="breadcrumb-env">
+    <ol class="breadcrumb bc-1">
+      <li>
+        <a href="#/"><i class="fa-home"></i>Home</a>
+      </li>
+      <li class="active">
+          <strong>Disposicion</strong>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="row" ui-view>
+  <div class="col-sm-12"  ng-init="init()">
+    <section class="panel panel-default">
+      <header class="panel-heading">
+        <span class="pull-right">
+          <a ui-sref="grupos.new" class="btn btn-secondary btn-icon">
+            <i class="fa-plus"></i>
+            <span>Nuevo</span>
+          </a>
+        </span>
+        <h3 class="panel-title"> Lista </h3>
+      </header>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-model-2 table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Institucion</th>
+                <th>Sede</th>
+                <th>local</th>
+                <th>Ambiente</th>
+                <th>Responsable</th>
+                <th>Bien</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="disposicion in disposiciones">
+                <td>{{disposicion.id}}</td>
+                <td>{{disposicion.institucion}}</td>
+                <td>{{disposicion.sede}}</td>
+                <td>{{disposicion.local}}</td>
+                <td>{{disposicion.ambiente}}</td>
+                <td>{{disposicion.solicitante}}</td>
+                <td>{{disposicion.bien}}</td>
+                <td>
+                  <a ui-sref="grupos.clases({idDisposicion:disposicion.id})" class="btn btn-icon btn-info" alt="mas información">
+                    <i class="fa-search"></i>
+                  </a>
+                  <a ui-sref="grupos.edit({idDisposicion:disposicion.id})" class="btn btn-icon btn-blue" alt="Editar">
+                    <i class="fa-pencil"></i>
+                  </a>
+                  <button class="btn btn-icon btn-red" ng-click="remove(grupo)" alt="eliminar">
+                    <i class="fa-remove"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+      <footer class="panel-footing"></footer>
+    </section>
+  </div>
+</div>

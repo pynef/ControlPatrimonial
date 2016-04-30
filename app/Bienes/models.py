@@ -94,12 +94,15 @@ class Bien(models.Model):
     dimension = models.CharField(max_length=200, blank=True, null=True)
     color = models.CharField(max_length=200, blank=True, null=True)
     otro_detalle = models.TextField(blank=True, null=True)
+    almacen = models.BooleanField(default=True)
     #estos campos se usaran cuando se hace la asignacion del bien a un usuario solicitante
     usuario = models.ForeignKey(Trabajador, blank=True, null=True)
+    institucion = models.ForeignKey(Institucion)
+    sede = models.ForeignKey(Sede, blank=True, null=True)
     local = models.ForeignKey(Local, blank=True, null=True)
     ambiente = models.ForeignKey(Ambiente, blank=True, null=True)
     saldo_inicial = models.DecimalField(decimal_places=2, max_digits=6, blank=True, null=True)
-    estado = models.CharField(max_length=1, choices= _estado)# bueno e regular
+    estado = models.CharField(max_length=1, choices= _estado, blank=True, null=True)# bueno e regular
     fecha_revaluacion = models.DateField(blank=True, null=True)
     #Saber el estado del bien si ya esta en uso, almacen, rebaluado,de baja etc
     is_active = models.BooleanField(default=True)
@@ -117,36 +120,37 @@ class Bien(models.Model):
         db_table = 'Bien'
 
 
-class DisposicionBienDetalle(models.Model):
-    ''' Detalle de la disposicion del bien '''
-    detalle_ingreso = models.ForeignKey(DetalleIngreso)
-    cantidad = models.IntegerField()
-    fecha  = models.DateField(auto_now=True)
-    # campos de auditoria
-    is_active = models.BooleanField(default=True)
-    create_at = models.DateTimeField(auto_now=True)
-    update_at = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User, blank=True, null=True)
-    workstation_name = models.CharField(max_length=64, blank=True, null=True)
-    workstation_ip = models.CharField(max_length=64, blank=True, null=True)
-
-    def __str__(self):
-        return '{0} - {1}'.format(self.detalle_ingreso,self.cantidad)
-
-    class Meta:
-        managed = True
-        db_table = 'DisposicionBienDetalle'
+# class DisposicionBienDetalle(models.Model):
+#     ''' Detalle de la disposicion del bien '''
+#     detalle_ingreso = models.ForeignKey(DetalleIngreso)
+#     cantidad = models.IntegerField()
+#     fecha  = models.DateField(auto_now=True)
+#     # campos de auditoria
+#     is_active = models.BooleanField(default=True)
+#     create_at = models.DateTimeField(auto_now=True)
+#     update_at = models.DateTimeField(auto_now=True)
+#     user = models.ForeignKey(User, blank=True, null=True)
+#     workstation_name = models.CharField(max_length=64, blank=True, null=True)
+#     workstation_ip = models.CharField(max_length=64, blank=True, null=True)
+#
+#     def __str__(self):
+#         return '{0} - {1}'.format(self.detalle_ingreso,self.cantidad)
+#
+#     class Meta:
+#         managed = True
+#         db_table = 'DisposicionBienDetalle'
 
 
 class DisposicionBien(models.Model):
+    institucion = models.ForeignKey(Institucion)
     sede = models.ForeignKey(Sede)
     local = models.ForeignKey(Local)
     ambiente = models.ForeignKey(Ambiente)
     fecha = models.DateField(auto_now=True)
     solicitante = models.ForeignKey(Trabajador)
-    guia = models.ForeignKey(Ingreso)
+    bien = models.ForeignKey(Bien)
     #transferencia de almacen de patrimonio a un area especifica
-    detalle_disposicion = models.ForeignKey(DisposicionBienDetalle)
+    # detalle_disposicion = models.ForeignKey(DisposicionBienDetalle)
     descripcion = models.TextField()
     # inventario = models.ForeignKey(Inventario)
     is_active = models.BooleanField(default=True)
@@ -157,7 +161,7 @@ class DisposicionBien(models.Model):
     workstation_ip = models.CharField(max_length=64, blank=True, null=True)
 
     def __str__(self):
-        return '{0}'.format(self.nombre)
+        return '{0}'.format(self.id)
 
     class Meta:
         managed = True
