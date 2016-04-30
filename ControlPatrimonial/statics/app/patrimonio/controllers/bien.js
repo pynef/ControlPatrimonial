@@ -83,3 +83,14 @@ angular.module('patrimonioModule')
         };
     }
 ])
+.controller('grupoClasesEditCtrl',['$scope', '$state', '$stateParams', 'claseService',
+  function($scope, $state, $stateParams, claseService){
+        $scope.init = function(){
+            $scope.clase = claseService.get({id:$stateParams.idClase});
+        };
+        $scope.saveClase = function(clase){
+            claseService.save(clase);
+            $state.go('^');
+        };
+    }
+]);

@@ -1,4 +1,4 @@
-<div class="row" ui-view="ViewAreaPuestosEdit">
+<div class="row" ui-view="ViewGrupoClasesEdit">
   <div class="col-sm-12"  ng-init="init()">
     <section class="panel panel-default">
       <header class="panel-heading">
@@ -51,7 +51,7 @@
                           <td>{{clase.id}}</td>
                           <td>{{clase.nombre}}</td>
                           <td>
-                            <a ui-sref="areas.clases.edit({idPuesto:clase.id})" class="btn btn-icon btn-blue" alt="Editar">
+                            <a ui-sref="grupos.clases.edit({idClase:clase.id})" class="btn btn-icon btn-blue" alt="Editar">
                               <i class="fa-pencil"></i>
                             </a>
                             <button class="btn btn-icon btn-red" ng-click="remove(clase)" alt="eliminar">

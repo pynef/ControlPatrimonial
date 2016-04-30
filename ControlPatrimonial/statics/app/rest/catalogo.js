@@ -15,13 +15,13 @@ angular.module('RESTServices')
   ])
   .factory('claseService',
     ['$rootScope', 'djResource', function ($rootScope, djResource) {
-      return djResource($rootScope.api_url + 'clases/:id',{id:'@id'});
+      return djResource($rootScope.api_url + 'clases/:id/',{id:'@id'});
     }
   ])
   .factory('tipoService',
     ['$rootScope', 'djResource',
     function ($rootScope, djResource) {
-      return djResource( $rootScope.api_url + 'tipos/:id',{id:'@id'});
+      return djResource( $rootScope.api_url + 'tipos/:id/',{id:'@id'});
     }
   ])
   .factory('CatalogoService',

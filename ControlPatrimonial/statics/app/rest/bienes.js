@@ -5,7 +5,7 @@
 angular.module('RESTServices')
   .factory('tipoMediaService',
     ['$rootScope', 'djResource', function ($rootScope, djResource) {
-      return djResource($rootScope.api_url + 'bien/grupo/:id',{id:'@id'});
+      return djResource($rootScope.api_url + 'bien/grupo/:id/',{id:'@id'});
     }
   ])
   .factory('tipoAlmacenService',
@@ -16,55 +16,43 @@ angular.module('RESTServices')
   .factory('almacenService',
     ['$rootScope', 'djResource',
     function ($rootScope, djResource) {
-      return djResource( $rootScope.api_url + 'deposits/:id',{id:'@id'});
+      return djResource( $rootScope.api_url + 'deposits/:id/',{id:'@id'});
     }
   ])
   .factory('inventarioService',
     ['$rootScope', 'djResource',
     function ($rootScope, djResource) {
-      return djResource( $rootScope.api_url + 'deposits/:id',{id:'@id'});
+      return djResource( $rootScope.api_url + 'deposits/:id/',{id:'@id'});
     }
   ])
   .factory('altaBienService',
     ['$rootScope', 'djResource',
     function ($rootScope, djResource) {
-      return djResource( $rootScope.api_url + 'deposits/:id',{id:'@id'});
+      return djResource( $rootScope.api_url + 'deposits/:id/',{id:'@id'});
     }
   ])
   .factory('disposicionBienService',
     ['$rootScope', 'djResource',
     function ($rootScope, djResource) {
-      return djResource( $rootScope.api_url + 'deposits/:id',{id:'@id'});
+      return djResource( $rootScope.api_url + 'deposits/:id/',{id:'@id'});
     }
   ])
   .factory('asignacionBienService',
     ['$rootScope', 'djResource',
     function ($rootScope, djResource) {
-      return djResource( $rootScope.api_url + 'deposits/:id',{id:'@id'});
+      return djResource( $rootScope.api_url + 'deposits/:id/',{id:'@id'});
     }
   ])
   .factory('trasladoBienService',
     ['$rootScope', 'djResource',
     function ($rootScope, djResource) {
-      return djResource( $rootScope.api_url + 'deposits/:id',{id:'@id'});
+      return djResource( $rootScope.api_url + 'deposits/:id/',{id:'@id'});
     }
   ])
 ///Grupos y Clases
-  .factory('grupoService',
-    ['$rootScope', 'djResource',
-    function ($rootScope, djResource) {
-      return djResource( $rootScope.api_url + 'grupos/:id',{id:'@id'});
-    }
-  ])
   .factory('grupoClasesService',
     ['$rootScope', 'djResource',
     function ($rootScope, djResource) {
       return djResource($rootScope.api_url + 'grupos/:id/clases',{id:'@id'});
-    }
-  ])
-  .factory('claseService',
-    ['$rootScope', 'djResource',
-    function ($rootScope, djResource) {
-      return djResource( $rootScope.api_url + 'clases/:id',{id:'@id'});
     }
   ]);
