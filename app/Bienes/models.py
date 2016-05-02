@@ -102,7 +102,8 @@ class Bien(models.Model):
     local = models.ForeignKey(Local, blank=True, null=True)
     ambiente = models.ForeignKey(Ambiente, blank=True, null=True)
     saldo_inicial = models.DecimalField(decimal_places=2, max_digits=6, blank=True, null=True)
-    estado = models.CharField(max_length=1, choices= _estado, blank=True, null=True)# bueno e regular
+    estado = models.CharField(max_length=3, choices= _estado, blank=True, null=True)# bueno e regular
+    fecha_activa = models.DateField(blank=True, null=True)
     fecha_revaluacion = models.DateField(blank=True, null=True)
     #Saber el estado del bien si ya esta en uso, almacen, rebaluado,de baja etc
     is_active = models.BooleanField(default=True)
@@ -151,7 +152,7 @@ class DisposicionBien(models.Model):
     bien = models.ForeignKey(Bien)
     #transferencia de almacen de patrimonio a un area especifica
     # detalle_disposicion = models.ForeignKey(DisposicionBienDetalle)
-    descripcion = models.TextField()
+    descripcion = models.TextField(blank=True, null=True)
     # inventario = models.ForeignKey(Inventario)
     is_active = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now=True)

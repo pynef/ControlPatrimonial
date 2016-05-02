@@ -316,6 +316,11 @@ angular.module('app')
         templateUrl: window.static_url + 'app/patrimonio/views/bien/disposicion.html',
         controller: 'disposicionCtrl'
       })
+      .state('disposicion.new', {
+        url: '/new',
+        templateUrl: window.static_url + 'app/patrimonio/views/bien/disposicionNew.html',
+        controller: 'disposicionNewCtrl'
+      })
       .state('traslados', {
         url: '/traslados',
         templateUrl: window.static_url + 'app/patrimonio/views/bien/traslados.html',

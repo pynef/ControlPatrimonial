@@ -13,9 +13,16 @@ class BienViewSet(viewsets.ModelViewSet):
     queryset = Bien.objects.all()
     serializer_class = BienSerializer
 
+
+class BienDisponibleViewSet(viewsets.ModelViewSet):
+    queryset = Bien.objects.filter(almacen=True,is_active=True).order_by('-create_at')
+    serializer_class = BienSerializer
+
+
 class DisposicionBienViewSet(viewsets.ModelViewSet):
-    queryset = DisposicionBien.objects.all()
+    queryset = DisposicionBien.objects.all().order_by('-create_at')
     serializer_class = DisposicionBienSerializer
+
 
 class IngresoViewSet(viewsets.ModelViewSet):
     ''' Nota de Ingres o Nota de Entrada '''

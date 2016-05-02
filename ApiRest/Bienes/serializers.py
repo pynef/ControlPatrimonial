@@ -11,10 +11,10 @@ from app.Proveedor.models import Proveedor
 
 
 class DisposicionBienSerializer(serializers.ModelSerializer):
-    institucion = serializers.SlugRelatedField(many=False, read_only=False, slug_field='nombre', queryset=Institucion.objects.all() )
-    sede = serializers.SlugRelatedField(many=False, read_only=False, slug_field='nombre', queryset=Sede.objects.all() )
-    local = serializers.SlugRelatedField(many=False, read_only=False, slug_field='nombre', queryset=Local.objects.all() )
-    ambiente = serializers.SlugRelatedField(many=False, read_only=False, slug_field='nombre', queryset=Ambiente.objects.all() )
+    # institucion = serializers.SlugRelatedField(many=False, read_only=False, slug_field='nombre', queryset=Institucion.objects.all() )
+    # sede = serializers.SlugRelatedField(many=False, read_only=False, slug_field='nombre', queryset=Sede.objects.all() )
+    # local = serializers.SlugRelatedField(many=False, read_only=False, slug_field='nombre', queryset=Local.objects.all() )
+    # ambiente = serializers.SlugRelatedField(many=False, read_only=False, slug_field='nombre', queryset=Ambiente.objects.all() )
     # solicitante = serializers.SlugRelatedField(many=False, read_only=False, slug_field='nombres', queryset=Persona.objects.all() )
     # bien = serializers.SlugRelatedField(many=False, read_only=False, slug_field='nombre', queryset=CatalogoBien.objects.all() )
     class Meta:
@@ -29,8 +29,8 @@ class BienSerializer(serializers.ModelSerializer):
     # catalogo = serializers.SlugRelatedField(many=False, read_only=False, slug_field='nombre', queryset=CatalogoBien.objects.all() )
     class Meta:
         model = Bien
-        fields = ('id', 'catalogo', 'codigo', 'descripcion',
-         'marca', 'modelo','numero_serie','dimension','color','otro_detalle','usuario',
+        fields = ('id', 'catalogo', 'codigo', 'descripcion', 'almacen',
+         'marca', 'modelo','numero_serie','dimension','color','otro_detalle','usuario', 'fecha_activa',
          'institucion','sede','local','ambiente','saldo_inicial','estado','fecha_revaluacion')
         read_only_fields = ('created_at', 'updated_at',)
 

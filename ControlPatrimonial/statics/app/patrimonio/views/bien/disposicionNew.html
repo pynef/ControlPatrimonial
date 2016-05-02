@@ -1,0 +1,96 @@
+<div class="col-sm-12"  ng-init="init()">
+  <section class="panel panel-default">
+    <header class="panel-headin">
+      <span class="pull-right">
+        <a ui-sref=".^" class="btn btn-danger btn-icon">
+          <i class="fa-times"></i>
+          <span>Cancelar</span>
+        </a>
+      </span>
+      <h3 class="panel-title"> Nueva Disposición de bien </h3>
+      <div class="clearfix"></div>
+    </header>
+    <div class="panel-body" ng-init="init()">
+      <form name="disposicionBienForm">
+        <div class="row">
+          <div class="col-sm-4">
+<!--             <div class="form-group" ng-class="{'validate-has-error':disposicionBienForm.institucion.$invalid}">
+              <label class="control-label" for="institucion">institucion</label>
+              <sele   
+            
+                <option ng-repeat="insti in instituciones" value="{{insti.id}}"> {{insti.nombre}}</option>
+              </select>
+              <span ng-show="disposicionBienForm.institucion.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
+            </div> -->
+            <div class="form-group" ng-class="{'validate-has-error':disposicionBienForm.sede.$invalid}">
+              <label class="control-label" for="sede">sede</label>
+              <select class="form-control"
+                      ng-disabled="!sedes.$resolved"
+                      ng-model="disposicion.sede"
+                      ng-change="changeSedes(disposicion.sede)"
+                      >                      
+                      <option ng-repeat="sede in sedes" value="{{sede.id}}"> {{sede.nombre}}</option>
+              </select>
+              <span ng-show="disposicionBienForm.sede.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
+            </div>
+            <div class="form-group" ng-class="{'validate-has-error':disposicionBienForm.local.$invalid}">
+              <label class="control-label" for="local">local</label>
+              <select class="form-control"
+                      ng-disabled="!locales.$resolved"
+                      ng-model="disposicion.local"
+                      ng-change="changelocales(disposicion.local)"
+                      >                      
+                      <option ng-repeat="local in locales" value="{{local.id}}"> {{local.nombre}}</option>
+              </select>
+              <span ng-show="disposicionBienForm.sede.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
+            </div>
+            <div class="form-group" ng-class="{'validate-has-error':disposicionBienForm.ambiente.$invalid}">
+              <label class="control-label" for="ambiente">ambiente</label>
+              <select class="form-control"
+                      ng-disabled="!ambientes.$resolved"
+                      ng-model="disposicion.ambiente"
+                      ng-change="changeAmbientes()"
+                      >                      
+                      <option ng-repeat="ambiente in ambientes" value="{{ambiente.id}}"> {{ambiente.nombre}}</option>
+              </select>
+              <span ng-show="disposicionBienForm.sede.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
+            </div>
+            <div class="form-group" ng-class="{'validate-has-error':disposicionBienForm.solicitante.$invalid}">
+              <label class="control-label" for="solicitante">solicitante</label>
+              <select class="form-control"
+                      ng-disabled="!solicitantes.$resolved"
+                      ng-model="disposicion.solicitante"
+                      ng-change="changeSolicitantes()"
+                      >                      
+                      <option ng-repeat="solicitante in solicitantes" value="{{solicitante.id}}"> {{solicitante.persona}}</option>
+              </select>
+              <span ng-show="disposicionBienForm.sede.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
+            </div>
+             <div class="form-group" ng-class="{'validate-has-error':disposicionBienForm.bien.$invalid}">
+              <label class="control-label" for="bien">bien</label>
+              <select class="form-control"
+                      ng-disabled="!bienes.$resolved"
+                      ng-model="disposicion.bien"
+                      ng-change="changeBienes()"
+                      >                      
+                      <option ng-repeat="bien in bienes" value="{{bien.id}}"> {{bien.codigo}}</option>
+              </select>
+              <span ng-show="disposicionBienForm.sede.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
+            </div>
+          </div>
+        <div class="row">
+          <div class="col-sm-12 text-right">
+            <span class="text-danger">{{error_form}}</span>
+            <button 
+        ng-click="saveDisposicioBien(disposicion);"
+          class="btn btn-lg btn-secondary btn-icon btn-icon-standalone"            
+            ng-disabled="disposicionBienForm.$invalid">
+              <i class="fa-floppy-o"></i>
+              <span>Terminar Proceso</span>
+            </button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </section>

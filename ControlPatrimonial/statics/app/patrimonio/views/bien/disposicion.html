@@ -20,7 +20,7 @@
     <section class="panel panel-default">
       <header class="panel-heading">
         <span class="pull-right">
-          <a ui-sref="grupos.new" class="btn btn-secondary btn-icon">
+          <a ui-sref=".new" class="btn btn-secondary btn-icon">
             <i class="fa-plus"></i>
             <span>Nuevo</span>
           </a>
@@ -44,7 +44,11 @@
             <tbody>
               <tr ng-repeat="disposicion in disposiciones">
                 <td>{{disposicion.id}}</td>
-                <td>{{disposicion.institucion}}</td>
+                <td renderInstitucion ng-model="disposicion.institucion">{{disposicion.institucion}}
+                  <form class="" action="index.html" method="post">
+                  <input type="text" ng-model="disposicion.institucion" renderInstitucion>
+                  </form>
+                </td>
                 <td>{{disposicion.sede}}</td>
                 <td>{{disposicion.local}}</td>
                 <td>{{disposicion.ambiente}}</td>
@@ -57,9 +61,6 @@
                   <a ui-sref="grupos.edit({idDisposicion:disposicion.id})" class="btn btn-icon btn-blue" alt="Editar">
                     <i class="fa-pencil"></i>
                   </a>
-                  <button class="btn btn-icon btn-red" ng-click="remove(grupo)" alt="eliminar">
-                    <i class="fa-remove"></i>
-                  </button>
                 </td>
               </tr>
             </tbody>

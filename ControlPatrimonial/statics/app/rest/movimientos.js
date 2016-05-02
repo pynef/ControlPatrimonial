@@ -8,4 +8,10 @@ angular.module('RESTServices')
     function ($rootScope, djResource) {
       return djResource($rootScope.api_url + 'bienes/:id/', {id: '@id'});
     }
+  ])
+  .factory('bienDisponiblesService',
+    ['$rootScope', 'djResource',
+    function ($rootScope, djResource) {
+      return djResource($rootScope.api_url + 'bienes_disponibles/:id/', {id: '@id'});
+    }
   ]);
