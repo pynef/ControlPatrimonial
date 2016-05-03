@@ -17,14 +17,14 @@
 
 					<!-- logo -->
 					<div class="logo">
-						<a href="#" class="">
-							<!--<img src="{% static 'dist/images/logo@2x.png' %}" width="80" alt="" />-->
-							<p style="color:#fff;font-size: 8pt;">INICIO</p>
-						</a>
 
+						<!-- <a href="#" class="">
+							<p style="color:#fff;font-size: 8pt;">INICIO</p>
+						</a> -->
 						<a href="/admin" class="">
-							<!--<img src="{% static 'dist/images/logo-collapsed@2x.png' %}" width="40" alt="" />-->
-							<p style="color:#fff;font-size: 8pt;">ADMIN</p>
+							<p style="color:#fff;font-size: 8pt;">
+								<img src="{% static 'images/logo.png' %}" width="160" alt="" />
+							</p>
 						</a>
 					</div>
 					<span class="title"></span>
@@ -42,11 +42,11 @@
 					</div>
 
 					<!-- This will open the popup with user profile settings, you can use for any purpose, just be creative -->
-					<div class="settings-icon">
+					<!-- <div class="settings-icon">
 						<a href="#" data-toggle="settings-pane" data-animate="true">
 							<i class="linecons-cog"></i>
 						</a>
-					</div>
+					</div> -->
 
 
 				</header>
@@ -172,11 +172,10 @@
 					</li>
 
 					<li class="dropdown user-profile">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<a href="{% url 'logout' %}">
 							<img src="{% static 'dist/images/user-4.png' %}" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
 							<span>
 								Salir
-								<!-- <i class="fa-angle-down"></i> -->
 							</span>
 						</a>
 

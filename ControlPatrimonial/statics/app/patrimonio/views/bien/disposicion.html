@@ -44,16 +44,12 @@
             <tbody>
               <tr ng-repeat="disposicion in disposiciones">
                 <td>{{disposicion.id}}</td>
-                <td renderInstitucion ng-model="disposicion.institucion">{{disposicion.institucion}}
-                  <form class="" action="index.html" method="post">
-                  <input type="text" ng-model="disposicion.institucion" renderInstitucion>
-                  </form>
-                </td>
-                <td>{{disposicion.sede}}</td>
-                <td>{{disposicion.local}}</td>
-                <td>{{disposicion.ambiente}}</td>
-                <td>{{disposicion.solicitante}}</td>
-                <td>{{disposicion.bien}}</td>
+                <td render-institucion ng-model="disposicion.institucion"></td>
+                <td render-sede ng-model="disposicion.sede"></td>
+                <td render-local ng-model="disposicion.local"></td>
+                <td render-ambiente ng-model="disposicion.ambiente"></td>
+                <td render-trabajador ng-model="disposicion.solicitante"></td>
+                <td render-bien ng-model="disposicion.bien"></td>
                 <td>
                   <a ui-sref="grupos.clases({idDisposicion:disposicion.id})" class="btn btn-icon btn-info" alt="mas información">
                     <i class="fa-search"></i>
