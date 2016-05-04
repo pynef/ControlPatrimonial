@@ -1,5 +1,6 @@
 'use strict';
 /* jshint -W097 */
+/* jshint -W117 */
 /* global angular */
 angular.module('patrimonioModule')
 .controller('rrhhCtrl',['$scope', 'personaService',
@@ -65,11 +66,15 @@ angular.module('patrimonioModule')
 .controller('areaNewCtrl',['$scope', '$state', '$stateParams' ,'areaService',
   function($scope, $state, $stateParams, areaService){
       $scope.init = function(area){
+        console.log("----area-------");
           if($stateParams.idArea){
               $scope.area = areaService.get({id:$stateParams.idArea});
           }
       };
       $scope.saveArea = function(area){
+        console.log("------------------------");
+        console.log(saveArea);
+        console.log("------------------------");
         if($stateParams.idArea){
             areaService.save(area);
             $state.go('^');
