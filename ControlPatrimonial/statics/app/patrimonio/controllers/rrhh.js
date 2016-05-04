@@ -19,7 +19,7 @@ angular.module('patrimonioModule')
       if(confirm("Esta seguro que desea borrar a: " + persona.nombres )){
           persona.is_active = false;
           personaService.save(persona);
-          $scope.personas = _.without( $scope.personas, _.findWhere($scope.personas,{id:persona.id}))
+          $scope.personas = _.without( $scope.personas, _.findWhere($scope.personas,{id:persona.id}));
       }
     };
   }
@@ -33,18 +33,16 @@ angular.module('patrimonioModule')
         }else{
           $scope.cabecera = "Registro de nueva Persona";
           $scope.generos = [{'id':'M', 'nombre':'Masculino'},{'id':'F', 'nombre':'Femefino'}];
-
         }
       };
     $scope.savePersona = function(persona){
-      if($stateParams.idPersona){
-          personaService.save(persona);
-          $state.go('^');
-      }else{
-        persona.institucion = 1;
-        personaService.save(persona);
-        $state.go('^');
+      if(!$stateParams.idPersona){
+          persona.institucion = 1;
       }
+      var personaSave = new personaService(persona);
+      personaSave.$save(function(){
+        $state.go('^');
+      });
     };
   }
 ])
@@ -72,17 +70,13 @@ angular.module('patrimonioModule')
           }
       };
       $scope.saveArea = function(area){
-        console.log("------------------------");
-        console.log(saveArea);
-        console.log("------------------------");
-        if($stateParams.idArea){
-            areaService.save(area);
-            $state.go('^');
-        }else{
-            area.institucion = 1;
-            areaService.save(area);
-            $state.go('^');
+        if(!$stateParams.idArea){
+          area.institucion = 1;
         }
+        var areaSave = new areaService(area);
+        areaSave.$save(function(){
+            $state.go('^');
+        });
       };
 
     $scope.cancelar = function(){
@@ -98,14 +92,17 @@ angular.module('patrimonioModule')
         $scope.agregarPuesto = function(puesto){
             puesto.institucion = 1;
             puesto.area = $stateParams.idArea;
-            puestoService.save(puesto);
-            $window.location.reload();
+            var puestoSave = new puestoService(puesto);
+            puestoSave.$save(function(){
+              // $state.go('areas.puestos');
+              $window.location.reload();
+            });
         };
         $scope.remove = function(puesto){
           if(confirm('Esta seguro que desea borrar el Puesto: ' + puesto.nombre)){
             puestoService.delete(puesto);
             $scope.puestos = _.without( $scope.puestos, _.findWhere($scope.puestos,{id:puesto.id}));
-          };
+          }
         };
     }
 ])
@@ -115,8 +112,10 @@ angular.module('patrimonioModule')
             $scope.puesto = puestoService.get({id:$stateParams.idPuesto});
         };
         $scope.savePuesto = function(puesto){
-            puestoService.save(puesto);
+          var puestoSave = new puestoService(puesto);
+          puestoSave.$save(function(){
             $state.go('^');
+          });
         };
     }
 ])
@@ -142,7 +141,7 @@ angular.module('patrimonioModule')
       $scope.personas = personaService.query();
       $scope.sedes = institucionSedesService.query({id:1});
         if($stateParams.idTrabajador){
-          $scope.trabajador = trabajadorService.get({id: $stateParams.idTrabajador})
+          $scope.trabajador = trabajadorService.get({id: $stateParams.idTrabajador});
           $scope.cabecera = "Editar datos del trabajador ";
         }else{
           $scope.cabecera = "Registro de nueva Trabajador";
@@ -158,14 +157,13 @@ angular.module('patrimonioModule')
         $scope.puestos = areaPuestosService.query({id:area_id});
     };
     $scope.saveTrabajador = function(trabajador){
-      if($stateParams.idTrabajador){
-          trabajadorService.save(trabajador);
-          $state.go('^');
-      }else{
-        trabajador.institucion = 1;
-        trabajadorService.save(trabajador);
-        $state.go('^');
+      if(!$stateParams.idTrabajador){
+          trabajador.institucion = 1;
       }
+      var trabajadorSave = new trabajadorService(trabajador);
+      trabajadorSave.$save(function(){
+        $state.go('^');
+      });
     };
   }
 ]);

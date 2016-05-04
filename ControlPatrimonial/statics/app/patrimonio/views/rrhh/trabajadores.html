@@ -44,18 +44,12 @@
             <tbody>
               <tr ng-repeat="trabajador in trabajadores">
                 <td>{{trabajador.id}}</td>
-                <td>{{trabajador.persona}}</td>
-                <td>{{trabajador.sede}}</td>
-                <td>{{trabajador.local}}</td>
-                <td>{{trabajador.ambiente}}</td>
-                <td>{{trabajador.puesto}}</td>
+                <td render-trabajador ng-model="trabajador.id"></td>
+                <td render-sede ng-model="trabajador.sede"></td>
+                <td render-local ng-model="trabajador.local"></td>
+                <td render-ambiente ng-model="trabajador.ambiente"></td>
+                <td render-puesto ng-model="trabajador.puesto"></td>>
                 <td>
-                  <!-- <a ui-sref=".show({id:trabajador.id})" class="btn btn-icon btn-info" alt="mas información">
-                    <i class="fa-search"></i>
-                  </a> -->
-                  <!-- <a ui-sref="trabajadores.edit({idTrabajador:trabajador.id})" class="btn btn-icon btn-blue" alt="Editar">
-                    <i class="fa-pencil"></i>
-                  </a> -->
                   <button class="btn btn-icon btn-red" ng-click="remove(trabajador)" alt="eliminar">
                     <i class="fa-remove"></i>
                   </button>

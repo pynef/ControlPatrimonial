@@ -74,7 +74,6 @@ angular.module('patrimonioModule')
             clase.grupo = $stateParams.idGrupo;
             var claseSave = new claseService(clase);
             claseSave.$save(function(){
-              $scope.editable = 1;
               $window.location.reload();
             });
         };

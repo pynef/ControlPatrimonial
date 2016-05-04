@@ -22,29 +22,7 @@ angular.module('app',
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
   }
 ])
-.directive('renderInstitucion',['institucionService',
-  function (institucionService) {
-    return {
-      restrict: 'EA',
-      require: 'ngModel',
-      template: '<span>{{ institucion.nombre }}</span>',
-      priority: 1,
-      scope:{ value:'='},
-      link: function(scope, element, attrs, ngModelController){
-        ngModelController.$formatters.unshift(function (valueFromModel) {
-          //console.log('reverse local directive', valueFromModel)
-          if(valueFromModel){
-            institucionService.get({id:valueFromModel},
-              function(institucion){
-                scope.institucion = institucion;
-              },
-              function(err){}
-            );
-          }
-        });
-      }
-    };
-  }])
+
 .directive('renderSede',['sedeService',
   function (sedeService) {
     return {
@@ -169,4 +147,55 @@ angular.module('app',
           });
         }
       };
-  }]);
+  }])
+  .directive('renderPuesto',['puestoService',
+    function (puestoService) {
+      return {
+        restrict: 'EA',
+        require: 'ngModel',
+        template: '<span>{{ puesto.nombre }}</span>',
+        priority: 1,
+        scope:{ value:'='},
+        link: function(scope, element, attrs, ngModelController){
+          ngModelController.$formatters.unshift(function (valueFromModel) {
+            //console.log('reverse local directive', valueFromModel)
+            if(valueFromModel){
+              puestoService.get({id:valueFromModel},
+                function(puesto){
+                  scope.puesto = puesto;
+                },
+                function(err){}
+              );
+            }
+          });
+        }
+      };
+    }])
+    .directive('renderProveedor',['proveedorService', 'personaService',
+      function (proveedorService, personaService) {
+        return {
+          restrict: 'EA',
+          require: 'ngModel',
+          template: '<span>{{ persona.apellido_paterno }} {{ persona.apellido_materno }} {{ persona.nombres }}</span>',
+          priority: 1,
+          scope:{ value:'='},
+          link: function(scope, element, attrs, ngModelController){
+            ngModelController.$formatters.unshift(function (valueFromModel) {
+              //console.log('reverse proveedor directive', valueFromModel)
+              if(valueFromModel){
+                proveedorService.get({id:valueFromModel},
+                  function(proveedor){
+                    personaService.get({id:proveedor.duenio},
+                      function(persona){
+                        scope.persona = persona;
+                      },
+                      function(err){}
+                    );
+                  },
+                  function(err){}
+                );
+              }
+            });
+          }
+        };
+    }]);

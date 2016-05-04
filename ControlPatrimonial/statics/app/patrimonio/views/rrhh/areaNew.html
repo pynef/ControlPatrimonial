@@ -13,7 +13,7 @@
               <input  type="text"
                       class="form-control"
                       placeholder=""
-                      ng-model="clase.nombre"
+                      ng-model="area.nombre"
                       required
                       ng-minlength="2"
                       ng-maxlength="30">
@@ -27,16 +27,16 @@
               <textarea type="text"
                       class="form-control"
                       placeholder=""
-                      ng-model="clase.descripcion"></textarea>
+                      ng-model="area.descripcion"></textarea>
             </div>
           </div>
           <div class="form-group ">
             </br>
-              <a ui-sref="clases" ng-click="cancelar()" class="pull-right btn btn-red btn-icon0">
+              <a ui-sref="areas" ng-click="cancelar()" class="pull-right btn btn-red btn-icon0">
                 <i class="fa-close"></i>
                 <span>Cancelar</span>
               </a>
-              <button ng-click="saveClase(clase);"
+              <button ng-click="saveArea(area);"
               class="pull-right btn btn-secondary">
                 <i class="fa-plus"></i>
                 <span class="ng-scope">Guardar</span>

@@ -67,13 +67,13 @@ angular.module('patrimonioModule')
 .controller('cuenta_contableDepreciacionCtrl',['$scope', '$state', '$stateParams', 'cuentasService',
   function($scope, $state, $stateParams, cuentasService){
     $scope.init = function(){
-      $scope.editable = 1;
+      $scope.editable = 0;
       $scope.cuenta = cuentasService.get({id:$stateParams.idCuentaContable});
     };
         $scope.agregarDepreciacion = function(cuenta){
           var depreciacionSave = new cuentasService(cuenta);
           depreciacionSave.$save(function(){
-            $scope.editable = 1;
+            $scope.editable = 0;
             console.log($scope.editable);
           });
         };
