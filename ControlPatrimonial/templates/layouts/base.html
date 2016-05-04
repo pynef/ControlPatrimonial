@@ -53,101 +53,108 @@
 				<ul id="main-menu" class="main-menu" ng-controller="sideBarCtrl">
 					<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 					<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
-					<li>
+					<li class="active opened active">
 						<a href="#/">
 							<i class="fa fa-home"></i>
 							<span class="title">Inicio</span>
 						</a>
 					</li>
 					<li>
-						<a ui-sref="disposicion">
-							<i class="linecons-desktop"></i>
-							<span class="title">Disposicion de Bien</span>
-						</a>
-					</li>
-					<li>
-						<a ui-sref="traslados">
-							<i class="linecons-desktop"></i>
-							<span class="title">Traslados de bien</span>
-						</a>
-					</li>
-					<li>
-						<a ui-sref="bajas">
-							<i class="linecons-desktop"></i>
-							<span class="title">Bajas de Bien</span>
-						</a>
-					</li>
-					<li>
-						<a ui-sref="grupos">
-							<i class="linecons-desktop"></i>
-							<span class="title">Grupos/Clases</span>
-						</a>
-					</li>
-					<li>
-						<a ui-sref="catalogo">
-							<i class="linecons-desktop"></i>
-							<span class="title">Catalogo Bienes</span>
-						</a>
-					</li>
-					<li>
-						<a ui-sref="institucion">
-							<i class="fa fa-book"></i>
-							<span class="title">Institución</span>
-						</a>
-					</li>
-					<li>
-						<a ui-sref="nota_entrada">
-							<i class="fa-envelope-o"></i>
-							<span class="title">Nota de Entrada</span>
-						</a>
-					</li>
-					<li>
-						<a ui-sref="mantenimiento">
-							<i class="fa-envelope-o"></i>
+						<a href="#">
+							<i class="linecons-cog"></i>
 							<span class="title">Mantenimiento</span>
 						</a>
+						<ul>
+							<li class="active">
+								<a ui-sref="institucion">
+									<span class="title">Institución</span>
+								</a>
+							</li>
+							<li>
+								<a ui-sref="cuenta_contable">
+									<span class="title">Cts Contables</span>
+								</a>
+							</li>
+							<li>
+								<a ui-sref="grupos">
+									<span class="title">Grupos/Clases</span>
+								</a>
+							</li>
+							<li>
+								<a ui-sref="areas">
+									<span class="title">Areas/Puestos</span>
+								</a>
+							</li>
+						</ul>
 					</li>
-					<li>
-						<a ui-sref="nota_salida">
-							<i class="fa fa-truck"></i>
-							<span class="title">Nota de Salida</span>
-						</a>
-					</li>
-					<li>
-						<a ui-sref="bienes">
-							<i class="linecons-database"></i>
-							<span class="title">Bienes</span>
-						</a>
-					</li>
-					<li>
-						<a ui-sref="trabajadores">
-							<i class="linecons-database"></i>
-							<span class="title">Trabajador</span>
-						</a>
-					</li>
-					<li>
-						<a ui-sref="personas">
-							<i class="linecons-database"></i>
-							<span class="title">Personas</span>
-						</a>
-					</li>
-					<li>
-						<a ui-sref="areas">
-							<i class="linecons-database"></i>
-							<span class="title">Areas/Puestos</span>
-						</a>
-					</li>
-					<li>
-						<a ui-sref="cuenta_contable">
+					<li class="">
+						<a href="#">
 							<i class="linecons-cog"></i>
-							<span class="title">Cts Contables</span>
+							<span class="title">Recur. Humanos</span>
 						</a>
+						<ul>
+							<li>
+								<a ui-sref="personas">
+									<span class="title">Personas</span>
+								</a>
+							</li>
+							<li>
+								<a ui-sref="trabajadores">
+									<span class="title">Trabajador</span>
+								</a>
+							</li>
+							<li>
+								<a ui-sref="proveedor">
+									<span class="title">Proveedores</span>
+								</a>
+							</li>
+						</ul>
 					</li>
-					<li>
-						<a ui-sref="proveedor">
+					<li class="">
+						<a href="#">
 							<i class="linecons-cog"></i>
-							<span class="title">Proveedores</span>
+							<span class="title">Cat. de Bienes</span>
 						</a>
+						<ul>
+							<li>
+								<a ui-sref="catalogo">
+									<span class="title">Catalogo Bienes</span>
+								</a>
+							</li>
+							<li>
+								<a ui-sref="nota_entrada">
+									<span class="title">Nota de Entrada</span>
+								</a>
+							</li>
+							<li>
+								<a ui-sref="bienes">
+									<span class="title">Bienes</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="">
+						<a href="#">
+							<i class="linecons-cog"></i>
+							<span class="title">Movimientos</span>
+						</a>
+						<ul>
+							<li>
+								<a ui-sref="disposicion">
+									<span class="title">Disposicion de Bien</span>
+								</a>
+							</li>
+							<li>
+								<a ui-sref="traslados">
+									<span class="title">Traslados de bien</span>
+								</a>
+							</li>
+							<li>
+								<a ui-sref="bajas">
+									<span class="title">Bajas de Bien</span>
+								</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</div>

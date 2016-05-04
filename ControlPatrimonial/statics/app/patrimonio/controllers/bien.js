@@ -1,5 +1,6 @@
 'use strict';
 /* jshint -W097 */-
+/* jshint -W117 */-
 /* global angular */
 
 angular.module('patrimonioModule')
@@ -49,14 +50,13 @@ angular.module('patrimonioModule')
         }
     };
     $scope.saveGrupo = function(grupo){
-      if($stateParams.idGrupo){
-          grupoService.save(grupo);
-          $state.go('grupos');
-      }else{
+      if(!$stateParams.idGrupo){
           grupo.institucion = 1;
-          grupoService.save(grupo);
-          $state.go('grupos');
       }
+      var grupoSave = new grupoService(grupo);
+      grupoSave.$save(function(){
+        $state.go('grupos');
+      });
     };
 
   $scope.cancelar = function(){
@@ -72,8 +72,11 @@ angular.module('patrimonioModule')
         $scope.agregarClase = function(clase){
             clase.institucion = 1;
             clase.grupo = $stateParams.idGrupo;
-            claseService.save(clase);
-            $window.location.reload();
+            var claseSave = new claseService(clase);
+            claseSave.$save(function(){
+              $scope.editable = 1;
+              $window.location.reload();
+            });
         };
         $scope.remove = function(clase){
           if(confirm('Esta seguro que desea borrar la Clase: ' + clase.nombre)){
@@ -86,11 +89,14 @@ angular.module('patrimonioModule')
 .controller('grupoClasesEditCtrl',['$scope', '$state', '$stateParams', 'claseService',
   function($scope, $state, $stateParams, claseService){
         $scope.init = function(){
+          console.log(999999)
             $scope.clase = claseService.get({id:$stateParams.idClase});
         };
         $scope.saveClase = function(clase){
-            claseService.save(clase);
-            $state.go('^');
+            var claseSave = new claseService(clase);
+            claseSave.$save(function(){
+              $state.go('^');
+            });
         };
     }
 ]);

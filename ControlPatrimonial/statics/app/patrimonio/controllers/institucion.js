@@ -1,5 +1,6 @@
 'use strict';
 /* jshint -W097 */
+/* jshint -W117 */
 /* global angular */
 angular.module('patrimonioModule')
 .controller('institucionCtrl',['$scope','institucionService',
@@ -15,7 +16,7 @@ angular.module('patrimonioModule')
       if( confirm('Esta seguro que desea borrar la Institucion: ' + institucion.nombre)){
         institucionService.delete(institucion);
         $scope.instituciones = _.without( $scope.instituciones, _.findWhere($scope.instituciones,{id:institucion.id}));
-      };
+      }
     };
   }
 ])
@@ -58,7 +59,7 @@ angular.module('patrimonioModule')
       if( confirm('Esta seguro que desea borrar la Sede: ' + sede.nombre)){
         sedeService.delete(sede);
         $scope.sedes = _.without( $scope.sedes, _.findWhere($scope.sedes,{id:sede.id}));
-      };
+      }
     };
     $scope.validate_parent = function(){
       console.log($scope.$parent.sede_id);
@@ -68,7 +69,6 @@ angular.module('patrimonioModule')
 
 .controller('institucionSedeNewCtrl',['$scope', '$state', '$stateParams', 'sedeService',
   function($scope, $state, $stateParams, sedeService){
-    console.log($stateParams)
     $scope.init = function(){
       if($stateParams.idSede){
         $scope.sedes = sedeService.query();
@@ -78,10 +78,12 @@ angular.module('patrimonioModule')
     $scope.nuevaSede = function(sede){
       $scope.sedes = sedeService.query();
       if(!$stateParams.idSede){
-          sede.institucion = $stateParams.idInstitucion
+          sede.institucion = $stateParams.idInstitucion;
         }
-      sedeService.save(sede);
-      $state.go('^');
+      var sedeSave = new sedeService(sede);
+      sedeSave.$save(function(){
+        $state.go('^');
+      });
     };
   }
 ])
@@ -97,14 +99,13 @@ angular.module('patrimonioModule')
         localService.delete(local);
         $scope.locales = _.without( $scope.locales, _.findWhere($scope.locales,{id:local.id}));
         $state.go('^');
-      };
+      }
     };
   }
 ])
 
 .controller('institucionSedeLocalesNewCtrl',['$scope', '$state', '$stateParams', 'localService',
   function($scope, $state, $stateParams, localService){
-    console.log($stateParams)
     $scope.init = function(){
       if($stateParams.idLocal){
         $scope.locales = localService.query();
@@ -114,12 +115,18 @@ angular.module('patrimonioModule')
     $scope.nuevaLocal = function(local){
       $scope.locales = localService.query();
       if(!$stateParams.idLocal){
-          local.institucion = $stateParams.idInstitucion
-          local.sede = $stateParams.idSede
+          local.institucion = $stateParams.idInstitucion;
+          local.sede = $stateParams.idSede;
         }
-      localService.save(local);
-      $state.go('^');
-    };
+        var localSave = new localService(local);
+        console.log(localSave);
+          localSave.$save(function(){
+            $state.go('institucion.sedes.locales');
+          },
+        function (err) {
+            console.log(err);
+          });
+        };
   }
 ])
 .controller('institucionSedeLocalAmbientesCtrl',['$scope', '$state', '$stateParams', 'localAmbientesService', 'ambienteService', 'tipoAmbientesService',
@@ -133,13 +140,12 @@ angular.module('patrimonioModule')
       if( confirm('Esta seguro que desea borrar el ambiente:  ' + ambiente.nombre)){
         ambienteService.delete(ambiente);
         $scope.ambientes = _.without( $scope.ambientes, _.findWhere($scope.ambientes,{id:ambiente.id}));
-      };
+      }
     };
   }
 ])
 .controller('institucionSedeLocalAmbientesNewCtrl',['$scope', '$state', '$stateParams', '$window', 'localAmbientesService', 'ambienteService', 'tipoAmbientesService',
   function($scope, $state, $stateParams, $window, localAmbientesService, ambienteService, tipoAmbientesService){
-    console.log($stateParams)
     $scope.init = function(){
       $scope.tipo_ambientes = tipoAmbientesService.query();
       if($stateParams.idAmbiente){
@@ -150,14 +156,15 @@ angular.module('patrimonioModule')
     $scope.nuevaAmbiente = function(ambiente){
       $scope.ambientes = ambienteService.query();
       if(!$stateParams.idAmbiente){
-          ambiente.institucion = $stateParams.idInstitucion
-          ambiente.sede = $stateParams.idSede
-          ambiente.local = $stateParams.idLocal
+          ambiente.institucion = $stateParams.idInstitucion;
+          ambiente.sede = $stateParams.idSede;
+          ambiente.local = $stateParams.idLocal;
         }
-      console.log(ambiente)
-      ambienteService.save(ambiente)
-      // $state.reload('institucion.sedes.locales.ambientes');
-      $state.go('^');
+      var ambienteSave = new ambienteService(ambiente);
+      ambienteSave.$save(function(){
+        $state.go('^');
+      })
+
     };
   }
-])
+]);
