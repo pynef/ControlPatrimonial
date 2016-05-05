@@ -269,6 +269,11 @@ angular.module('app')
         templateUrl: window.static_url + 'app/patrimonio/views/bien/bienes.html',
         controller: 'bienesCtrl'
       })
+      .state('bienes_detalleIngreso', {
+        url: '/bienes/:idDetalleIngreso/detalleIngreso',
+        templateUrl: window.static_url + 'app/patrimonio/views/bien/bienes.html',
+        controller: 'detallesNotaEntradaCtrl'
+      })
       .state('bienes.edit', {
         url: '/:idBien/edit',
         views: {

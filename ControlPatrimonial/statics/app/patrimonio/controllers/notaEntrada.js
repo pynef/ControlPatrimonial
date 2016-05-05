@@ -130,4 +130,13 @@ angular.module('patrimonioModule')
       );
     };
   }
+])
+.controller('detallesNotaEntradaCtrl',['$scope', '$state','$stateParams', 'statics', 'bienService',
+  function($scope, $state, $stateParams, statics, bienService){
+    $scope.init = function(){
+      console.log($stateParams.idDetalleIngreso);
+      $scope.bienes = bienService.query({detalle_ingreso:$stateParams.idDetalleIngreso});
+      console.log($scope.bienes);
+    };
+  }
 ]);

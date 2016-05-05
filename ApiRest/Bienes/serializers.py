@@ -29,7 +29,7 @@ class BienSerializer(serializers.ModelSerializer):
     # catalogo = serializers.SlugRelatedField(many=False, read_only=False, slug_field='nombre', queryset=CatalogoBien.objects.all() )
     class Meta:
         model = Bien
-        fields = ('id', 'catalogo', 'codigo', 'descripcion', 'almacen',
+        fields = ('id', 'catalogo', 'codigo', 'descripcion', 'almacen', 'detalle_ingreso',
          'marca', 'modelo','numero_serie','dimension','color','otro_detalle','usuario', 'fecha_activa',
          'institucion','sede','local','ambiente','saldo_inicial','estado','fecha_revaluacion')
         read_only_fields = ('created_at', 'updated_at',)

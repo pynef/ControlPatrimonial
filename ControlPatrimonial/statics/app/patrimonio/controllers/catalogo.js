@@ -35,7 +35,6 @@ controller('catalogoEditCtrl',
       $scope.cuentas = cuentasService.query();
     };
     $scope.changeGrupo = function(grupo_id){
-      //$scope.clases = null;
       $scope.clases = grupoService.clases({id: grupo_id});
     };
   }
@@ -51,13 +50,12 @@ function($scope, $state, $stateParams, grupoService, tipoService, cuentasService
         $scope.grupos = grupoService.query();
         $scope.tipos = tipoService.query();
         $scope.cuentas = cuentasService.query();
-    }
+    };
     $scope.changeGrupo = function(grupo_id){
       //$scope.clases = null;
       $scope.clases = grupoService.clases({id: grupo_id});
     };
     $scope.saveCatalogo = function(e, obj){
-      console.log(obj)
       var btn = angular.element(e.currentTarget);
       btn.attr('disabled', true);
       var catalogo = new CatalogoService(obj);
@@ -65,7 +63,6 @@ function($scope, $state, $stateParams, grupoService, tipoService, cuentasService
         $scope.catalogo = data;
         $scope.message = ({success:true, error: false});
         btn.removeAttr('disabled');
-        //$state.go('^');
       }, function(err){
         $scope.message = ({success:false, error:true});
         btn.removeAttr('disabled');
