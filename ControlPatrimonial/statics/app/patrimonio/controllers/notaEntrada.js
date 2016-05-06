@@ -131,12 +131,16 @@ angular.module('patrimonioModule')
     };
   }
 ])
-.controller('detallesNotaEntradaCtrl',['$scope', '$state','$stateParams', 'statics', 'bienService',
-  function($scope, $state, $stateParams, statics, bienService){
+.controller('detallesNotaEntradaCtrl',['$scope', '$state','$stateParams', 'statics', 'bienDisponiblesService',
+  function($scope, $state, $stateParams, statics, bienDisponiblesService){
     $scope.init = function(){
       console.log($stateParams.idDetalleIngreso);
-      $scope.bienes = bienService.query({detalle_ingreso:$stateParams.idDetalleIngreso});
-      console.log($scope.bienes);
+      // $scope.bienes = bienDisponiblesService.query({detalle_ingreso:$stateParams.idDetalleIngreso});
+      $scope.bienes = bienDisponiblesService.query({detalle_ingreso:$stateParams.idDetalleIngreso},
+      function(data){
+        console.log(data);
+      });
+      // console.log($scope.bienes);
     };
   }
 ]);

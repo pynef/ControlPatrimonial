@@ -1,6 +1,6 @@
 'use strict';
-/* jshint -W097 */-
-/* jshint -W117 */-
+/* jshint -W097 */
+/* jshint -W117 */
 /* global angular */
 
 angular.module('patrimonioModule')

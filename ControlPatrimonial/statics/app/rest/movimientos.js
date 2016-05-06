@@ -6,7 +6,12 @@ angular.module('RESTServices')
   .factory('bienService',
     ['$rootScope', 'djResource',
     function ($rootScope, djResource) {
-      return djResource($rootScope.api_url + 'bienes/:id/', {id: '@id'});
+      return djResource($rootScope.api_url + 'bienes/:id/',
+      {id: '@id'},
+        {
+          detalle_ingreso: { method: 'GET', isArray:true, params: { detalle_ingreso: 'detalle_ingreso'} }
+        }
+      );
     }
   ])
   .factory('bienDisponiblesService',
