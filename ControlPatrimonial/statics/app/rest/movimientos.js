@@ -6,17 +6,20 @@ angular.module('RESTServices')
   .factory('bienService',
     ['$rootScope', 'djResource',
     function ($rootScope, djResource) {
-      return djResource($rootScope.api_url + 'bienes/:id/',
-      {id: '@id'},
-        {
-          detalle_ingreso: { method: 'GET', isArray:true, params: { detalle_ingreso: 'detalle_ingreso'} }
-        }
-      );
+      return djResource($rootScope.api_url + 'bienes/:id/',{id: '@id'});
     }
   ])
   .factory('bienDisponiblesService',
     ['$rootScope', 'djResource',
     function ($rootScope, djResource) {
       return djResource($rootScope.api_url + 'bienes_disponibles/:id/', {id: '@id'});
+    }
+  ])
+  .factory('bienDetalleIngresoService',
+    ['$rootScope', 'djResource',
+    function ($rootScope, djResource) {
+      return djResource($rootScope.api_url + 'bienes/:detalle_ingreso/detalle_ingreso',
+        {detalle_ingreso: '@detalle_ingreso'}
+      );
     }
   ]);

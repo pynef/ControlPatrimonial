@@ -20,11 +20,17 @@ angular.module('patrimonioModule')
 .controller('bienEditCtrl',['$scope', '$state', '$stateParams', 'bienService',
   function($scope, $state, $stateParams, bienService){
     $scope.init = function(){
+      console.log($stateParams);
       $scope.bien = bienService.get({id : $stateParams.idBien});
     };
     $scope.saveBien = function(bien){
-      bienService.save(bien);
-      $state.go('.^');
+      console.log(666666);
+      var bienSave = new bienService(bien);
+      bienSave.$save(function(data){
+        if(!$stateParams.idDetalleIngreso){$state.go('bienes_detalleIngreso', {idDetalleIngreso: $stateParams.idDetalleIngreso});console.log(1);}
+        else{console.log(2);$state.go('bienes_detalleIngreso', {idDetalleIngreso: $stateParams.idDetalleIngreso});}
+      });
+      console.log($stateParams);
     };
  }
 ])

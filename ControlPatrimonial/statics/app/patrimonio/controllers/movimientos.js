@@ -7,7 +7,7 @@ angular.module('patrimonioModule')
   function($scope, disposicionBienService){
   	$scope.init = function(){
 	    $scope.disposiciones = disposicionBienService.query();
-	}
+	};
  }
 ])
 .controller('disposicionNewCtrl',['$scope', '$stateParams', 'disposicionBienService', 'institucionService',

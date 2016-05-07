@@ -13,19 +13,26 @@ class BienViewSet(viewsets.ModelViewSet):
     queryset = Bien.objects.all()
     serializer_class = BienSerializer
 
+    def disponibles(self, request):
+        disponibles = Bien.objects.filter(almacen = True, is_active = True).order_by('-create_at')
+        serializers = BienSerializer(instance = disponibles, many = True)
+        return Response(serializers.data)
+
+
     @detail_route(methods=['get'])
     def detalle_ingreso(self, request, **kwargs):
         detalle_ingreso = self.get_object()
-        detalles_ingreso = Bien.objects.filter(detalle_ingreso=detalle_ingreso)
+        print detalle_ingreso
+        detalles_ingreso = Bien.objects.filter(detalle_ingreso=detalle_ingreso.id)
         self.queryset = detalles_ingreso
         self.serializer_class = BienSerializer
 
         serializers = BienSerializer(instance=self.queryset, many=True)
         return Response(serializers.data)
 
-class BienDisponibleViewSet(viewsets.ModelViewSet):
-    queryset = Bien.objects.filter(almacen=True,is_active=True).order_by('-create_at')
-    serializer_class = BienSerializer
+# class BienDisponibleViewSet(viewsets.ModelViewSet):
+#     queryset = Bien.objects.filter(almacen=True,is_active=True).order_by('-create_at')
+#     serializer_class = BienSerializer
 
 class DisposicionBienViewSet(viewsets.ModelViewSet):
     queryset = DisposicionBien.objects.all().order_by('-create_at')
