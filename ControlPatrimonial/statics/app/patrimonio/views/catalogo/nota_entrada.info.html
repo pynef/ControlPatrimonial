@@ -22,9 +22,9 @@
               </tr>
               <tr>
                 <th> # </th>
-                <th>Catalogo</th>
+                <th>Catálogo</th>
                 <th>Cantidad</th>
-                <th>Precio Unitario</th>
+                <th>Precio unitario</th>
                 <th> <i class="fa fa-gears"></i> </th>
               </tr>
             </thead>
@@ -36,7 +36,7 @@
                 <td>{{detalle.precio_unitario}}</td>
                 <td>
                   <button ng-if="detalle.pendiente" ng-click="generar(detalle)" type="button" class="btn btn-primary" name="button">
-                  <i class="fa fa-gears"></i> Generar Codigo</button>
+                  <i class="fa fa-gears"></i> Generar Código</button>
                   <a  ng-if="!detalle.pendiente" ui-sref="bienes_detalleIngreso({idDetalleIngreso:detalle.id})" class="btn btn-info">
                   <i class="fa fa-bars"> </i>  Detallado
                   </a>

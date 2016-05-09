@@ -59,7 +59,7 @@
           </div>
           <div class="col-sm-3">
             <div class="form-group">
-              <label for="">Numero de Comprobante</label>
+              <label for="">Número de Comprobante</label>
               <input type="text" class="form-control" name="numero_comprobante" ng-model="nota.numero_comprobante">
             </div>
           </div>
@@ -81,7 +81,7 @@
         </div>
         <div class="row"><!--  search section -->
           <div class="col-sm-10">
-            <label for="">Busquede de Catalogo de Bienes</label>
+            <label for="">Busqueda de Catálogo de Bienes</label>
             <div class="input-group dropdown">
               <input type="text" class="form-control" ng-model="filter_catalog" ng-change="searchCatalogo(filter_catalog)" placeholder="Buscar Catalogo de Bienes">
               <span class="input-group-btn">
@@ -124,7 +124,7 @@
                 <thead>
                   <tr>
                     <td> # </td>
-                    <td> Catalogo </td>
+                    <td> Catálogo </td>
                     <td> Cantidad </td>
                     <td> Precio Unitario</td>
                     <td> Subtotal </td>
@@ -161,7 +161,7 @@
                 <tfoot>
                   <tr ng-if="nota.tipo_moneda==2">
                     <td colspan="3"></td>
-                    <td class="bg-danger"> Total en Dolares </td>
+                    <td class="bg-danger"> Total en Dólares </td>
                     <td class="bg-danger"> $ {{totalDetalle()}} </td>
                     <td></td>
                   </tr>

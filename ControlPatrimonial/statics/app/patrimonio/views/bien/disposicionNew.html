@@ -7,7 +7,7 @@
           <span>Cancelar</span>
         </a>
       </span>
-      <h3 class="panel-title"> Nueva Disposición de bien </h3>
+      <h3 class="panel-title"> Nueva Disposición del bien </h3>
       <div class="clearfix"></div>
     </header>
     <div class="panel-body" ng-init="init()">
@@ -23,7 +23,7 @@
               <span ng-show="disposicionBienForm.institucion.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
             </div> -->
             <div class="form-group" ng-class="{'validate-has-error':disposicionBienForm.sede.$invalid}">
-              <label class="control-label" for="sede">sede</label>
+              <label class="control-label" for="sede">Sede</label>
               <select class="form-control"
                       ng-disabled="!sedes.$resolved"
                       ng-model="disposicion.sede"
@@ -34,7 +34,7 @@
               <span ng-show="disposicionBienForm.sede.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
             </div>
             <div class="form-group" ng-class="{'validate-has-error':disposicionBienForm.local.$invalid}">
-              <label class="control-label" for="local">local</label>
+              <label class="control-label" for="local">Local</label>
               <select class="form-control"
                       ng-disabled="!locales.$resolved"
                       ng-model="disposicion.local"
@@ -45,7 +45,7 @@
               <span ng-show="disposicionBienForm.sede.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
             </div>
             <div class="form-group" ng-class="{'validate-has-error':disposicionBienForm.ambiente.$invalid}">
-              <label class="control-label" for="ambiente">ambiente</label>
+              <label class="control-label" for="ambiente">Ambiente</label>
               <select class="form-control"
                       ng-disabled="!ambientes.$resolved"
                       ng-model="disposicion.ambiente"
@@ -56,7 +56,7 @@
               <span ng-show="disposicionBienForm.sede.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
             </div>
             <div class="form-group" ng-class="{'validate-has-error':disposicionBienForm.solicitante.$invalid}">
-              <label class="control-label" for="solicitante">solicitante</label>
+              <label class="control-label" for="solicitante">Solicitante</label>
               <select class="form-control"
                       ng-disabled="!solicitantes.$resolved"
                       ng-model="disposicion.solicitante"
@@ -67,7 +67,7 @@
               <span ng-show="disposicionBienForm.sede.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
             </div>
              <div class="form-group" ng-class="{'validate-has-error':disposicionBienForm.bien.$invalid}">
-              <label class="control-label" for="bien">bien</label>
+              <label class="control-label" for="bien">Bien</label>
               <select class="form-control"
                       ng-disabled="!bienes.$resolved"
                       ng-model="disposicion.bien"
