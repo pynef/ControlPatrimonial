@@ -136,6 +136,7 @@ angular.module('patrimonioModule')
     $scope.init = function(){
       $scope.bienes = bienDetalleIngresoService.query({detalle_ingreso:$stateParams.idDetalleIngreso},
       function(data){
+        $stateParams.idDetalleIngreso = data.detalle_ingreso;
       });
     };
   }
