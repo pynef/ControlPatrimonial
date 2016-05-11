@@ -234,11 +234,11 @@ class ActivoFijo(models.Model):
 
 
 class TrasladoBien(models.Model):
-    solicitante = models.ForeignKey(User, related_name="solicitante")
+    solicitante = models.ForeignKey(Trabajador, related_name="solicitante")
     bien = models.ForeignKey(Bien)
     descripcion = models.TextField()
     origen = models.ForeignKey(Ambiente, related_name="origen")
-    destino = models.ForeignKey(Ambiente)
+    destino = models.ForeignKey(Ambiente, related_name="destino")
     is_active = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now=True)

@@ -1,0 +1,61 @@
+<div class="col-sm-12"  ng-init="init()">
+  <section class="panel panel-default">
+    <header class="panel-headin">
+      <span class="pull-right">
+        <a ui-sref=".^" class="btn btn-danger btn-icon">
+          <i class="fa-times"></i>
+          <span>Cancelar</span>
+        </a>
+      </span>
+      <h3 class="panel-title"> Nuevo Traslado de bien </h3>
+      <div class="clearfix"></div>
+    </header>
+    <div class="panel-body" ng-init="init()" class="col-sm-12">
+      <form name="trasladoBienForm" class="row">
+          <div class="col-sm-6">
+            <h1>Origen</h1>
+            <div class="form-group" ng-class="{'validate-has-error':trasladoBienForm.sede.$invalid}">
+              <label class="control-label" for="sede">Sede</label>
+              <select class="form-control"
+                      ng-disabled="!sedes.$resolved"
+                      ng-model="traslado.sede"
+                      ng-change="changeSedes(traslado.sede)"
+                      >
+                      <option ng-repeat="sede in sedes" value="{{sede.id}}"> {{sede.nombre}}</option>
+              </select>
+              <span ng-show="trasladoBienForm.sede.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
+            </div>
+            <div class="form-group" ng-class="{'validate-has-error':trasladoBienForm.local.$invalid}">
+              <label class="control-label" for="local">Local</label>
+              <select class="form-control"
+                      ng-disabled="!locales.$resolved"
+                      ng-model="traslado.local"
+                      ng-change="changelocales(traslado.local)"
+                      >
+                      <option ng-repeat="local in locales" value="{{local.id}}"> {{local.nombre}}</option>
+              </select>
+              <span ng-show="trasladoBienForm.sede.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
+            </div>
+            <div class="form-group" ng-class="{'validate-has-error':trasladoBienForm.ambiente.$invalid}">
+              <label class="control-label" for="ambiente">Ambiente</label>
+              <select class="form-control"
+                      ng-disabled="!ambientes.$resolved"
+                      ng-model="traslado.ambiente"
+                      ng-change="changeAmbientes(traslado.ambiente)"
+                      >
+                      <option ng-repeat="ambiente in ambientes" value="{{ambiente.id}}"> {{ambiente.nombre}}</option>
+              </select>
+              <span ng-show="trasladoBienForm.sede.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="ambiente">Bienes</label>
+              <select class="form-control"
+                      ng-model="traslado.origen">
+                      <option ng-repeat="bien in bienes" value="{{bien.id}}"> {{bien.codigo}}</option>
+              </select>
+            </div>
+          </div>
+
+      </form>
+    </div>
+  </section>

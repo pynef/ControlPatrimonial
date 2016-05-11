@@ -66,9 +66,34 @@ angular.module('patrimonioModule')
     };
  }
 ])
-.controller('trasladosCtrl',['$scope',
-  function($scope){
-    console.log('trasladosCtrl controller');
+.controller('trasladoCtrl',['$scope', 'trasladoBienService', 'SedeLocalesService',
+ 'localAmbientesService', 'trabajadorService', 'institucionSedesService',
+  function($scope, trasladoBienService, SedeLocalesService,
+  localAmbientesService, trabajadorService, institucionSedesService){
+    $scope.init = function(){
+      $scope.traslados = trasladoBienService.query();
+      $scope.sedes = institucionSedesService.query({id:1});
+    };
+ }
+])
+.controller('trasladoNewCtrl',['$scope', 'trasladoBienService', 'SedeLocalesService',
+ 'localAmbientesService', 'trabajadorService', 'bienService',
+  function($scope, trasladoBienService, SedeLocalesService,
+     localAmbientesService, trabajadorService, bienService){
+    $scope.init = function(){
+      $scope.traslados = trasladoBienService.query();
+    };
+    $scope.changeSedes = function(sede_id){
+      	$scope.locales = SedeLocalesService.query({id: sede_id});
+    };
+    $scope.changelocales = function(local_id){
+    	$scope.ambientes = localAmbientesService.query({id: local_id});
+    };
+    $scope.changeAmbientes = function(ambiente_id){
+    	$scope.bienes = bienService.query({ambiente:ambiente_id});
+      console.log($scope.bienes);
+      console.log(ambiente_id);
+    };
  }
 ])
 .controller('bajasCtrl',['$scope',

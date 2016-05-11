@@ -3,7 +3,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from ApiRest.CatalogoBienes.serializers import CatalogoBienSerializer
-from app.Bienes.models import Bien, Ingreso, DetalleIngreso, DisposicionBien
+from app.Bienes.models import Bien, Ingreso, DetalleIngreso, DisposicionBien, TrasladoBien
 from app.CatalogoBienes.models import CatalogoBien
 from app.Institucion.models import Institucion, Sede, Local, Ambiente
 from app.RecursosHumanos.models import Trabajador, Persona
@@ -22,6 +22,14 @@ class DisposicionBienSerializer(serializers.ModelSerializer):
         fields = ('id', 'institucion', 'sede', 'local',
          'ambiente', 'fecha','solicitante','bien','descripcion',
          'is_active')
+        read_only_fields = ('created_at', 'updated_at',)
+
+
+class TrasladoBienSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TrasladoBien
+        fields = ('id', 'solicitante', 'bien', 'descripcion',
+         'origen', 'destino','is_active','user',)
         read_only_fields = ('created_at', 'updated_at',)
 
 

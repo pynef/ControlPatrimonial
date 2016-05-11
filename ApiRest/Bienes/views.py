@@ -2,12 +2,16 @@ from rest_framework import generics, permissions
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import detail_route, list_route
-from app.Bienes.models import Bien, Ingreso, DetalleIngreso, DisposicionBien
+from app.Bienes.models import Bien, Ingreso, DetalleIngreso, DisposicionBien, TrasladoBien
 from app.CatalogoBienes.models import CatalogoBien
 from app.Institucion.models import Institucion
-from serializers import BienSerializer, IngresoSerializer, DetalleIngresoSerializer, DisposicionBienSerializer
+from serializers import BienSerializer, IngresoSerializer, DetalleIngresoSerializer, DisposicionBienSerializer, TrasladoBienSerializer
 from app.Helpers.main import complete_zeros
 
+
+class TrasladoViewSet(viewsets.ModelViewSet):
+    queryset = TrasladoBien.objects.all()
+    serializer_class = TrasladoBienSerializer
 
 class BienViewSet(viewsets.ModelViewSet):
     queryset = Bien.objects.all()

@@ -326,10 +326,15 @@ angular.module('app')
         templateUrl: window.static_url + 'app/patrimonio/views/bien/disposicionNew.html',
         controller: 'disposicionNewCtrl'
       })
-      .state('traslados', {
-        url: '/traslados',
-        templateUrl: window.static_url + 'app/patrimonio/views/bien/traslados.html',
-        controller: 'trasladosCtrl'
+      .state('traslado', {
+        url: '/traslado',
+        templateUrl: window.static_url + 'app/patrimonio/views/bien/traslado.html',
+        controller: 'trasladoCtrl'
+      })
+      .state('traslado.new', {
+        url: '/new',
+        templateUrl: window.static_url + 'app/patrimonio/views/bien/trasladoNew.html',
+        controller: 'trasladoNewCtrl'
       })
       .state('bajas', {
         url: '/bajas',

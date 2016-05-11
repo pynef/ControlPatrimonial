@@ -1,7 +1,7 @@
 <div class="page-title">
   <div class="title-env">
-    <h1 class="title">Disposición del Bien</h1>
-    <p class="description">Son las disposiciones de los bienes que se encuentran en almacén. </p>
+    <h1 class="title">Traslado del Bien</h1>
+    <p class="description">Son llos traslados de los bienes que se dentro de la institucion. </p>
   </div>
   <div class="breadcrumb-env">
     <ol class="breadcrumb bc-1">
@@ -9,7 +9,7 @@
         <a href="#/"><i class="fa-home"></i>Home</a>
       </li>
       <li class="active">
-          <strong>Disposición</strong>
+          <strong>Traslados</strong>
       </li>
     </ol>
   </div>
@@ -20,7 +20,7 @@
     <section class="panel panel-default">
       <header class="panel-heading">
         <span class="pull-right">
-          <a ui-sref="disposicion.new" class="btn btn-secondary btn-icon">
+          <a ui-sref=".new" class="btn btn-secondary btn-icon">
             <i class="fa-plus"></i>
             <span>Nuevo</span>
           </a>
@@ -33,26 +33,27 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>Institución</th>
-                <th>Sede</th>
-                <th>Local</th>
-                <th>Ambiente</th>
-                <th>Responsable</th>
+                <th>Solicitante</th>
                 <th>Bien</th>
+                <th>Decripcion</th>
+                <th>Origen</th>
+                <th>Destino</th>
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="disposicion in disposiciones">
-                <td>{{disposicion.id}}</td>
-                <td render-institucion ng-model="disposicion.institucion"></td>
-                <td render-sede ng-model="disposicion.sede"></td>
-                <td render-local ng-model="disposicion.local"></td>
-                <td render-ambiente ng-model="disposicion.ambiente"></td>
-                <td render-trabajador ng-model="disposicion.solicitante"></td>
-                <td render-bien ng-model="disposicion.bien"></td>
+              <tr ng-repeat="traslado in traslados">
+                <td>{{$index+1}}</td>
+                <td render-trabajador ng-model="traslado.solicitante"></td>
+                <td render-bien ng-model="traslado.bien"></td>
+                <td>{{traslado.descripcion}}</td>
+                <td render-ambiente ng-model="traslado.origen"></td>
+                <td render-ambiente ng-model="traslado.destino"></td>
                 <!-- <td>
-                  <a ui-sref="bienes_detalleIngreso({idDisposicion:disposicion.id})" class="btn btn-icon btn-info" alt="mas información">
+                  <a ui-sref="grupos.clases({idDisposicion:traslado.id})" class="btn btn-icon btn-info" alt="mas información">
                     <i class="fa-search"></i>
+                  </a>
+                  <a ui-sref="grupos.edit({idDisposicion:traslado.id})" class="btn btn-icon btn-blue" alt="Editar">
+                    <i class="fa-pencil"></i>
                   </a>
                 </td> -->
               </tr>

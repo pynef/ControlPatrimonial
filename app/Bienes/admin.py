@@ -6,7 +6,7 @@ from app.Bienes.models import DetalleIngreso
 from app.Bienes.models import BajaBien
 from app.Bienes.models import DisposicionBien
 from app.Bienes.models import Bien
-# from app.Bienes.models import TrasladoBien
+from app.Bienes.models import TrasladoBien
 from app.Bienes.models import ActivoFijo
 
 
@@ -17,5 +17,5 @@ admin.site.register(DetalleIngreso)
 admin.site.register(BajaBien)
 admin.site.register(DisposicionBien)
 admin.site.register(Bien)
-# admin.site.register(TrasladoBien)
+admin.site.register(TrasladoBien)
 admin.site.register(ActivoFijo)

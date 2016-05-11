@@ -13,40 +13,16 @@ angular.module('RESTServices')
       return djResource($rootScope.api_url + 'users/:id/balance',{id:'@id'});
     }
   ])
-  .factory('almacenService',
-    ['$rootScope', 'djResource',
-    function ($rootScope, djResource) {
-      return djResource( $rootScope.api_url + 'deposits/:id/',{id:'@id'});
-    }
-  ])
-  .factory('inventarioService',
-    ['$rootScope', 'djResource',
-    function ($rootScope, djResource) {
-      return djResource( $rootScope.api_url + 'deposits/:id/',{id:'@id'});
-    }
-  ])
-  .factory('altaBienService',
-    ['$rootScope', 'djResource',
-    function ($rootScope, djResource) {
-      return djResource( $rootScope.api_url + 'deposits/:id/',{id:'@id'});
-    }
-  ])
   .factory('disposicionBienService',
     ['$rootScope', 'djResource',
     function ($rootScope, djResource) {
       return djResource( $rootScope.api_url + 'disposicion_bienes/:id/',{id:'@id'});
     }
   ])
-  .factory('asignacionBienService',
-    ['$rootScope', 'djResource',
-    function ($rootScope, djResource) {
-      return djResource( $rootScope.api_url + 'deposits/:id/',{id:'@id'});
-    }
-  ])
   .factory('trasladoBienService',
     ['$rootScope', 'djResource',
     function ($rootScope, djResource) {
-      return djResource( $rootScope.api_url + 'deposits/:id/',{id:'@id'});
+      return djResource( $rootScope.api_url + 'traslados/:id/',{id:'@id'});
     }
   ])
 ///Grupos y Clases

@@ -12,8 +12,8 @@ angular.module('app',
   'RESTServices',
   'patrimonioModule'
 ])
-.run(['$rootScope', '$location', '$scopeRoot',
-  function ($rootScope, $location, $scopeRoot) {
+.run(['$rootScope', '$location',
+  function ($rootScope, $location) {
     console.log('run app');
   }
 ])
