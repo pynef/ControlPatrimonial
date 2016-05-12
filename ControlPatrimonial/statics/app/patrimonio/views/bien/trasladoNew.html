@@ -50,7 +50,8 @@
             <div class="form-group">
               <label class="control-label" for="ambiente">Bienes</label>
               <select class="form-control"
-                      ng-model="traslado.origen">
+                      ng-model="traslado.origen"
+                      size={{longitud}}>
                       <option ng-repeat="bien in bienes" value="{{bien.id}}"> {{bien.codigo}}</option>
               </select>
             </div>

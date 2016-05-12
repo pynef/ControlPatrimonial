@@ -34,6 +34,16 @@ class BienViewSet(viewsets.ModelViewSet):
         serializers = BienSerializer(instance=self.queryset, many=True)
         return Response(serializers.data)
 
+    @detail_route(methods=['get'])
+    def ambiente(self, request, **kwargs):
+        ambiente = self.get_object()
+        bienes_por_ambiente = Bien.objects.filter(ambiente=ambiente.id)
+        self.queryset = bienes_por_ambiente
+        self.serializer_class = BienSerializer
+
+        serializers = BienSerializer(instance=self.queryset, many=True)
+        return Response(serializers.data)
+
 # class BienDisponibleViewSet(viewsets.ModelViewSet):
 #     queryset = Bien.objects.filter(almacen=True,is_active=True).order_by('-create_at')
 #     serializer_class = BienSerializer

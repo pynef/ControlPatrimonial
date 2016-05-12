@@ -77,9 +77,9 @@ angular.module('patrimonioModule')
  }
 ])
 .controller('trasladoNewCtrl',['$scope', 'trasladoBienService', 'SedeLocalesService',
- 'localAmbientesService', 'trabajadorService', 'bienService',
+ 'localAmbientesService', 'trabajadorService', 'bienAmbienteService',
   function($scope, trasladoBienService, SedeLocalesService,
-     localAmbientesService, trabajadorService, bienService){
+     localAmbientesService, trabajadorService, bienAmbienteService){
     $scope.init = function(){
       $scope.traslados = trasladoBienService.query();
     };
@@ -90,9 +90,11 @@ angular.module('patrimonioModule')
     	$scope.ambientes = localAmbientesService.query({id: local_id});
     };
     $scope.changeAmbientes = function(ambiente_id){
-    	$scope.bienes = bienService.query({ambiente:ambiente_id});
-      console.log($scope.bienes);
-      console.log(ambiente_id);
+      console.log(9999)
+    	$scope.bienes = bienAmbienteService.query({ambiente_id:ambiente_id});
+      $scope.longitud = $scope.bienes.length;
+      console.log($scope.bienes.length);
+      console.log($scope.longitud);
     };
  }
 ])

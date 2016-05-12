@@ -18,8 +18,16 @@ angular.module('RESTServices')
   .factory('bienDetalleIngresoService',
     ['$rootScope', 'djResource',
     function ($rootScope, djResource) {
-      return djResource($rootScope.api_url + 'bienes/:detalle_ingreso/detalle_ingreso',
+      return djResource($rootScope.api_url + 'bienes/:detalle_ingreso/detalle_ingreso/',
         {detalle_ingreso: '@detalle_ingreso'}
+      );
+    }
+  ])
+  .factory('bienAmbienteService',
+    ['$rootScope', 'djResource',
+    function ($rootScope, djResource) {
+      return djResource($rootScope.api_url + 'bienes/:ambiente_id/ambiente/',
+        {ambiente_id: '@ambiente_id'}
       );
     }
   ]);
