@@ -247,7 +247,7 @@ class TrasladoBien(models.Model):
     workstation_ip = models.CharField(max_length=64, blank=True, null=True)
 
     def __str__(self):
-        return '{0}'.format(self.nombre)
+        return '{0}'.format(self.id)
 
     class Meta:
         managed = True

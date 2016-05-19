@@ -72,28 +72,27 @@ angular.module('patrimonioModule')
   localAmbientesService, trabajadorService, institucionSedesService){
     $scope.init = function(){
       $scope.traslados = trasladoBienService.query();
-      $scope.sedes = institucionSedesService.query({id:1});
     };
  }
 ])
-.controller('trasladoNewCtrl',['$scope', 'trasladoBienService', 'SedeLocalesService',
+.controller('trasladoNewCtrl',['$scope', 'trasladoBienService', 'SedeLocalesService', 'institucionSedesService',
  'localAmbientesService', 'trabajadorService', 'bienAmbienteService',
-  function($scope, trasladoBienService, SedeLocalesService,
+  function($scope, trasladoBienService, SedeLocalesService, institucionSedesService,
      localAmbientesService, trabajadorService, bienAmbienteService){
     $scope.init = function(){
       $scope.traslados = trasladoBienService.query();
+      $scope.sedes = institucionSedesService.query({id:1});
     };
-    $scope.changeSedes = function(sede_id){
-      	$scope.locales = SedeLocalesService.query({id: sede_id});
+    $scope.changeSedesO = function(sede_id){
+      	$scope.localesO = SedeLocalesService.query({id: sede_id});
     };
-    $scope.changelocales = function(local_id){
-    	$scope.ambientes = localAmbientesService.query({id: local_id});
+    $scope.changelocalesO = function(local_id){
+    	$scope.ambientesO = localAmbientesService.query({id: local_id});
     };
-    $scope.changeAmbientes = function(ambiente_id){
-      console.log(9999)
+    $scope.changeAmbientesO = function(ambiente_id){
     	$scope.bienes = bienAmbienteService.query({ambiente_id:ambiente_id});
-      $scope.longitud = $scope.bienes.length;
-      console.log($scope.bienes.length);
+      $scope.longitud = $scope.bienes;
+      console.log($scope.bienes);
       console.log($scope.longitud);
     };
  }
