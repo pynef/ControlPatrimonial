@@ -64,28 +64,28 @@
               <label class="control-label" for="ambiente">Bienes</label>
               <select class="form-control"
                       ng-model="traslado.origen"
-                      ng-disabled="!bienes.$resolved"
+                      ng-disabled="!bienesO.$resolved"
                       size={{longitud}}
                       required>
-                      <option ng-repeat="bien in bienes" value="{{bien.id}}">
+                      <option ng-repeat="bien in bienesO" value="{{bien.id}}">
                         {{bien.codigo}}
                       </option>
               </select>
             </div>
           </div>
           <div class="col-sm-2">
-            <button type="button" name="button">
+            <button type="button" name="button" ng-click="trasladando(traslado);">
               ->
             </button>
           </div>
           <div class="col-sm-5">
-            <h1>Origen</h1>
+            <h1>Destino</h1>
             <div class="form-group" ng-class="{'validate-has-error':trasladoBienForm.sede.$invalid}">
               <label class="control-label" for="sede">Sede</label>
               <select class="form-control"
                       ng-disabled="!sedes.$resolved"
-                      ng-model="traslado.sede"
-                      ng-change="changeSedes(traslado.sede)"
+                      ng-model="traslado.sedeD"
+                      ng-change="changeSedesD(traslado.sedeD)"
                       >
                       <option ng-repeat="sede in sedes" value="{{sede.id}}"> {{sede.nombre}}</option>
               </select>
@@ -94,33 +94,33 @@
             <div class="form-group" ng-class="{'validate-has-error':trasladoBienForm.local.$invalid}">
               <label class="control-label" for="local">Local</label>
               <select class="form-control"
-                      ng-disabled="!locales.$resolved"
-                      ng-model="traslado.local"
-                      ng-change="changelocales(traslado.local)"
+                      ng-disabled="!localesD.$resolved"
+                      ng-model="traslado.localD"
+                      ng-change="changelocalesD(traslado.localD)"
                       >
-                      <option ng-repeat="local in locales" value="{{local.id}}"> {{local.nombre}}</option>
+                      <option ng-repeat="local in localesD" value="{{local.id}}"> {{local.nombre}}</option>
               </select>
               <span ng-show="trasladoBienForm.sede.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
             </div>
             <div class="form-group" ng-class="{'validate-has-error':trasladoBienForm.ambiente.$invalid}">
               <label class="control-label" for="ambiente">Ambiente</label>
               <select class="form-control"
-                      ng-disabled="!ambientes.$resolved"
-                      ng-model="traslado.ambiente"
-                      ng-change="changeAmbientes(traslado.ambiente)"
+                      ng-disabled="!ambientesD.$resolved"
+                      ng-model="traslado.ambienteD"
+                      ng-change="changeAmbientesD(traslado.ambienteD)"
                       >
-                      <option ng-repeat="ambiente in ambientes" value="{{ambiente.id}}"> {{ambiente.nombre}}</option>
+                      <option ng-repeat="ambiente in ambientesD" value="{{ambiente.id}}"> {{ambiente.nombre}}</option>
               </select>
               <span ng-show="trasladoBienForm.sede.$error.required" class="validate-has-error"> Este campo es obligatorio.  </span>
             </div>
             <div class="form-group">
               <label class="control-label" for="ambiente">Bienes</label>
               <select class="form-control"
-                      ng-model="traslado.origen"
-                      ng-disabled="!bienes.$resolved"
+                      ng-model="traslado.destino"
+                      ng-disabled="!bienesD.$resolved"
                       size={{longitud}}
                       required>
-                      <option ng-repeat="bien in bienes" value="{{bien.id}}"> {{bien.codigo}}</option>
+                      <option ng-repeat="bien in bienesD" value="{{bien.id}}"> {{bien.codigo}}</option>
               </select>
             </div>
           </div>

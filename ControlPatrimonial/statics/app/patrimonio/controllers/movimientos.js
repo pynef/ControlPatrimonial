@@ -37,26 +37,17 @@ angular.module('patrimonioModule')
     };
     $scope.saveDisposicioBien = function(disposicion){
     	disposicion.institucion = 1;
+      console.log(disposicion)
       var dispocicionBien = new disposicionBienService(disposicion);
       dispocicionBien.$save(function(data){
-    		bienDisponiblesService.get({id: data.bien},function(bien){
-        var hoy = new Date();
-        var dd = hoy.getDate();
-        var mm = hoy.getMonth()+1; //hoy es 0!
-        var yyyy = hoy.getFullYear();
-        if(dd<10) {
-            dd='0'+dd;
-        }
-        if(mm<10) {
-            mm='0'+mm;
-        }
-          $scope.hoy = yyyy+'/'+mm+'/'+dd;
+        alert(data);
+    	var bien = bienDisponiblesService.get({id: data.bien},function(bien){
           bien.usuario = data.solicitante;
           bien.institucion = data.institucion;
           bien.sede = data.sede;
           bien.local = data.local;
           bien.ambiente = data.ambiente;
-          bien.fecha_activa = $scope.hoy;
+          bien.fecha_activa = data.fecha;
           bien.estado = 1;
           bien.almacen = false;
       		bien.$save();
@@ -90,11 +81,26 @@ angular.module('patrimonioModule')
     	$scope.ambientesO = localAmbientesService.query({id: local_id});
     };
     $scope.changeAmbientesO = function(ambiente_id){
-    	$scope.bienes = bienAmbienteService.query({ambiente_id:ambiente_id});
-      $scope.longitud = $scope.bienes;
-      console.log($scope.bienes);
-      console.log($scope.longitud);
+      $scope.bienesO = bienAmbienteService.query({ambiente_id:ambiente_id});
     };
+    $scope.changeBienes = function(ambiente_id){
+    	// $scope.bienes = bienAmbienteService.query({ambiente_id:ambiente_id});
+    };
+    //Datos del Destino
+    //Del traslado
+    $scope.changeSedesD = function(sede_id){
+        $scope.localesD = SedeLocalesService.query({id: sede_id});
+    };
+    $scope.changelocalesD = function(local_id){
+      $scope.ambientesD = localAmbientesService.query({id: local_id});
+    };
+    $scope.changeAmbientesD = function(ambiente_id){
+      $scope.bienesD = bienAmbienteService.query({ambiente_id:ambiente_id});
+    };
+    $scope.trasladando = function(traslado){
+     alert(traslado.origen);
+     console.log(traslado);
+    }
  }
 ])
 .controller('bajasCtrl',['$scope',
