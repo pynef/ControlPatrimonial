@@ -34,8 +34,8 @@ angular.module('patrimonioModule')
     };
  }
 ])
-.controller('grupoCtrl',['$scope', 'grupoService',
-  function($scope, grupoService){
+.controller('grupoCtrl',['$scope', '$state', 'grupoService',
+  function($scope, $state, grupoService){
     $scope.init = function(){
       $scope.grupos = grupoService.query();
     };
@@ -45,6 +45,7 @@ angular.module('patrimonioModule')
         grupoService.save(grupo);
       }
       $scope.grupos = _.without( $scope.grupos, _.findWhere($scope.grupos,{id:grupo.id}));
+      $state.go('grupos');
     };
  }
 ])
@@ -70,16 +71,18 @@ angular.module('patrimonioModule')
   };
  }
 ])
-.controller('grupoClasesCtrl',['$scope', '$window', '$state', '$stateParams' ,'grupoClasesService', 'claseService',
-  function($scope, $window, $state, $stateParams, grupoClasesService, claseService){
+.controller('grupoClasesCtrl',['$scope', '$window', '$state', '$stateParams' ,'grupoClasesService', 'claseService', 'grupoService',
+  function($scope, $window, $state, $stateParams, grupoClasesService, claseService, grupoService){
         $scope.init = function(){
             $scope.clases = grupoClasesService.query({id:$stateParams.idGrupo});
+            $scope.grupo = grupoService.get({id:$stateParams.idGrupo});
+            console.log($scope.grupo)
         };
         $scope.agregarClase = function(clase){
-            clase.institucion = 1;
-            clase.grupo = $stateParams.idGrupo;
-            var claseSave = new claseService(clase);
-            claseSave.$save(function(){
+              clase.institucion = 1;
+              clase.grupo = $stateParams.idGrupo;
+              var claseSave = new claseService(clase);
+              claseSave.$save(function(){
               $window.location.reload();
             });
         };

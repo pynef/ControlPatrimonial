@@ -108,7 +108,7 @@ class Ambiente(models.Model):
     institucion = models.ForeignKey(Institucion)
     sede = models.ForeignKey(Sede)
     local = models.ForeignKey(Local)
-    tipo_ambiente = models.ForeignKey(TipoAmbiente,blank=True, null=True)
+    tipo_ambiente = models.ForeignKey(TipoAmbiente)
     piso = models.IntegerField()
     nombre = models.CharField(max_length=64)
     capacidad = models.IntegerField(blank=True, null=True)

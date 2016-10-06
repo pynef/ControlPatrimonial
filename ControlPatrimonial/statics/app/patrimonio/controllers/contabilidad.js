@@ -3,8 +3,8 @@
 /* jshint -W117 */
 /* global angular */
 angular.module('patrimonioModule')
-.controller('contabilidadCtrl',['$scope', 'cuentasService',
-  function($scope, cuentasService){
+.controller('contabilidadCtrl',['$scope', '$state', 'cuentasService',
+  function($scope, $state, cuentasService){
     $scope.init = function(){
       $scope.cuentas = cuentasService.query();
       //$scope.cuentass = djResource($rootScope.api_url + 'cuenta_contables/', {depreciacion: False});
@@ -13,6 +13,7 @@ angular.module('patrimonioModule')
       if( confirm('Esta seguro que dese borrar la Cuenta Contable: ' + cuenta.cuenta_nombre)){
         cuentasService.delete(cuenta);
         $scope.cuentas = _.without( $scope.cuentas, _.findWhere($scope.cuentas,{id:cuenta.id}));
+          $state.go('cuenta_contable');
       }
     };
   }
@@ -34,35 +35,6 @@ angular.module('patrimonioModule')
     };
   }
 ]);
-// $scope.init = function(){
-//   if($stateParams.idSede){
-//     $scope.sedes = sedeService.query();
-//     $scope.sede = sedeService.get({id:$stateParams.idSede});
-//   }
-// };
-// $scope.nuevaSede = function(sede){
-//   $scope.sedes = sedeService.query();
-//   if(!$stateParams.idSede){
-//       sede.institucion = $stateParams.idInstitucion
-//     }
-//   sedeService.save(sede);
-//   $state.go('^');
-// };
-// angular.module('patrimonioModule')
-// .controller('cuenta_contableDepreciacionCtrl',['$scope', '$state', '$stateParams', 'cuentasService',
-//   function($scope, $state, $stateParams, cuentasService){
-//     $scope.init = function(){
-//       console.log($stateParams)
-//       console.log($stateParams.idCuentaContable)
-//     };
-//     $scope.agregarDepreciacion = function(cuenta){
-//     	console.log(cuenta);
-//     	cuentasService.save(cuenta_contable);
-//     	$state.go('^');
-//     }
-//   }
-// ])
-
 angular.module('patrimonioModule')
 .controller('cuenta_contableDepreciacionCtrl',['$scope', '$state', '$stateParams', 'cuentasService',
   function($scope, $state, $stateParams, cuentasService){
@@ -73,8 +45,6 @@ angular.module('patrimonioModule')
         $scope.agregarDepreciacion = function(cuenta){
           var depreciacionSave = new cuentasService(cuenta);
           depreciacionSave.$save(function(){
-            $scope.editable = 0;
-            console.log($scope.editable);
           });
         };
         $scope.cancelar = function(cuenta){

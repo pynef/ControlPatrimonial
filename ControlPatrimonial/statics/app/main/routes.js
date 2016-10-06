@@ -13,6 +13,7 @@ angular.module('app')
         templateUrl: window.static_url + 'app/patrimonio/views/home.html',
         controller: 'homeCtrl'
       })
+      //catalogo de bienes
       .state('catalogo', {
         url: '/catalogo',
         templateUrl: window.static_url + 'app/patrimonio/views/catalogo/home.html',
@@ -33,6 +34,7 @@ angular.module('app')
         templateUrl: window.static_url + 'app/patrimonio/views/catalogo/form.html',
         controller: 'catalogoSaveCtrl'
       })
+      // notas de ingreso
       .state('nota_entrada', {
         url: '/nota-de-entrada',
         templateUrl: window.static_url + 'app/patrimonio/views/catalogo/nota_entrada.html',
@@ -53,6 +55,7 @@ angular.module('app')
         templateUrl: window.static_url + 'app/patrimonio/views/catalogo/nota-salida.html',
         controller: 'notaSalidaCtrl'
       })
+      //modulo institucion
       .state('institucion', {
         url: '/institucion',
         templateUrl: window.static_url + 'app/patrimonio/views/institucion/instituciones.html',
@@ -157,6 +160,7 @@ angular.module('app')
           }
         }
       })
+      //modulo contabilidad
       .state('cuenta_contable', {
         url: '/contabilidad',
         templateUrl: window.static_url + 'app/patrimonio/views/contabilidad/cuentas_contables.html',
@@ -181,6 +185,7 @@ angular.module('app')
           }
         }
       })
+      //modulo rrhh
       .state('rrhh', {
         url: '/rrhh',
         templateUrl: window.static_url + 'app/patrimonio/views/rrhh/rrhh.html',
@@ -234,6 +239,7 @@ angular.module('app')
           }
         }
       })
+      // modulo de proveedor
       .state('proveedor', {
         url: '/proveedores',
         templateUrl: window.static_url + 'app/patrimonio/views/proveedor/proveedores.html',
@@ -249,6 +255,7 @@ angular.module('app')
         templateUrl: window.static_url + 'app/patrimonio/views/proveedor/proveedorNew.html',
         controller: 'proveedorNewCtrl'
       })
+      // modulo de trabajador
       .state('trabajadores', {
         url: '/trabajadores',
         templateUrl: window.static_url + 'app/patrimonio/views/rrhh/trabajadores.html',
@@ -264,6 +271,7 @@ angular.module('app')
         templateUrl: window.static_url + 'app/patrimonio/views/rrhh/trabajadorNew.html',
         controller: 'trabajadorNewCtrl'
       })
+      // modulo de bienes
       .state('bienes', {
         url: '/bienes',
         templateUrl: window.static_url + 'app/patrimonio/views/bien/bienes.html',
@@ -283,6 +291,7 @@ angular.module('app')
           }
         }
       })
+      // modulo de grupos y clases
       .state('grupos', {
         url: '/grupos',
         templateUrl: window.static_url + 'app/patrimonio/views/gruposClases/grupos.html',

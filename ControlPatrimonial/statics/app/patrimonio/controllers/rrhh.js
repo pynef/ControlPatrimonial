@@ -47,8 +47,8 @@ angular.module('patrimonioModule')
   }
 ])
 
-.controller('areaCtrl',['$scope', 'areaService',
-  function($scope, areaService){
+.controller('areaCtrl',['$scope', '$state', 'areaService',
+  function($scope, $state, areaService){
     $scope.init = function(){
       $scope.areas = areaService.query();
     };
@@ -56,15 +56,15 @@ angular.module('patrimonioModule')
       if(confirm("Desea eliminar el area: " + area.nombre)){
         area.is_active = false;
         areaService.save(area);
+        $scope.areas = _.without( $scope.areas, _.findWhere($scope.areas,{id:area.id}));
+        $state.go('^');
       }
-      $scope.areas = _.without( $scope.areas, _.findWhere($scope.areas,{id:area.id}));
     };
   }
 ])
 .controller('areaNewCtrl',['$scope', '$state', '$stateParams' ,'areaService',
   function($scope, $state, $stateParams, areaService){
       $scope.init = function(area){
-        console.log("----area-------");
           if($stateParams.idArea){
               $scope.area = areaService.get({id:$stateParams.idArea});
           }
@@ -84,10 +84,11 @@ angular.module('patrimonioModule')
     };
   }
 ])
-.controller('areaPuestosCtrl',['$scope', '$window',  '$state', '$stateParams' ,'areaPuestosService', 'puestoService',
-  function($scope, $window,  $state, $stateParams, areaPuestosService, puestoService){
+.controller('areaPuestosCtrl',['$scope', '$window',  '$state', '$stateParams' ,'areaPuestosService', 'puestoService', 'areaService',
+  function($scope, $window,  $state, $stateParams, areaPuestosService, puestoService, areaService){
         $scope.init = function(){
             $scope.puestos = areaPuestosService.query({id:$stateParams.idArea});
+            $scope.area = areaService.get({id:$stateParams.idArea});
         };
         $scope.agregarPuesto = function(puesto){
             puesto.institucion = 1;
@@ -138,7 +139,30 @@ angular.module('patrimonioModule')
   SedeLocalesService, areaService, areaPuestosService, localAmbientesService, trabajadorService){
     $scope.init = function(){
       $scope.areas = areaService.query();
+      //las personas que ya estan trabajando no se le pude asignar de nuevo
       $scope.personas = personaService.query();
+      $scope.tra = trabajadorService.query();
+      trabajadorService.query(function(data){
+        $scope.idtrabajadores = _.pluck(data, 'persona');
+           $scope.trab = _.filter($scope.personas,
+             function(item, index){
+               return _.contains($scope.idtrabajadores, item.id)
+             }
+           );
+           $scope.personasRestantes = _.without( $scope.personas,$scope.trab);
+           console.log("personasRestantes");
+           console.log($scope.personasRestantes);
+      });
+
+      console.log("personas");
+      console.log($scope.personas);
+      console.log("trabajadores");
+      console.log($scope.trabajadores);
+      console.log("idtrabajadores");
+      console.log($scope.idtrabajadores);
+      //
+
+
       $scope.sedes = institucionSedesService.query({id:1});
         if($stateParams.idTrabajador){
           $scope.trabajador = trabajadorService.get({id: $stateParams.idTrabajador});

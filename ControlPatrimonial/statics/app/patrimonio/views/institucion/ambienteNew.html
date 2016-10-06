@@ -10,14 +10,14 @@
             <label for="">Nombre</label>
           </div>
           <div class="col-sm-7">
-            <select  type="text"
+            <select required
                     class="form-control"
-                    placeholder=""
-                    ng-model="ambiente.tipo_ambiente"
-                    required>
-                    <option
-                            ng-repeat="tipo_ambiente in tipo_ambientes"
-                            value="{{tipo_ambiente.id}}">{{tipo_ambiente.nombre}}</option>
+                    ng-model="ambiente.tipo_ambiente">
+                    <option value="">------</option>
+                    <option ng-repeat="tipo_ambiente in tipo_ambientes"
+                            value="{{tipo_ambiente.id}}">
+                            {{tipo_ambiente.nombre}}
+                    </option>
             </select>
           </div>
         </div>
@@ -40,7 +40,7 @@
               <label for="">Piso</label>
             </div>
             <div class="col-sm-7">
-              <input  type="text"
+              <input  type="number"
                       class="form-control"
                       placeholder=""
                       ng-model="ambiente.piso"

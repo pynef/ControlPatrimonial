@@ -119,7 +119,6 @@ angular.module('patrimonioModule')
           local.sede = $stateParams.idSede;
         }
         var localSave = new localService(local);
-        console.log(localSave);
           localSave.$save(function(){
             $state.go('institucion.sedes.locales');
           },
@@ -148,6 +147,7 @@ angular.module('patrimonioModule')
   function($scope, $state, $stateParams, $window, localAmbientesService, ambienteService, tipoAmbientesService){
     $scope.init = function(){
       $scope.tipo_ambientes = tipoAmbientesService.query();
+      console.log($scope.tipo_ambientes);
       if($stateParams.idAmbiente){
         $scope.ambientes = ambienteService.query();
         $scope.ambiente = ambienteService.get({id:$stateParams.idAmbiente});
