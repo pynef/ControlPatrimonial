@@ -33,6 +33,22 @@ class PersonaViewSet(viewsets.ModelViewSet):
         serializer = PersonaSerializer(instance=self.queryset, many=True)
         return Response(serializer.data)
 
+
+    # personas no trabajador_restantes
+    @detail_route(methods=['get'])
+    def personas_no_trabajadoras(self, request, **kwargs):
+        #almacenaremos a las personas que no trabajan
+        lista = []
+        trabajadores = Trabajador.objects.all().filter(is_active=True)
+        for i in trabajadores:
+            lista.append(i.persona.id)
+        personas = Persona.objects.exclude(id__exclude=lista)
+
+        serializer = PersonaSerializer(instance = personas, many = True)
+        return Response(serializer.data)
+
+
+
 class PersonaTelefonosViewSet(viewsets.ModelViewSet):
     queryset = PersonaTelefono.objects.all().filter(is_active=True)
     serializer_class = PersonaTelefonosSerializer
@@ -62,6 +78,21 @@ class PuestoViewSet(viewsets.ModelViewSet):
 
         serializer = PuestoSerializer(instance=self.queryset, many=True)
         return Response(serializer.data)
+
+# class TrabajadoresRestantesViewSet(viewsets.ModelViewSet):
+#     queryset = Trabajador.objects.all().filter(is_active=True)
+#     @detail_route(methods=['get'])
+#     def trabajadores_faltantes(self, request, **kwargs):
+#         personas = Personas.objects.all().filter(is_active=True)
+#         trabajadores = Trabajador.objects.all().filter(is_active=True)
+#         print type(personas)
+#         print type(trabajadores)
+#         # self.queryset = trabajadores
+#         # self.serializer_class = TrabSerializer
+#
+#         serializer = TrabSerializer(instance = trabajadores, many=True)
+#         return Response(serializer.data)
+
 
 # class TrabajadorPuestoViewSet(viewsets.ModelViewSet):
 #     queryset = TrabajadorPuesto.objects.all().filter(is_active=True)

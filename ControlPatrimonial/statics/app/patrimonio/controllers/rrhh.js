@@ -144,26 +144,26 @@ angular.module('patrimonioModule')
       $scope.tra = trabajadorService.query();
       trabajadorService.query(function(data){
         $scope.idtrabajadores = _.pluck(data, 'persona');
-           $scope.trab = _.filter($scope.personas,
+        $scope.personasRestantes = _.difference($scope.personas,
+          _.filter($scope.personas,
              function(item, index){
-               return _.contains($scope.idtrabajadores, item.id)
-             }
-           );
-           $scope.personasRestantes = _.without( $scope.personas,$scope.trab);
-           console.log("personasRestantes");
-           console.log($scope.personasRestantes);
+               return _.contains($scope.idtrabajadores, item.id);
+             }) )
+        console.log("$scope.personasRestantes");
+        console.log($scope.personasRestantes);
+
+        $scope.traj = _.filter($scope.personas,
+            function(item, index){
+              return _.contains($scope.idtrabajadores, item.id);
+            });
+              console.log(_.filter($scope.personas,
+                function(item, index){
+                  return _.contains($scope.idtrabajadores, item.id);
+            }));
       });
 
-      console.log("personas");
-      console.log($scope.personas);
-      console.log("trabajadores");
-      console.log($scope.trabajadores);
-      console.log("idtrabajadores");
-      console.log($scope.idtrabajadores);
       //
-
-
-      $scope.sedes = institucionSedesService.query({id:1});
+    $scope.sedes = institucionSedesService.query({id:1});
         if($stateParams.idTrabajador){
           $scope.trabajador = trabajadorService.get({id: $stateParams.idTrabajador});
           $scope.cabecera = "Editar datos del trabajador ";
