@@ -38,13 +38,14 @@ class PersonaViewSet(viewsets.ModelViewSet):
     @detail_route(methods=['get'])
     def personas_no_trabajadoras(self, request, **kwargs):
         #almacenaremos a las personas que no trabajan
+        institucion = self.get_object()
         lista = []
-        trabajadores = Trabajador.objects.all().filter(is_active=True)
+        trabajadores = Trabajador.objects.all().filter(institucion=institucion.id).filter(is_active=True)
         for i in trabajadores:
             lista.append(i.persona.id)
-        personas = Persona.objects.exclude(id__exclude=lista)
+        persona = Persona.objects.filter(institucion=institucion.id).exclude(id__in=lista)
 
-        serializer = PersonaSerializer(instance = personas, many = True)
+        serializer = PersonaSerializer(instance=persona, many=True)
         return Response(serializer.data)
 
 
