@@ -33,22 +33,22 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>Nombre de la empresa</th>
                 <th>RUC</th>
+                <th>Nombre de la empresa</th>
                 <th>Razón Social</th>
-                <th>Dueño</th>
+                <th>Representante</th>
                 <!-- <th>Direccion</th> -->
                 <th>Opciones</th>
               </tr>
             </thead>
             <tbody>
               <tr ng-repeat="proveedor in proveedores">
-                <td>{{proveedor.id}}</td>
-                <td>{{proveedor.nombre}}</td>
+                <td></td>
                 <td>{{proveedor.ruc}}</td>
+                <td>{{proveedor.nombre}}</td>
                 <td>{{proveedor.razon_social}}</td>
-                <td render-proveedor ng-model="proveedor.duenio"></td>
-                <!-- <td>{{proveedor.direccion_fiscal}}</td> -->
+                <td>{{proveedor.persona}}</td>
+                <td>{{proveedor.direccion_fiscal}}</td>
                 <td>
                   <!-- <a ui-sref=".show({id:proveedor.id})" class="btn btn-icon btn-info" alt="mas información">
                     <i class="fa-search"></i>

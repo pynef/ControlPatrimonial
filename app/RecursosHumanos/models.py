@@ -46,7 +46,7 @@ class Persona(models.Model):
     workstation_ip = models.CharField(max_length=64,blank=True, null=True)
 
     def __str__(self):
-        return '{0}'.format(self.nombres)
+        return '{0} {1} {2}'.format(self.apellido_paterno,self.apellido_materno,self.nombres)
 
     class Meta:
         managed = True

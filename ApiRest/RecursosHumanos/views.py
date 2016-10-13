@@ -3,6 +3,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import detail_route
 from app.RecursosHumanos.models import Persona, PersonaTelefono, Trabajador, Area, Puesto
+from app.Proveedor.models import Proveedor
 from serializers import PersonaSerializer, PersonaTelefonosSerializer,  TrabajadorSerializer
 from serializers import AreaSerializer, PuestoSerializer
 
@@ -42,6 +43,20 @@ class PersonaViewSet(viewsets.ModelViewSet):
         lista = []
         trabajadores = Trabajador.objects.all().filter(institucion=institucion.id).filter(is_active=True)
         for i in trabajadores:
+            lista.append(i.persona.id)
+        persona = Persona.objects.filter(institucion=institucion.id).exclude(id__in=lista)
+
+        serializer = PersonaSerializer(instance=persona, many=True)
+        return Response(serializer.data)
+
+    # personas que no estan registrados como proveedores
+    @detail_route(methods=['get'])
+    def personas_no_proveedoras(self, request, **kwargs):
+        #almacenaremos a las personas que no trabajan
+        institucion = self.get_object()
+        lista = []
+        proveedores = Proveedor.objects.all().filter(institucion=institucion.id).filter(is_active=True)
+        for i in proveedores:
             lista.append(i.persona.id)
         persona = Persona.objects.filter(institucion=institucion.id).exclude(id__in=lista)
 

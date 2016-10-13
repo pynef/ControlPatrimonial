@@ -135,32 +135,32 @@ angular.module('patrimonioModule')
 ])
 .controller('trabajadorNewCtrl',['$scope', '$stateParams', '$state', 'institucionSedesService', 'personaService',
   'SedeLocalesService', 'areaService', 'areaPuestosService', 'localAmbientesService', 'trabajadorService',
+  'personasNoTrabajadorasService',
   function($scope, $stateParams, $state, institucionSedesService, personaService,
-  SedeLocalesService, areaService, areaPuestosService, localAmbientesService, trabajadorService){
+  SedeLocalesService, areaService, areaPuestosService, localAmbientesService, trabajadorService,
+  personasNoTrabajadorasService){
     $scope.init = function(){
       $scope.areas = areaService.query();
+      $scope.personasRestantes = personasNoTrabajadorasService.query({idInstitucion:1});
+      console.log($scope.personasRestantes);
       //las personas que ya estan trabajando no se le pude asignar de nuevo
-      $scope.personas = personaService.query();
-      $scope.tra = trabajadorService.query();
-      trabajadorService.query(function(data){
-        $scope.idtrabajadores = _.pluck(data, 'persona');
-        $scope.personasRestantes = _.difference($scope.personas,
-          _.filter($scope.personas,
-             function(item, index){
-               return _.contains($scope.idtrabajadores, item.id);
-             }) )
-        console.log("$scope.personasRestantes");
-        console.log($scope.personasRestantes);
-
-        $scope.traj = _.filter($scope.personas,
-            function(item, index){
-              return _.contains($scope.idtrabajadores, item.id);
-            });
-              console.log(_.filter($scope.personas,
-                function(item, index){
-                  return _.contains($scope.idtrabajadores, item.id);
-            }));
-      });
+      // $scope.personas = personaService.query();
+      // $scope.tra = trabajadorService.query();
+      // trabajadorService.query(function(data){
+      //   $scope.idtrabajadores = _.pluck(data, 'persona');
+      //   $scope.personasRestantes = _.difference($scope.personas,
+      //
+      //       _.filter($scope.personas,
+      //          function(item, index){
+      //            return _.contains($scope.idtrabajadores, item.id);
+      //          })
+      //        );
+      //
+      //       $scope.traj = _.filter($scope.personas,
+      //           function(item, index){
+      //             return _.contains($scope.idtrabajadores, item.persona);
+      //       });
+      // });
 
       //
     $scope.sedes = institucionSedesService.query({id:1});

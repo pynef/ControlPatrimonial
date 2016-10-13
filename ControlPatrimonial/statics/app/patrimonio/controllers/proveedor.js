@@ -18,16 +18,14 @@ angular.module('patrimonioModule')
     };
   }
 ])
-.controller('proveedorNewCtrl',['$scope','$state', '$stateParams', 'proveedorService','personaService',
-  function($scope, $state,  $stateParams, proveedorService, personaService){
+.controller('proveedorNewCtrl',['$scope','$state', '$stateParams', 'proveedorService','personaService','personasNoProveedorasService',
+  function($scope, $state,  $stateParams, proveedorService, personaService, personasNoProveedorasService){
     $scope.init = function(proveedor){
-      console.log($stateParams);
+      $scope.personasFaltantes = personasNoProveedorasService.query({idInstitucion:1})
       $scope.personas = personaService.query();
       if($stateParams.idProveedor){
-          console.log($stateParams);
           $scope.proveedor = proveedorService.get({id:$stateParams.idProveedor});
-          console.log($scope.trabajador);
-        }
+      }
     };
     $scope.saveProveedor = function(proveedor){
         if(!$stateParams.idProveedor){
@@ -38,5 +36,9 @@ angular.module('patrimonioModule')
         $state.go('^');
         });
     };
+    $scope.cancelar = function(){
+      $scope.proveedores = proveedorService.query();
+      $state.go('^');
+    }
   }
 ]);

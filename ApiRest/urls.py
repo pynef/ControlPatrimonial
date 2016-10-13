@@ -51,7 +51,6 @@ router.register(r'areas', AreaViewSet)
 router.register(r'puestos', PuestoViewSet)
 # router.register(r'trabajador_puesto', TrabajadorPuestoViewSet)
 router.register(r'trabajador_telefonos', PersonaTelefonosViewSet)
-#router.register(r'personas_no_trabajadoras', PersonasNoTrabajadorasViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),

@@ -185,7 +185,7 @@ angular.module('app',
               if(valueFromModel){
                 proveedorService.get({id:valueFromModel},
                   function(proveedor){
-                    personaService.get({id:proveedor.duenio},
+                    personaService.get({id:proveedor.personsa},
                       function(persona){
                         scope.persona = persona;
                       },

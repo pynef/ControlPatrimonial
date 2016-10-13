@@ -27,4 +27,16 @@ angular.module('RESTServices')
   ['$rootScope', 'djResource', function ($rootScope, djResource) {
     return djResource($rootScope.api_url + 'puestos/:id/area/',{id:'@id'});
   }
+])
+  .factory('personasNoTrabajadorasService',
+  ['$rootScope', 'djResource', function ($rootScope, djResource) {
+    return djResource($rootScope.api_url + 'personas/:idInstitucion/personas_no_trabajadoras/',
+    {idInstitucion:'@id'});
+  }
+])
+  .factory('personasNoProveedorasService',
+  ['$rootScope', 'djResource', function ($rootScope, djResource) {
+    return djResource($rootScope.api_url + 'personas/:idInstitucion/personas_no_proveedoras/',
+    {idInstitucion:'@id'});
+  }
 ]);
