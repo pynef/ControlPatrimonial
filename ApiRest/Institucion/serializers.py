@@ -34,7 +34,13 @@ class LocalSerializer(serializers.ModelSerializer):
 
 
 class AmbienteSerializer(serializers.ModelSerializer):
+    tipo_ambiente = TipoAmbienteSerializer(read_only=True)
+    tipo_ambiente_id = serializers.PrimaryKeyRelatedField(write_only=True,queryset = TipoAmbiente.objects.all(), source='tipo_ambiente')
+    #tipoambiente = serializers.ReadOnlyField(source='tipo_ambiente.nombre', read_only=True)
+    # autor = serializers.StringRelatedField(many=True)
+    # status = serializers.CharField(source='get_status_display')
+
     class Meta:
         model = Ambiente
-        fields = ('id', 'nombre', 'piso', 'institucion', 'sede', 'local', 'tipo_ambiente')
+        fields = ('id', 'nombre', 'piso', 'institucion', 'sede', 'local', 'tipo_ambiente', 'tipo_ambiente_id')
         read_only_fields = ('created_at', 'updated_at',)

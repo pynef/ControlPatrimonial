@@ -51,11 +51,11 @@ class LocalViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
-class AmbienteViewSet(viewsets.ModelViewSet):
-    queryset = Ambiente.objects.all().filter(is_active=True)
-    serializer_class = AmbienteSerializer
-
-
 class TipoAmbienteViewSet(viewsets.ModelViewSet):
     queryset = TipoAmbiente.objects.all()
     serializer_class = TipoAmbienteSerializer
+
+
+class AmbienteViewSet(viewsets.ModelViewSet):
+    queryset = Ambiente.objects.all().filter(is_active=True)
+    serializer_class = AmbienteSerializer

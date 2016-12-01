@@ -16,11 +16,13 @@
             <thead>
               <tr>
                 <th>Nombre</th>
+                <th>Ambiente</th>
               </tr>
             </thead>
             <tbody>
               <tr ng-repeat="ambiente in ambientes">
                 <td>{{ambiente.nombre}}</td>
+                <td>{{ambiente.tipo_ambiente}}</td>
                 <td>
                   <a ui-sref="institucion.sedes.locales.ambientes.edit({idAmbiente:ambiente.id})" class="btn btn-icon btn-blue" alt="Editar">
                     <i class="fa-pencil"></i>
